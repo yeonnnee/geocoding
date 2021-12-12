@@ -1,0 +1,63 @@
+nav {
+  float: left;
+  width: 200px;
+  height: 100%;
+  padding: 20px 0;
+  background-color: rgb(43, 42, 44);
+
+  li {
+    margin: 0 0 20px 0;
+    padding: 0 20px;
+    color: #dbdbdb;
+
+    i {
+      font-size: 15px;
+      margin: 0 15px 0 0;
+    }
+
+    a {
+      &.active {
+        padding: 10px 40px;
+        background-color: #3b3b3b;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+      } 
+    }
+
+    &.logo {
+      font-size: 25px;
+      margin: 0 0 50px;
+    }
+
+    &.user {
+      position: absolute;
+      bottom: 50px;
+      padding: 20px 0 0 20px;
+      margin: 0;
+      border-top: 1px solid #3b3b3b;
+      cursor: pointer;
+      color: #dbdbdb;
+  
+      .fa-user-circle {
+        font-size: 25px;
+        margin: 0 10px 0 0;
+      }
+  
+      span {
+        position: relative;
+        top: -3px;
+        margin: 0 30px 0 0;
+      }
+  
+      .fa-sign-out-alt {
+        font-size: 18px;
+        opacity: 0.2;
+  
+        &:hover {
+          opacity: 1;
+          transition: opacity 0.5s ease;
+        }
+      }
+    }
+  }
+}
