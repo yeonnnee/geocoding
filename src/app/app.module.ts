@@ -8,6 +8,8 @@ import { LoginComponent } from '../components/login/login.component';
 import { NavComponent } from 'src/components/nav/nav.component';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 import { MenuComponent } from '../components/menu/menu.component';
+import { AuthGuard } from 'src/guard/auth-guard';
+import { AuthService } from 'src/service/auth-service';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import { MenuComponent } from '../components/menu/menu.component';
     LoginComponent,
     NavComponent,
     PageNotFoundComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
