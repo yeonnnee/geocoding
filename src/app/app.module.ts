@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from '../components/page-not-found/page-not-fou
 import { MenuComponent } from '../components/menu/menu.component';
 import { AuthGuard } from 'src/guard/auth-guard';
 import { AuthService } from 'src/service/auth-service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,9 @@ import { AuthService } from 'src/service/auth-service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    AuthService
+  providers: [    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,11 +6,11 @@
   <form class="login-form">
     <div class="form-input">
       <label for="email">Email</label>
-      <input id="email" type="email" autocomplete>
+      <input id="email" type="email" autocomplete [formControl]="email">
     </div>
     <div class="form-input">
       <label for="password">Password</label>
-      <input id="password" type="password" autocomplete>
+      <input id="password" type="password" autocomplete [formControl]="password">
     </div>
   </form>
 
@@ -24,7 +24,7 @@
       <a>Forgot Password?</a>
     </div>
   </div>
-  <button>Login to Make a Lemondade</button>
+  <button (click)="checkValidation()">Login to Make a Lemondade</button>
   <div class="register">
     <p>Not a member yet? <a>Register Now</a></p>
 
