@@ -30,10 +30,43 @@ button, input {
 }
 
 button {
+  border: none;
   cursor: pointer;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked ~ .cbx {
+  &::after {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    position: absolute;
+    left: -15px;
+    top: 1px;
+    font-size: 11px;
+    color: #963131;
+  }
+}
+
+.cbx {
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 2px;
+    width: 9px;
+    height: 9px;
+    border: 1px solid black;
+    border-radius: 2px;
+  }
 }
