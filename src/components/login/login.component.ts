@@ -29,20 +29,7 @@ export class LoginComponent implements OnInit {
     if (this.email.invalid || this.password.invalid) {
       return;
     } else {
-      this.login();
+      this.authService.login(this.email.value)
     }
-  }
-
-  login() {
-
-    this.authService.$userInfo.subscribe(x => {
-      this.authService.userInfo  = {
-        name:'Choungular',
-        email: this.email.value,
-        isLogin: true
-      }
-    })
-
-    this.route.navigate(['/home']);
   }
 }

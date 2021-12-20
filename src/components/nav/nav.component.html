@@ -1,4 +1,4 @@
-<nav>
+<nav *ngIf="isLoggedIn$ | async">
   <ul>
     <li class="logo"> Choungular </li>
     <li> 
@@ -40,7 +40,7 @@
     <li class="user"> 
       <i class="fas fa-user-circle"></i>
       <span>{{userNm}}</span>
-      <a routerLink="/login">
+      <a (click)="onLogout()">
         <i class="fas fa-sign-out-alt"></i>
       </a>
     </li>

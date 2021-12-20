@@ -1,9 +1,4 @@
-<ng-container *ngIf="isAuthenticated; else login;">
-  <app-nav></app-nav>
-  <router-outlet></router-outlet>
-</ng-container>
+<app-nav></app-nav>
+<router-outlet></router-outlet>
 
-<ng-template #login>
-  <app-login></app-login>
-</ng-template>
 

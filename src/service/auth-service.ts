@@ -1,32 +1,51 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Router } from "@angular/router";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  userInfo: UserInfo;
-  $userInfo: Observable<UserInfo>;
+  private userInfo: BehaviorSubject<UserInfo>;
 
-  constructor() {
-    this.userInfo = {
-      name: '',
+  get _userInfo() {
+    return this.userInfo.asObservable();
+  }
+
+  constructor(
+    private router: Router
+  ) {
+    this.userInfo = new BehaviorSubject<UserInfo>({
+      name: 'Lemon',
       email: '',
-      isLogin: false
-    }
-    this.$userInfo = new Observable(subscriber => {
-      console.log(this.userInfo);
-      subscriber.next(this.userInfo);
-    });
+      isLoggedIn:false
+    })
   }
 
-  ngOnInit() {
+  login(email:string) {
+    this.userInfo.next({
+      name:'Lemon',
+      email: email,
+      isLoggedIn: true
+    });
+    this.router.navigate(['/home']);
   }
+
+  logout() {
+    this.userInfo.next({
+      name:'Lemon',
+      email: '',
+      isLoggedIn: false
+    });
+    this.router.navigate(['/login']);
+  }
+  
 }
 
-interface UserInfo {
+
+export interface UserInfo {
   name: string;
   email: string;
-  isLogin: boolean;
+  isLoggedIn: boolean;
 }
