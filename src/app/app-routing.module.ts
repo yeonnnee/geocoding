@@ -4,15 +4,16 @@ import { LoginComponent } from '../components/login/login.component';
 import { MainComponent } from '../components/main/main.component';
 import { MenuComponent } from '../components/menu/menu.component';
 import { PageNotFoundComponent } from 'src/components/page-not-found/page-not-found.component';
+import { AuthGuard } from 'src/guard/auth-guard';
 
 const routes: Routes = [
-  { path: 'home',  component: MainComponent},
+  { path: 'home',  component: MainComponent , canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent },
-  { path: 'menu1', component: MenuComponent },
-  { path: 'menu2', component: MenuComponent },
-  { path: 'menu3', component: MenuComponent },
-  { path: 'menu4', component: MenuComponent },
-  { path: 'menu5', component: MenuComponent },
+  { path: 'menu1', component: MenuComponent,canActivate:[AuthGuard] },
+  { path: 'menu2', component: MenuComponent,canActivate:[AuthGuard] },
+  { path: 'menu3', component: MenuComponent,canActivate:[AuthGuard] },
+  { path: 'menu4', component: MenuComponent,canActivate:[AuthGuard] },
+  { path: 'menu5', component: MenuComponent,canActivate:[AuthGuard] },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent }
 ];
