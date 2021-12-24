@@ -5,6 +5,7 @@ import { MainComponent } from '../components/main/main.component';
 import { MenuComponent } from '../components/menu/menu.component';
 import { PageNotFoundComponent } from 'src/components/page-not-found/page-not-found.component';
 import { AuthGuard } from 'src/guard/auth-guard';
+import { RegisterComponent } from 'src/components/register/register.component';
 
 const routes: Routes = [
   { path: 'home',  component: MainComponent , canActivate:[AuthGuard]},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'menu3', component: MenuComponent,canActivate:[AuthGuard] },
   { path: 'menu4', component: MenuComponent,canActivate:[AuthGuard] },
   { path: 'menu5', component: MenuComponent,canActivate:[AuthGuard] },
+  { path: 'register', component: RegisterComponent},
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent }
 ];
