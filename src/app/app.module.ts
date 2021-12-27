@@ -11,6 +11,7 @@ import { MenuComponent } from '../components/menu/menu.component';
 import { AuthGuard } from 'src/guard/auth-guard';
 import { AuthService } from 'src/service/auth-service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from '../components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavComponent,
     PageNotFoundComponent,
     MenuComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
