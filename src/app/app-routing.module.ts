@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'menu3', component: MenuComponent,canActivate:[AuthGuard] },
   { path: 'menu4', component: MenuComponent,canActivate:[AuthGuard] },
   { path: 'menu5', component: MenuComponent,canActivate:[AuthGuard] },
+  { path: 'register', component: RegisterComponent},
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent }
 ];

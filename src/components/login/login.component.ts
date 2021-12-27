@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   checkValidation() {
     this.email.markAsTouched();
     this.password.markAllAsTouched();
-    // console.log('here')
 
     if (this.email.invalid || this.password.invalid) {
       return;
