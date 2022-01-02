@@ -3,33 +3,37 @@
 
   <form class="login-form" [formGroup]="registerForm">
     <div class="form-input">
-      <label for="email">이메일</label>
+      <label for="email"><span>*</span>이메일</label>
       <input id="email" (errorRender)="errorRender($event)" type="email" autocomplete formControlName="email">
       <p *ngIf="(registerForm.get('email')?.dirty || registerForm.get('email')?.touched) && registerForm.get('email')?.invalid">이메일을 확인해 주세요.</p>
     </div>
+
     <div class="form-input">
-      <label for="password">비밀번호</label>
+      <label for="password"><span>*</span>비밀번호</label>
       <input id="password" type="password" autocomplete formControlName="password">
       <p *ngIf="(registerForm.get('password')?.dirty || registerForm.get('password')?.touched) && registerForm.get('password')?.invalid">비밀번호를 확인해 주세요.</p>
     </div>
     <div class="form-input">
-      <label for="password-confirm">비밀번호 확인</label>
+      <label for="password-confirm"><span>*</span>비밀번호 확인</label>
       <input id="password-confirm" type="password-confirm" autocomplete formControlName="confirmPw">
       <p *ngIf="(registerForm.get('confirmPw')?.dirty || registerForm.get('confirmPw')?.touched) && registerForm.get('confirmPw')?.invalid">비밀번호를 확인해 주세요.</p>
-
     </div>
-    <div calss="form-input"> 
-      <div class="name-input">
-        <label for="last-name">성(Last Name)</label>
+    <div class="form-input name-form"> 
+      <div class="name-input last-name-input">
+        <label for="last-name"><span>*</span>성(Last Name)</label>
         <input id="last-name" type="text" formControlName="lastNm">
+        <p *ngIf="(registerForm.get('lastNm')?.dirty || registerForm.get('lastNm')?.touched ) && registerForm.get('lastNm')?.invalid">
+          이름을 확인해 주세요.
+        </p>
       </div>
-      <div class="name-input">
-        <label for="first-name">이름(First Name)</label>
+      <div class="name-input first-name-input">
+        <label for="first-name"><span>*</span>이름(First Name)</label>
         <input id="first-name" type="text" formControlName="firstNm">
+        <p *ngIf="(registerForm.get('firstNm')?.dirty || registerForm.get('firstNm')?.touched) && registerForm.get('firstNm')?.invalid">
+          이름을 확인해 주세요.
+        </p>
       </div>
-      <p *ngIf="(registerForm.get('lastNm')?.dirty || registerForm.get('lastNm')?.touched ||registerForm.get('firstNm')?.dirty || registerForm.get('firstNm')?.touched  ) && (registerForm.get('lastNm')?.invalid || registerForm.get('firstNm')?.invalid)">
-        이름을 확인해 주세요.
-      </p>
+
     </div>
   </form>
 

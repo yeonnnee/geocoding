@@ -1,5 +1,105 @@
 .register {
-  width: 100%;
-  height: 100%;
-  text-align: center;
+  padding: 20px;
+  position: absolute;
+  top: 25%;
+  left: 44%;
+  font-size: 12px;
+  box-shadow: inset 10px 10px 10px rgba(0,0,0,0.05), 
+  15px 25px 10px rgba(0,0,0,0.05),
+  15px 20px 20px rgba(0,0,0,0.05),
+  inset -10px -10px 15px rgba(255,255,255,0.9);
+  border-radius: 10px;
+
+  h1 {
+    font-size: 18px;
+  }
+
+  form {
+    margin: 30px 0;
+
+    .form-input {
+      display: flex;
+      position: relative;
+      margin: 0 0 20px;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      label {
+        width: 150px;
+        span {
+          color: rgb(161, 48, 48);
+        }
+      }
+
+      input {
+        border:1px solid #e0dfdf;
+        padding: 4px 5px;
+
+        &:focus, &:hover {
+          border:1px solid orange;
+          transition: all 0.5s ease;
+        }
+      }
+
+      p {
+        position: absolute;
+        left: 42%;
+        top: 24px;
+        color: rgb(161, 48, 48);
+      }
+
+      .name-input {
+        width: 50%;
+
+        label {
+          display: block;
+        }
+
+        input {
+          width: 84%;
+        }
+
+        p {
+          position: absolute;
+          top: 40px;
+          color: rgb(161, 48, 48);
+        }
+
+        &.last-name-input {
+          p {
+            left: 0;
+          }
+        }
+
+        &.first-name-input {
+          p {
+            left: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  .btns {
+    text-align: center;
+
+    button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      // box-shadow: 2px 2px 1px #353434, -1px -1px 0 #000;
+  
+      // &:hover, &:focus {
+      //   box-shadow: 1px 1px 0px #353434, -2px -2px 1px #000;
+      // }
+      
+      &:last-child {
+        margin: 0 0 0 10px;
+        background-color: rgba(255, 166, 0, 0.274);
+
+      }
+    }
+  }
+
 }
