@@ -1,27 +1,28 @@
 <div class="register">
   <h1>회원 가입</h1>
 
-  <form class="login-form">
+  <form class="login-form" [formGroup]="registerForm">
     <div class="form-input">
       <label for="email">이메일</label>
-      <input id="email" type="email" autocomplete>
+      <input id="email" (errorRender)="errorRender($event)" type="email" autocomplete formControlName="email">
+      <p></p>
     </div>
     <div class="form-input">
       <label for="password">비밀번호</label>
-      <input id="password" type="password" autocomplete>
+      <input id="password" type="password" autocomplete formControlName="password">
     </div>
     <div class="form-input">
       <label for="password-confirm">비밀번호 확인</label>
-      <input id="password-confirm" type="password-confirm" autocomplete>
+      <input id="password-confirm" type="password-confirm" autocomplete formControlName="confirmPw">
     </div>
-    <div calss="form-input">
+    <div calss="form-input"> 
       <div class="name-input">
-        <label for="surname">성(Last Name)</label>
-        <input id="surname" type="text">
+        <label for="last-name">성(Last Name)</label>
+        <input id="last-name" type="text" formControlName="lastNm">
       </div>
       <div class="name-input">
-        <label for="name">이름(First Name)</label>
-        <input id="name" type="text">
+        <label for="first-name">이름(First Name)</label>
+        <input id="first-name" type="text" formControlName="firstNm">
       </div>
     </div>
   </form>

@@ -12,6 +12,8 @@ import { AuthGuard } from 'src/guard/auth-guard';
 import { AuthService } from 'src/service/auth-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from '../components/register/register.component';
+import { ErrorDirective } from 'src/directives/ErrorDirective';
+import { ErrorMsgComponent } from 'src/components/common/error-message';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { RegisterComponent } from '../components/register/register.component';
     PageNotFoundComponent,
     MenuComponent,
     RegisterComponent,
+    ErrorDirective,
+    ErrorMsgComponent
   ],
   imports: [
     BrowserModule,
