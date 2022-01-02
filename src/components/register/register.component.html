@@ -5,15 +5,18 @@
     <div class="form-input">
       <label for="email">이메일</label>
       <input id="email" (errorRender)="errorRender($event)" type="email" autocomplete formControlName="email">
-      <p></p>
+      <p *ngIf="(registerForm.get('email')?.dirty || registerForm.get('email')?.touched) && registerForm.get('email')?.invalid">이메일을 확인해 주세요.</p>
     </div>
     <div class="form-input">
       <label for="password">비밀번호</label>
       <input id="password" type="password" autocomplete formControlName="password">
+      <p *ngIf="(registerForm.get('password')?.dirty || registerForm.get('password')?.touched) && registerForm.get('password')?.invalid">비밀번호를 확인해 주세요.</p>
     </div>
     <div class="form-input">
       <label for="password-confirm">비밀번호 확인</label>
       <input id="password-confirm" type="password-confirm" autocomplete formControlName="confirmPw">
+      <p *ngIf="(registerForm.get('confirmPw')?.dirty || registerForm.get('confirmPw')?.touched) && registerForm.get('confirmPw')?.invalid">비밀번호를 확인해 주세요.</p>
+
     </div>
     <div calss="form-input"> 
       <div class="name-input">
@@ -24,6 +27,14 @@
         <label for="first-name">이름(First Name)</label>
         <input id="first-name" type="text" formControlName="firstNm">
       </div>
+      <p *ngIf="(registerForm.get('lastNm')?.dirty || registerForm.get('lastNm')?.touched ||registerForm.get('firstNm')?.dirty || registerForm.get('firstNm')?.touched  ) && (registerForm.get('lastNm')?.invalid || registerForm.get('firstNm')?.invalid)">
+        이름을 확인해 주세요.
+      </p>
     </div>
   </form>
+
+  <div class="btns">
+    <button (click)="cancelRegist()">취소</button>
+    <button (click)="checkVali()">확인</button>
+  </div>
 </div>
