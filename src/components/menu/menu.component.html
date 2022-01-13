@@ -1,5 +1,43 @@
-<div class="menu">
-  <div class="content">
-    <p>{{currentPage}} works!</p>
+<div class="menu" cdkDropListGroup>
+  <ul class="form-menu">
+    <li>물류비 견적</li>
+    <li>PACKING LIST</li>
+  </ul>
+  <div class="example-container">
+    <div
+      cdkDropList
+      [cdkDropListData]="todo"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.title}}</div>
+    </div>
+  </div>
+
+  <div class="packing-list-form">
+    <h1>PACKING LIST</h1>
+    <button class="add-btn"> + </button>
+    <div class="form-container">  
+      <div
+        cdkDropList
+        [cdkDropListData]="done"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
+        <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{item.title}}</span>
+        <ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayOrigin]="trigger"
+            [cdkConnectedOverlayOpen]="item.isOpen"
+          >
+            <ul class="overlay-list">
+              <li>{{item.title}}</li>
+              <li>value : <input></li>
+            </ul>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
