@@ -19,6 +19,8 @@ import { MaterialModule } from './material.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { GridListComponent } from '../components/menu/grid-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     ExpansionOverviewExample,
     RegisterComponent,
     ErrorDirective,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    GridListComponent
   ],
   imports: [
     BrowserModule,

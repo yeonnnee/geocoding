@@ -2,6 +2,34 @@
 * {
   box-sizing: border-box;
 }
+.cdk-overlay-container {
+  .cdk-overlay-connected-position-bounding-box {
+    .cdk-overlay-pane{
+      height: 124px;
+      background: #fff;
+      padding: 10px 20px;
+      box-shadow: 0px 4px 8px #cec5c5;
+      margin: 16px 0;
+
+      .close-btn {
+        position: absolute;
+        top: -8px;
+        right: -9px;
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+        background: red;
+        color: white;
+      }
+      li {
+        padding: 10px 0;
+        &:nth-child(1) {
+          border-bottom: 1px solid #ececec;
+        }
+      }
+    }
+  }
+}
 
 html,body {
   width: 100%;

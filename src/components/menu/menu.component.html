@@ -2,40 +2,84 @@
   <ul class="form-menu">
     <li>물류비 견적</li>
     <li>PACKING LIST</li>
+    <li>COMMERCIAL INVOICE</li>
   </ul>
   <div class="example-container">
     <div
       cdkDropList
-      [cdkDropListData]="todo"
+      [cdkDropListData]="formIndex"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.title}}</div>
+        <div class="option-box">
+          <ng-container  *ngIf="formIndex.length >= 1">
+            <div class="example-box" *ngFor="let item of formIndex" cdkDrag>{{item.title}}</div>
+          </ng-container>
+        </div>
     </div>
   </div>
 
   <div class="packing-list-form">
     <h1>PACKING LIST</h1>
-    <button class="add-btn"> + </button>
+    <!-- <button class="add-btn"> + </button> -->
+    
     <div class="form-container">  
+      <div class="fixed-index-container">
+        <ul class="column">
+          <li>
+            Shipper/Exporter
+
+          </li>
+          <li>Consignee</li>
+          <li>Notify party</li>
+          <ul class="half-list">
+            <li>Port of loading</li>
+            <li>Port of Discharging</li>
+          </ul>
+          <ul class="half-list">
+            <li>Vessel & Voy</li>
+            <li>Sailing on or about</li>
+          </ul>
+        </ul>
+        <ul class="column">
+          <li>No. & date of invoice</li>
+          <li>L/C No. and date</li>
+          <li class="remark">Remarks</li>
+          <li class="remark">Shipping Mark</li>
+        </ul>
+      </div>
+
       <div
         cdkDropList
-        [cdkDropListData]="done"
+        [cdkDropListData]="addedFormIndex"
         class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
-        <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{item.title}}</span>
-        <ng-template
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of addedFormIndex; let i = index" cdkDrag>
+          <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{item.title}}</span>
+          <ng-template
             cdkConnectedOverlay
             [cdkConnectedOverlayOrigin]="trigger"
             [cdkConnectedOverlayOpen]="item.isOpen"
           >
             <ul class="overlay-list">
+              <button class="close-btn" (click)="activeOverlay(item)">x</button>
               <li>{{item.title}}</li>
-              <li>value : <input></li>
+              <li>value : <input (input)="setValue($event)"></li>
+              <button class="confirm-btn" (click)="saveValue(item)">확인</button>
             </ul>
           </ng-template>
         </div>
       </div>
+
+      <!-- <ul class="grid-list"> -->
+      <ul class="grid" *ngFor="let item of gridIndex; let i = index">
+        <!-- <li *ngFor="let item of gridList; let i = index"> -->
+        <!-- <li *ngFor="let item of gridIndex; let i = index">
+          {{item.value}}
+        </li>
+        <button >x</button> -->
+        <grid-list [gridList]="gridIndex[i]"></grid-list>
+      </ul>
     </div>
   </div>
 </div>
