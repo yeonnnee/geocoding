@@ -12,9 +12,12 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class ExpansionOverviewExample {
 
+// TODO : 값 입력 및 수정 가능
+// TODO : pallet No 에 여러 아이템 추가 할수 있도록
+// TODO : 드래그시, 값들도 같이 이동
+// TODO : x 버튼 클릭시 해당 컬럼 데이터 모두 제거
 
-  constructor() {
-  }
+
   panelOpenState = false;
 
   fixedIndex = [
@@ -30,34 +33,26 @@ export class ExpansionOverviewExample {
     {title: 'Remarks', isOpen: false, value: ''},
   ]
 
-  formIndex: Array<GridIndex> = [
-    // {title: 'Pallet No.', isOpen: false, value: ''},
-    // {title: 'C/T No.', isOpen: false, value: ''},
-    // {title: 'SKU', isOpen: false, value: ''},
-    // {title: 'Description of goods', isOpen: false, value: ''},
-    // {title: 'Quantity', isOpen: false, value: ''},
-    // {title: 'N/W(Unit)', isOpen: false, value: ''},
-    // {title: 'G/W(Unit)', isOpen: false, value: ''},
-    // {title: 'Measurement', isOpen: false, value: ''},
-  ];
+  formIndex: Array<GridIndex> = [];
 
   addedFormIndex:Array<GridIndex> = 
   [
-    {title: 'Pallet No.', isOpen: false, value: '1', palletNo:1},
-    {title: 'C/T No.', isOpen: false, value: '', palletNo:1},
-    {title: 'SKU', isOpen: false, value: '', palletNo:1},
-    {title: 'Description of Goods', isOpen: false, value: '', palletNo:1},
-    {title: 'Quantity', isOpen: false, value: '', palletNo:1},
-    {title: 'N/W(Unit)', isOpen: false, value: '', palletNo:1},
-    {title: 'G/W(Unit)', isOpen: false, value: '', palletNo:1},
-    // {title: 'Measurement', isOpen: false, value: ''},
+    {title: 'Pallet No.', isOpen: false, value: '0', palletNo:0},
+    {title: 'C/T No.', isOpen: false, value: '', palletNo:0},
+    {title: 'SKU', isOpen: false, value: '', palletNo:0},
+    {title: 'Description of Goods', isOpen: false, value: '', palletNo:0},
+    {title: 'Quantity', isOpen: false, value: '', palletNo:0},
+    {title: 'N/W(Unit)', isOpen: false, value: '', palletNo:0},
+    {title: 'G/W(Unit)', isOpen: false, value: '', palletNo:0},
   ]
 
   inputVal:string = '';
   gridIndex:Array<any> = [];
+  currPalletNo: number = 0;
 
+  constructor() {
+  }
 
-  // gridList:Array<any> = [];
 
   drop(event: any) {
     if (event.previousContainer === event.container) {
@@ -72,26 +67,50 @@ export class ExpansionOverviewExample {
     }
   }
 
-  // deleteList(target:any) {
-  //   console.log(target);
-  // }
 
   paintGrid() {
     const newListArr:Array<any> = [];
-    const newList = this.addedFormIndex.reduce((acc, curr, i) => {
+    
+    this.addedFormIndex.reduce((acc, curr, i) => {
+
       const newGridIndex = new GridIndex();
       if(curr.title === 'Pallet No.') {
-        newGridIndex.value = (this.gridIndex.length + 1).toString();
-        newGridIndex.palletNo = this.gridIndex.length + 1;
+        newGridIndex.value = (this.currPalletNo + 1).toString();
+        newGridIndex.palletNo = this.currPalletNo + 1;
+        this.currPalletNo = this.currPalletNo + 1;
+
       } else {
-        newGridIndex.palletNo = this.gridIndex.length + 1;
+        newGridIndex.palletNo = this.currPalletNo;
       }
+
+      newGridIndex.title = curr.title;
       return newListArr.push(newGridIndex);
     },{});
 
     console.log(newListArr);
+    this.gridIndex.push(newListArr);
+  }
+
+  addSubList(target:any) {
+    console.log('addList', target);
+
+    const newListArr:Array<any> = [];
+    this.addedFormIndex.reduce((acc, curr, i) => {
+      const newGridIndex = new GridIndex();
+      if(curr.title === 'Pallet No.') {
+        newGridIndex.value = target.value;
+        newGridIndex.palletNo = target.palletNo;
+      } else {
+        newGridIndex.palletNo = target.palletNo;
+      }
+      return newListArr.push(newGridIndex);
+    },{});
 
     this.gridIndex.push(newListArr);
+  }
+
+  deleteList(target: any) {
+    console.log('del', target);
   }
 
   activeOverlay(item: any) {
@@ -114,8 +133,7 @@ export class ExpansionOverviewExample {
 
   saveValue(target:any) {
     console.log('save',target);
-    const index = this.addedFormIndex.filter(list => list.title === target.title && list.palletNo === target.palletNo);
-    index[0].value = this.inputVal; 
+
     this.activeOverlay(target);
   }
 

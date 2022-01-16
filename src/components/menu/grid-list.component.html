@@ -1,6 +1,22 @@
+
 <ul class="grid-list">
   <li *ngFor="let item of gridList; let i = index">
-    {{item.value}}
-  </li>
-  <button >x</button>
+    <button (click)="addRow(item)" *ngIf="i === 0">+</button>
+
+    <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">    {{item.value || 'N/A'}}</span>
+    <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="item.isOpen"
+  >
+    <ul class="overlay-list">
+      <button class="close-btn" (click)="activeOverlay(item)">x</button>
+      <li>{{item.title}}</li>
+      <li>value : <input (input)="setValue($event)"></li>
+      <button class="confirm-btn" (click)="saveValue(item)">확인</button>
+    </ul>
+  </ng-template>
+  <button *ngIf="i === gridList.length-1" (click)="deleteRow(item)">x</button>
+
+</li>
 </ul>

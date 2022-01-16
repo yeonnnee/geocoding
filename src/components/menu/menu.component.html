@@ -78,7 +78,7 @@
           {{item.value}}
         </li>
         <button >x</button> -->
-        <grid-list [gridList]="gridIndex[i]"></grid-list>
+        <grid-list [gridList]="gridIndex[i]" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
       </ul>
     </div>
   </div>
