@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter } from "@angular/core";
+import { Component, Input, Output,EventEmitter, SimpleChanges } from "@angular/core";
 
 
 @Component({
@@ -8,36 +8,69 @@ import { Component, Input, Output,EventEmitter } from "@angular/core";
 })
 
 export class GridListComponent {
+  gridData: Array<any> = [];
+  overlayTarget = {row:0, title:'', column:''}
+  inputVal: string = '';
 
   @Input() gridList:Array<any> = [];
+  @Input() columns:Array<string> = [];
+  @Input() category:Array<any> = [];
   @Output() deleteList: EventEmitter<any> = new EventEmitter()
   @Output() addList: EventEmitter<any> = new EventEmitter()
+  @Output() confirmVal:EventEmitter<any> = new EventEmitter()
   constructor() {}
 
   // deleteColumn(target:any) {
   //   this.deleteList.emit(target);
   // }
 
-  activeOverlay(item: any) {
-    if(item.title === "Pallet No.") {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.gridList || this.columns) {
+      this.gridData = this.gridList;
+      console.log('change',this.gridData)
+    }
+    
+    console.log(this.columns)
+  }
+  activeOverlay(row:any, item: any) {
+    if(item === "palletNo") {
       // this.paintGrid();
       return;
     }
-    item.isOpen = !item.isOpen;
 
-    // this.addedFormIndex.forEach(doneItem => {
-    //   if (doneItem !== item) {
-    //     doneItem.isOpen = false;
-    //   }
-    // });
+    this.overlayTarget = {
+    ...this.overlayTarget,
+      row: row,
+      column: item,
+    
+    }
+    this.category.reduce((acc, curr, index) => {
+      if (curr.key === item) {
+        this.overlayTarget.title = curr.title;
+      }
+      return curr;
+    },{})
+  }
+
+  closeOverlay() {
+    this.overlayTarget = {row:0, title:'', column:''}
   }
 
   setValue(e:any) {
-    console.log(e.target.value)
+    console.log('asdf',e.target.value)
+    this.inputVal = e.target.value;
   }
 
-  saveValue(item:any) {
+  saveValue(item:any,column:any) {
     console.log(item)
+    const target = {
+      row: item,
+      column: column,
+      value: this.inputVal
+    }
+    this.confirmVal.emit(target)
+    this.overlayTarget = {row:0, title:'', column:''}
+    
   }
   addRow(item:any) {
     this.addList.emit(item);

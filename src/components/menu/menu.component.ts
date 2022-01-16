@@ -1,7 +1,8 @@
 
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Observable, of } from 'rxjs';
 /**
  * @title Basic expansion panel
  */
@@ -12,11 +13,10 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class ExpansionOverviewExample {
 
-// TODO : 값 입력 및 수정 가능
-// TODO : pallet No 에 여러 아이템 추가 할수 있도록
-// TODO : 드래그시, 값들도 같이 이동
-// TODO : x 버튼 클릭시 해당 컬럼 데이터 모두 제거
-
+  // TODO : 값 입력 및 수정 가능
+  // TODO : pallet No 에 여러 아이템 추가 할수 있도록
+  // TODO : 드래그시, 값들도 같이 이동
+  // TODO : x 버튼 클릭시 해당 컬럼 데이터 모두 제거
 
   panelOpenState = false;
 
@@ -33,18 +33,24 @@ export class ExpansionOverviewExample {
     {title: 'Remarks', isOpen: false, value: ''},
   ]
 
+  // TODO: operator 'of' 사용 해보기
   formIndex: Array<GridIndex> = [];
 
   addedFormIndex:Array<GridIndex> = 
   [
-    {title: 'Pallet No.', isOpen: false, value: '0', palletNo:0},
-    {title: 'C/T No.', isOpen: false, value: '', palletNo:0},
-    {title: 'SKU', isOpen: false, value: '', palletNo:0},
-    {title: 'Description of Goods', isOpen: false, value: '', palletNo:0},
-    {title: 'Quantity', isOpen: false, value: '', palletNo:0},
-    {title: 'N/W(Unit)', isOpen: false, value: '', palletNo:0},
-    {title: 'G/W(Unit)', isOpen: false, value: '', palletNo:0},
+    { title: 'Pallet No.', isOpen: false, key:'palletNo'},
+    { title: 'C/T No.', isOpen: false, key:'ctNo' },
+    { title: 'SKU', isOpen: false, key:'sku'},
+    { title: 'Description of Goods', isOpen: false, key:'descOfGoods' },
+    { title: 'Quantity', isOpen: false, key:'qty' },
+    { title: 'N/W(Unit)', isOpen: false, key:'nwUnit' },
+    { title: 'G/W(Unit)', isOpen: false, key:'gwUnit' },
   ]
+
+
+  formData:Array<any> = []
+
+  columns:Array<string> = [];
 
   inputVal:string = '';
   gridIndex:Array<any> = [];
@@ -65,48 +71,38 @@ export class ExpansionOverviewExample {
         event.currentIndex,
       );
     }
+    this.columns = [];
+    this.addedFormIndex.forEach(item => this.columns.push(item.key));
   }
 
 
   paintGrid() {
-    const newListArr:Array<any> = [];
-    
-    this.addedFormIndex.reduce((acc, curr, i) => {
+    if (this.columns.length === 0) {
+      this.addedFormIndex.forEach(item => this.columns.push(item.key));
+    }
 
-      const newGridIndex = new GridIndex();
-      if(curr.title === 'Pallet No.') {
-        newGridIndex.value = (this.currPalletNo + 1).toString();
-        newGridIndex.palletNo = this.currPalletNo + 1;
-        this.currPalletNo = this.currPalletNo + 1;
+    const newRow = {
+      row: this.formData.length + 1,
+      data: [
+        {
+          palletNo: this.formData.length + 1,
+          ctNo: '',
+          sku: '',
+          descOfGoods: '',
+          qty: '',
+          nwUnit: '',
+          gwUnit:'',
+        }
+      ]
+    }
 
-      } else {
-        newGridIndex.palletNo = this.currPalletNo;
-      }
+    this.formData.push(newRow)
 
-      newGridIndex.title = curr.title;
-      return newListArr.push(newGridIndex);
-    },{});
-
-    console.log(newListArr);
-    this.gridIndex.push(newListArr);
+    console.log(this.formData)
   }
 
   addSubList(target:any) {
     console.log('addList', target);
-
-    const newListArr:Array<any> = [];
-    this.addedFormIndex.reduce((acc, curr, i) => {
-      const newGridIndex = new GridIndex();
-      if(curr.title === 'Pallet No.') {
-        newGridIndex.value = target.value;
-        newGridIndex.palletNo = target.palletNo;
-      } else {
-        newGridIndex.palletNo = target.palletNo;
-      }
-      return newListArr.push(newGridIndex);
-    },{});
-
-    this.gridIndex.push(newListArr);
   }
 
   deleteList(target: any) {
@@ -115,7 +111,6 @@ export class ExpansionOverviewExample {
 
   activeOverlay(item: any) {
     if(item.title === "Pallet No.") {
-      this.paintGrid();
       return;
     }
     item.isOpen = !item.isOpen;
@@ -131,17 +126,38 @@ export class ExpansionOverviewExample {
     this.inputVal = e.target.value;
   }
 
-  saveValue(target:any) {
-    console.log('save',target);
+  saveValue(target: any) {
+    console.log('save', target)
 
-    this.activeOverlay(target);
+    this.formData.forEach((d) => {
+      if (d.row === target.row) {
+        d.data.forEach((d:any) => {
+          d[target.column] = target.value;
+        })
+      }
+    })
+
+    return this.formData
   }
-
 }
 
 export class GridIndex {
-  title: string = '';
-  isOpen: boolean = false;
-  value: string = '';
-  palletNo:Number = 0;
+  title = '';
+  isOpen = false;
+  key = '';
+}
+
+export class RowData {
+  row = 0;
+  data = [
+    {
+      palletNo: 0,
+      ctNo: '',
+      sku: '',
+      descOfGoods: '',
+      qty: '',
+      nwUnit: '',
+      gwUnit:'',
+    }
+  ]
 }

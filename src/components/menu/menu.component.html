@@ -54,31 +54,34 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
+      <button (click)="paintGrid()">+</button>
         <div class="example-box" *ngFor="let item of addedFormIndex; let i = index" cdkDrag>
-          <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{item.title}}</span>
-          <ng-template
+          <span>{{item.title}}</span>
+          <!-- <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{item.title}}</span> -->
+          <!-- <ng-template
             cdkConnectedOverlay
             [cdkConnectedOverlayOrigin]="trigger"
             [cdkConnectedOverlayOpen]="item.isOpen"
-          >
-            <ul class="overlay-list">
+          > -->
+            <!-- <ul class="overlay-list">
               <button class="close-btn" (click)="activeOverlay(item)">x</button>
               <li>{{item.title}}</li>
               <li>value : <input (input)="setValue($event)"></li>
               <button class="confirm-btn" (click)="saveValue(item)">확인</button>
             </ul>
-          </ng-template>
+          </ng-template> -->
         </div>
       </div>
 
       <!-- <ul class="grid-list"> -->
-      <ul class="grid" *ngFor="let item of gridIndex; let i = index">
+        
+      <ul class="grid">
         <!-- <li *ngFor="let item of gridList; let i = index"> -->
         <!-- <li *ngFor="let item of gridIndex; let i = index">
           {{item.value}}
         </li>
         <button >x</button> -->
-        <grid-list [gridList]="gridIndex[i]" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
+        <grid-list [category]="addedFormIndex" [gridList]="formData" [columns]="columns" (confirmVal)="saveValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
       </ul>
     </div>
   </div>

@@ -1,22 +1,31 @@
 
-<ul class="grid-list">
-  <li *ngFor="let item of gridList; let i = index">
-    <button (click)="addRow(item)" *ngIf="i === 0">+</button>
 
-    <span (click)="activeOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">    {{item.value || 'N/A'}}</span>
-    <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayOrigin]="trigger"
-    [cdkConnectedOverlayOpen]="item.isOpen"
-  >
-    <ul class="overlay-list">
-      <button class="close-btn" (click)="activeOverlay(item)">x</button>
-      <li>{{item.title}}</li>
-      <li>value : <input (input)="setValue($event)"></li>
-      <button class="confirm-btn" (click)="saveValue(item)">확인</button>
-    </ul>
-  </ng-template>
-  <button *ngIf="i === gridList.length-1" (click)="deleteRow(item)">x</button>
-
-</li>
+<ul class="grid-list" *ngFor="let item of gridData; let i = index">
+    <li  *ngFor="let column of columns; let k=index" >
+      <button (click)="addRow(item)" *ngIf="k === 0">+</button>
+  
+        <span (click)="activeOverlay(item.row,column)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+          <ng-container *ngIf="item.data[0] ">
+            {{ item.data[0][column]  || 'N/A'}}
+          </ng-container>
+        </span>
+        
+        <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="trigger"
+        [cdkConnectedOverlayOpen]="overlayTarget.row === item.row && overlayTarget.column === column"
+      >
+        <ul class="overlay-list">
+          <button class="close-btn" (click)="closeOverlay()">x</button>
+          <li>{{overlayTarget.title}}</li>
+          <li>value : <input (input)="setValue($event)"></li>
+          <button class="confirm-btn" (click)="saveValue(item.row, column)">확인</button>
+        </ul>
+      </ng-template>
+  
+  
+    <button *ngIf="k === columns.length-1" (click)="deleteRow(item)">x</button>
+  
+  </li>
+  
 </ul>
