@@ -9,7 +9,7 @@ import { Component, Input, Output,EventEmitter, SimpleChanges } from "@angular/c
 
 export class GridListComponent {
   gridData: Array<any> = [];
-  overlayTarget = {row:0, title:'', column:''}
+  overlayTarget = {row:0, title:'', column:'', index:0}
   inputVal: string = '';
 
   @Input() gridList:Array<any> = [];
@@ -32,7 +32,7 @@ export class GridListComponent {
     
     console.log(this.columns)
   }
-  activeOverlay(row:any, item: any) {
+  activeOverlay(row:any, item: any,index:number) {
     if(item === "palletNo") {
       // this.paintGrid();
       return;
@@ -42,7 +42,7 @@ export class GridListComponent {
     ...this.overlayTarget,
       row: row,
       column: item,
-    
+      index:index
     }
     this.category.reduce((acc, curr, index) => {
       if (curr.key === item) {
@@ -53,7 +53,7 @@ export class GridListComponent {
   }
 
   closeOverlay() {
-    this.overlayTarget = {row:0, title:'', column:''}
+    this.overlayTarget = {row:0, title:'', column:'', index:0}
   }
 
   setValue(e:any) {
@@ -61,15 +61,16 @@ export class GridListComponent {
     this.inputVal = e.target.value;
   }
 
-  saveValue(item:any,column:any) {
+  saveValue(item:any,column:any, index:number) {
     console.log(item)
     const target = {
       row: item,
       column: column,
-      value: this.inputVal
+      value: this.inputVal,
+      index:index
     }
     this.confirmVal.emit(target)
-    this.overlayTarget = {row:0, title:'', column:''}
+    this.overlayTarget = {row:0, title:'', column:'', index:0}
     
   }
   addRow(item:any) {

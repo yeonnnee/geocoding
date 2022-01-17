@@ -103,10 +103,23 @@ export class ExpansionOverviewExample {
 
   addSubList(target:any) {
     console.log('addList', target);
+    const palletNo = target.data[0].palletNo;
+    const subData = {
+      palletNo: palletNo,
+      ctNo: '',
+      sku: '',
+      descOfGoods: '',
+      qty: '',
+      nwUnit: '',
+      gwUnit:'',
+    }
+    target.data.push(subData);
+    console.log(this.formData)
   }
 
   deleteList(target: any) {
     console.log('del', target);
+  
   }
 
   activeOverlay(item: any) {
@@ -131,9 +144,7 @@ export class ExpansionOverviewExample {
 
     this.formData.forEach((d) => {
       if (d.row === target.row) {
-        d.data.forEach((d:any) => {
-          d[target.column] = target.value;
-        })
+        d.data[target.index][target.column] = target.value;
       }
     })
 
