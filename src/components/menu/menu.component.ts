@@ -12,12 +12,6 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['menu.component.scss'],
 })
 export class ExpansionOverviewExample {
-
-  // TODO : 값 입력 및 수정 가능
-  // TODO : pallet No 에 여러 아이템 추가 할수 있도록
-  // TODO : 드래그시, 값들도 같이 이동
-  // TODO : x 버튼 클릭시 해당 컬럼 데이터 모두 제거
-
   panelOpenState = false;
 
   fixedIndex = [
@@ -102,7 +96,6 @@ export class ExpansionOverviewExample {
   }
 
   addSubList(target:any) {
-    console.log('addList', target);
     const palletNo = target.data[0].palletNo;
     const subData = {
       palletNo: palletNo,
@@ -114,12 +107,14 @@ export class ExpansionOverviewExample {
       gwUnit:'',
     }
     target.data.push(subData);
-    console.log(this.formData)
   }
 
   deleteList(target: any) {
-    console.log('del', target);
-  
+    this.formData.forEach(d => {
+      if (d.row === target.row) {
+        d.data.pop(target.index);
+      }
+    })
   }
 
   activeOverlay(item: any) {

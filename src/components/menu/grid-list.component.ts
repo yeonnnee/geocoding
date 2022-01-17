@@ -77,7 +77,12 @@ export class GridListComponent {
     this.addList.emit(item);
   }
 
-  deleteRow(item: any) {
-    this.deleteList.emit(item);
+  deleteRow(row: any, index: number) {
+    const target = {
+      row: row,
+      index:index
+    }
+
+    this.deleteList.emit(target);
   }
 }
