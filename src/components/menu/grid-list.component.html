@@ -5,8 +5,13 @@
       <ng-container *ngFor="let data of item.data let j=index">
         <div (click)="activeOverlay(item.row,column,j)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
           <button (click)="addRow(item)" *ngIf="k === 0">+</button>
-          {{ data[column]  || 'N/A'}}
-          <button *ngIf="k === columns.length-1" (click)="deleteRow(item)">x</button>
+          <ng-container *ngIf="column==='palletNo' else dataCol">
+            {{j == 0 ? data.palletNo: ''}}
+          </ng-container>
+          <ng-template #dataCol>
+            {{ data[column]  || 'N/A'}}
+          </ng-template>
+          <button *ngIf="k === columns.length-1" (click)="deleteRow(item.row,j)">x</button>
         </div>
         <ng-template
         cdkConnectedOverlay
