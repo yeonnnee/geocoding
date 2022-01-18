@@ -6,13 +6,14 @@ import { ExpansionOverviewExample } from '../components/menu/menu.component';
 import { PageNotFoundComponent } from 'src/components/page-not-found/page-not-found.component';
 import { AuthGuard } from 'src/guard/auth-guard';
 import { RegisterComponent } from 'src/components/register/register.component';
+import { MonitoringComponent } from 'src/components/monitoring/monitoring.component';
 
 const routes: Routes = [
   { path: 'home',  component: MainComponent , canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
   { path: 'menu', component: ExpansionOverviewExample},
-  { path: 'menu2', component: ExpansionOverviewExample,canActivate:[AuthGuard] },
+  { path: 'monitoring', component: MonitoringComponent},
   { path: 'menu3', component: ExpansionOverviewExample,canActivate:[AuthGuard] },
   { path: 'menu4', component: ExpansionOverviewExample,canActivate:[AuthGuard] },
   { path: 'menu5', component: ExpansionOverviewExample,canActivate:[AuthGuard] },
