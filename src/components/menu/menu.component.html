@@ -83,6 +83,13 @@
         <button >x</button> -->
         <grid-list [category]="addedFormIndex" [gridList]="formData" [columns]="columns" (confirmVal)="saveValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
       </ul>
+      <div class="signature-container">
+        <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+      </div>
+      <div class="buttons">
+        <button (click)="clearSignature()">Clear</button>
+        <button (click)="savePad()">Save</button>
+      </div>
     </div>
   </div>
 </div>

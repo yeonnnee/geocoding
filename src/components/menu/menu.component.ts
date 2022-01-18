@@ -3,6 +3,7 @@ import {Component, ViewChild} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Observable, of } from 'rxjs';
+import { SignaturePad } from 'angular2-signaturepad';
 /**
  * @title Basic expansion panel
  */
@@ -49,10 +50,40 @@ export class ExpansionOverviewExample {
   inputVal:string = '';
   gridIndex:Array<any> = [];
   currPalletNo: number = 0;
+  signatureImg: string = '';
+  @ViewChild(SignaturePad)
+  signaturePad!: SignaturePad;
 
-  constructor() {
+  signaturePadOptions: Object = { 
+    'minWidth': 2,
+    'canvasWidth': 300,
+    'canvasHeight': 100
+  };
+
+  constructor() { }
+
+  ngAfterViewInit() {
+    // this.signaturePad is now available
+    this.signaturePad.set('minWidth', 2); 
+    this.signaturePad.clear(); 
   }
 
+  drawComplete() {
+    console.log(this.signaturePad.toDataURL());
+  }
+
+  drawStart() {
+    console.log('begin drawing');
+  }
+
+  clearSignature() {
+    this.signaturePad.clear();
+  }
+
+  savePad() {
+    const base64Data = this.signaturePad.toDataURL();
+    this.signatureImg = base64Data;
+  }
 
   drop(event: any) {
     if (event.previousContainer === event.container) {
