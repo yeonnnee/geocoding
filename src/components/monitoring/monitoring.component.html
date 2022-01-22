@@ -1,7 +1,7 @@
 <div class="monitoring">
   <nav>
     <ul>
-      <li> 
+      <li class="active"> 
         <a>
           <i class="far fa-envelope"></i>
         </a>
@@ -14,87 +14,26 @@
 
   <div class="monitoring-container">
     <ul class="tap">
-      <li class="active">메세지 발송</li>
-      <li>크롤러 배포 관리</li>
+      <li class="active">수집 메세지 발송</li>
+      <!-- <li>크롤러 배포 관리</li> -->
     </ul>
     <div class="form">
-      <div class="select">선사<i class="fas fa-chevron-down"></i></div>
-      <div class="priority">TOP<i class="fas fa-chevron-down"></i></div>
-      <input type="text">
-      <button>추가</button>
-
-      <!-- <ul class="select">
-        <li></li>
-      </ul> -->
-    </div>
-      <div class="list">
-        <ul class="title">
-          <li>
-            <div>NO</div>
-            <div>선사</div>
-            <div>순위</div>
-            <div>BL</div>
-            <div>삭제</div>
-          </li>
-        </ul>
-
-        <ul>
-          <li class="list-item">
-            <div>1</div>
-            <div>ONE</div>
-            <div>TOP</div>
-            <div>EXAMPLEBL012345</div>
-            <div>
-              <button>삭제</button>
-            </div>
-          </li>
-          <li class="list-item">
-            <div>2</div>
-            <div>ONE</div>
-            <div>TOP</div>
-            <div>EXAMPLEBL012345</div>
-            <div>
-              <button>삭제</button>
-            </div>
-          </li>
-          <li class="list-item">
-            <div>3</div>
-            <div>ONE</div>
-            <div>TOP</div>
-            <div>EXAMPLEBL012345</div>
-            <div>
-              <button>삭제</button>
-            </div>
-          </li>
-          <li class="list-item">
-            <div>4</div>
-            <div>ONE</div>
-            <div>TOP</div>
-            <div>EXAMPLEBL012345</div>
-            <div>
-              <button>삭제</button>
-            </div>
-          </li>
-          <li class="list-item">
-            <div>5</div>
-            <div>ONE</div>
-            <div>TOP</div>
-            <div>EXAMPLEBL012345</div>
-            <div>
-              <button>삭제</button>
-            </div>
-          </li>
-          <li class="list-item">
-            <div>6</div>
-            <div>ONE</div>
-            <div>TOP</div>
-            <div>EXAMPLEBL012345</div>
-            <div>
-              <button>삭제</button>
-            </div>
-          </li>
+      <div class="ocean-line">
+        <p (click)="openOceanLineList()">{{selectedOceanLine}}<i class="fas fa-chevron-down"></i></p>
+        <ul *ngIf="showOceanLineList">
+          <li></li>
         </ul>
       </div>
-      <button class="send-btn">메세지 발송</button>
+      
+      <div class="priority">
+        <p  (click)="openPriorityList()">{{selectedPriority}}<i class="fas fa-chevron-down"></i></p>
+        <ul *ngIf="showPriorityList">
+          <li *ngFor="let op of priorityOp; let i=index;">{{op}}</li>
+        </ul>
+      </div>
+
+    </div>
+    <textarea name="bl" id="bl" cols="249" rows="43" placeholder="B/L 번호를 입력해 주세요."></textarea>
+    <button class="send-btn">메세지 발송</button>
   </div>
 </div>

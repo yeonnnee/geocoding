@@ -21,6 +21,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { GridListComponent } from '../components/menu/grid-list.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { CommonModule } from '@angular/common';
+import { MonitoringComponent } from 'src/components/monitoring/monitoring.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { SignaturePadModule } from 'angular2-signaturepad';
     RegisterComponent,
     ErrorDirective,
     ErrorMsgComponent,
-    GridListComponent
+    GridListComponent,
+    MonitoringComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { SignaturePadModule } from 'angular2-signaturepad';
     MatExpansionModule,
     DragDropModule,
     OverlayModule,
-    SignaturePadModule
+    SignaturePadModule,
+    CommonModule
 
   ],
   providers: [
