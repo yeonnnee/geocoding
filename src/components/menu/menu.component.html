@@ -1,4 +1,4 @@
-<div class="menu" cdkDropListGroup>
+<div class="packing-list" cdkDropListGroup>
   <ul class="form-menu">
     <li>PACKING LIST</li>
     <li>COMMERCIAL INVOICE</li>
@@ -18,7 +18,8 @@
                 'group': index === 12 || index === 13 }"
               >
                 <div (click)="activeOverlay(list)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-                {{list.title}}
+                {{list.title}} 
+                <!-- <i class="fas fa-pencil-alt"></i> -->
                 <p>{{list.value}}</p>
                 </div>
                 <ng-template
@@ -53,15 +54,6 @@
         <ul class="grid">
           <grid-list [category]="addedFormIndex" [gridList]="formData" [columns]="columns" (confirmVal)="saveConfirmedValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
         </ul>
-
-        <!-- <div class="signature-container"> -->
-
-          <!-- <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
-        </div>
-        <div class="buttons">
-          <button (click)="clearSignature()">Clear</button>
-          <button (click)="savePad()">Save</button>
-        </div> -->
       </div>
     </div>
   </div>

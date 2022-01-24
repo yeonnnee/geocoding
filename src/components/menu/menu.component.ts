@@ -131,7 +131,8 @@ export class ExpansionOverviewExample {
     console.log(this.formData)
   }
 
-  addSubList(target:any) {
+  addSubList(target: any) {
+    console.log(target)
     const palletNo = target.data[0].palletNo;
     const subData = {
       palletNo: palletNo,
@@ -146,6 +147,7 @@ export class ExpansionOverviewExample {
   }
 
   deleteList(target: any) {
+    console.log(target)
     this.formData.forEach(d => {
       if (d.row === target.row) {
         d.data.pop(target.index);

@@ -3,16 +3,35 @@
 
   li {
     flex:1;
-    li {
 
+    .add-sub-list-btn {
+      float: left;
+      border: 1px solid #ececec;
+      text-align: center;
+      padding: 8px 0;
+    }
+    li {
       padding: 10px;
       margin: 0;
       border: 1px solid #ececec;
+
+      .merge-cell { 
+ 
+        &:nth-child(1) {
+          padding: 10px;
+        }
+        
+      }
     }
  
     
     button {
       display: inline-block;
+      background-color: transparent;
+      i {
+        font-size: 20px;
+        color: #cecece;
+      }
     }
   }
 }

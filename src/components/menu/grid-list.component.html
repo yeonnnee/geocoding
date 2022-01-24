@@ -2,16 +2,32 @@
 
 <ul class="grid-list" *ngFor="let item of gridData; let i = index">
   <li *ngFor="let column of columns; let k=index" >
+   
     <ng-container *ngFor="let data of item.data let j=index">
+      <div class="add-sub-list-btn" *ngIf="k === 0" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+        <button (click)="openOtpion(i)" ><i class="fas fa-ellipsis-v"></i></button>
+  
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="trigger"
+          [cdkConnectedOverlayOpen]="openGridControl === i"
+        >
+        <ul class="overlay-list">
+          <button class="close-btn" (click)="closeOption()">x</button>
+          <li (click)="addRow(item)">항목 추가하기</li>
+          <li (click)="deleteRow(item.row,j)">행 삭제하기</li>
+        </ul>
+        </ng-template>
+      </div>
       <li (click)="activeOverlay(item.row,column,j)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-        <button (click)="addRow(item)" *ngIf="k === 0">+</button>
+       
         <ng-container *ngIf="column==='palletNo' else dataCol">
-          {{j == 0 ? data.palletNo: ''}}
+          <div  [ngClass]="{'merge-cell': j > 0}" class="cell">{{j == 0 ? data.palletNo: ''}}</div>
         </ng-container>
         <ng-template #dataCol>
-          {{ data[column]  || 'N/A'}}
+          <div class="cell">{{ data[column]  || 'N/A'}}</div>
         </ng-template>
-        <button *ngIf="k === columns.length-1" (click)="deleteRow(item.row,j)">x</button>
+
       </li>
       <ng-template
         cdkConnectedOverlay
