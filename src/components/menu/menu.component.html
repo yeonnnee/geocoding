@@ -1,49 +1,41 @@
 <div class="menu" cdkDropListGroup>
   <ul class="form-menu">
-    <li>물류비 견적</li>
     <li>PACKING LIST</li>
     <li>COMMERCIAL INVOICE</li>
+    <li>직접 입력</li>
   </ul>
   <div class="main-container">
-    <div class="example-container">
-      <div
-        cdkDropList
-        [cdkDropListData]="formIndex"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-          <div class="option-box">
-            <ng-container  *ngIf="formIndex.length >= 1">
-              <div class="example-box" *ngFor="let item of formIndex" cdkDrag>{{item.title}}</div>
-            </ng-container>
-          </div>
-      </div>
-    </div>
-  
     <div class="packing-list-form">
       <h1>PACKING LIST</h1>
-      <div class="form-container">  
+      <div class="form-container">
         <div class="fixed-index-container">
           <ul class="column">
-            <li>
-              Shipper/Exporter
-  
-            </li>
-            <li>Consignee</li>
-            <li>Notify party</li>
-            <ul class="half-list">
-              <li>Port of loading</li>
-              <li>Port of Discharging</li>
-            </ul>
-            <ul class="half-list">
-              <li>Vessel & Voy</li>
-              <li>Sailing on or about</li>
-            </ul>
-          </ul>
-          <ul class="column">
-            <li>No. & date of invoice</li>
-            <li>L/C No. and date</li>
-            <li class="remark">Remarks</li>
-            <li class="remark">Shipping Mark</li>
+            <ng-container *ngFor="let list of fixedIndex; let index = index;">
+              <li [ngClass]="{
+                'wide': index === 0 || index === 4 || index === 6 || index === 7 || index === 11, 
+                'issuing-bank': index === 3 || index === 11, 
+                'small-group': index === 8 || index === 9 || index === 10, 
+                'group': index === 12 || index === 13 }"
+              >
+                <div (click)="activeOverlay(list)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+                {{list.title}}
+                <p>{{list.value}}</p>
+                </div>
+                <ng-template
+                  cdkConnectedOverlay
+                  [cdkConnectedOverlayOrigin]="trigger"
+                  [cdkConnectedOverlayOpen]="list.isOpen"
+                >
+                <div class="overlay-list">
+                  <button class="close-btn" (click)="closeOverlay(list)">x</button>
+                  <div>Title : <input placeholder={{list.title}}></div>
+                  <div>value : <input (input)="setValue($event, list)"/></div>
+                  <button class="confirm-btn" (click)="saveValue(list)">확인</button>
+                </div>
+                </ng-template>
+              </li>
+            </ng-container>
+           
           </ul>
         </div>
   
@@ -61,17 +53,18 @@
         <ul class="grid">
           <grid-list [category]="addedFormIndex" [gridList]="formData" [columns]="columns" (confirmVal)="saveValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
         </ul>
-        <div class="signature-container">
-          <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+
+        <!-- <div class="signature-container"> -->
+
+          <!-- <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
         </div>
         <div class="buttons">
           <button (click)="clearSignature()">Clear</button>
           <button (click)="savePad()">Save</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
-  
 </div>
 
 

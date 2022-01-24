@@ -14,18 +14,23 @@ import { SignaturePad } from 'angular2-signaturepad';
 })
 export class ExpansionOverviewExample {
   panelOpenState = false;
+  overlayTarget = {row:0, title:'', column:'', index:0}
 
   fixedIndex = [
     {title: 'Shipper/Exporter', isOpen: false, value: ''},
+    {title: 'No.& date of invoice', isOpen: false, value: ''},
+    {title: 'L/C No. and date', isOpen: false, value: ''},
+    {title: 'L/C Issuing Bank', isOpen: false, value: ''},
     {title: 'Consignee', isOpen: false, value: ''},
+    {title: 'Terms of Delivery and payment', isOpen: false, value: ''},
     {title: 'Notify party', isOpen: false, value: ''},
+    {title: 'Remarks', isOpen: false, value: ''},
     {title: 'Port of loading', isOpen: false, value: ''},
     {title: 'Port of Discharging', isOpen: false, value: ''},
+    {title: 'Final destination', isOpen: false, value: ''},
+    {title: 'Shipping Mark', isOpen: false, value: ''},
     {title: 'Vessel & Voy', isOpen: false, value: ''},
     {title: 'Sailing on or about', isOpen: false, value: ''},
-    {title: 'No. & date of invoice', isOpen: false, value: ''},
-    {title: 'L/C No. and date', isOpen: false, value: ''},
-    {title: 'Remarks', isOpen: false, value: ''},
   ]
 
   // TODO: operator 'of' 사용 해보기
@@ -64,8 +69,8 @@ export class ExpansionOverviewExample {
 
   ngAfterViewInit() {
     // this.signaturePad is now available
-    this.signaturePad.set('minWidth', 2); 
-    this.signaturePad.clear(); 
+    // this.signaturePad.set('minWidth', 2); 
+    // this.signaturePad.clear(); 
   }
 
   drawComplete() {
@@ -148,33 +153,34 @@ export class ExpansionOverviewExample {
     })
   }
 
-  activeOverlay(item: any) {
-    if(item.title === "Pallet No.") {
-      return;
-    }
-    item.isOpen = !item.isOpen;
-
-    this.addedFormIndex.forEach(doneItem => {
-      if (doneItem !== item) {
-        doneItem.isOpen = false;
+  activeOverlay(list: any) {
+    console.log(list)
+    this.fixedIndex.forEach(index => {
+      if(index.title === list.title) {
+        index.isOpen = true;
       }
-    });
+    })
   }
 
-  setValue(e:any) {
+  closeOverlay(list: any) {
+    this.fixedIndex.forEach(index => {
+      if(index.title === list.title) {
+        index.isOpen = false;
+      }
+    })
+  }
+
+  setValue(e:any, list:any) {
     this.inputVal = e.target.value;
   }
 
-  saveValue(target: any) {
-    console.log('save', target)
-
-    this.formData.forEach((d) => {
-      if (d.row === target.row) {
-        d.data[target.index][target.column] = target.value;
+  saveValue(list: any) {
+    this.fixedIndex.forEach(index => {
+      if(index.title === list.title) {
+        index.value = this.inputVal;
+        index.isOpen = false;
       }
     })
-
-    return this.formData
   }
 }
 

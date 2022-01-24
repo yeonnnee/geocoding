@@ -94,7 +94,8 @@
           display: flex;
           
           .column {
-            flex: 50%;
+           
+            width: 100%;
             text-align: left;
             &:nth-child(1) {
               margin: 0 20px 0 0;
@@ -108,15 +109,25 @@
               }
             }
             li {
+              float: left;
+              width: 50%;
               height:100px;
               padding: 13px 10px;
-              margin: 5px 0;
               border: solid 1px #ccc;
               border-radius: 4px;
               cursor: default;
   
-              &.remark {
-                height: 127px;
+              &.wide {
+                height: 200px;
+              }
+              &.issuing-bank {
+                float: right;
+              }
+              &.small-group {
+                width: 16.66%;
+              }
+              &.group {
+                width: 25%;
               }
             }
           }
