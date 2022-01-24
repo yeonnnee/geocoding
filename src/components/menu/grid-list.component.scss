@@ -3,8 +3,13 @@
 
   li {
     flex:1;
-    padding: 0 10px;
-    margin: 5px 0;
+    li {
+
+      padding: 10px;
+      margin: 0;
+      border: 1px solid #ececec;
+    }
+ 
     
     button {
       display: inline-block;

@@ -182,6 +182,16 @@ export class ExpansionOverviewExample {
       }
     })
   }
+
+  saveConfirmedValue(target:any) {
+    this.formData.forEach((d) => {
+      if (d.row === target.row) {
+        d.data[target.index][target.column] = target.value;
+      }
+    })
+
+    return this.formData
+  }
 }
 
 export class GridIndex {

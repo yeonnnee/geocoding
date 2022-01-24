@@ -51,7 +51,7 @@
           </div>
         </div>
         <ul class="grid">
-          <grid-list [category]="addedFormIndex" [gridList]="formData" [columns]="columns" (confirmVal)="saveValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
+          <grid-list [category]="addedFormIndex" [gridList]="formData" [columns]="columns" (confirmVal)="saveConfirmedValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
         </ul>
 
         <!-- <div class="signature-container"> -->
