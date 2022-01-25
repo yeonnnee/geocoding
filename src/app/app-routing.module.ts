@@ -9,7 +9,7 @@ import { RegisterComponent } from 'src/components/register/register.component';
 import { MonitoringComponent } from 'src/components/monitoring/monitoring.component';
 
 const routes: Routes = [
-  { path: 'home',  component: MainComponent , canActivate:[AuthGuard]},
+  { path: 'home',  component: MainComponent },
   { path: 'login', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
   { path: 'menu', component: ExpansionOverviewExample},

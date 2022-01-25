@@ -1,6 +1,42 @@
-<div class="home">
-  <div class="content">
-    <p>When life gives you lemons,<br /> make lemonade!!!</p>
-  </div>
+<div class="create-document">
+  <!-- <ul class="three-item-layer first-layer layer">
+    <li *ngFor="let item of firstLayerData">
+      <div class="title">{{item.order}}.{{item.title}}</div>
+    </li>
+  </ul>
+  <ul class="three-item-layer second-layer layer">
+    <li *ngFor="let item of secondLayerData">
+      <div class="title">{{item.order}}.{{item.title}}</div>
+    </li>
+  </ul>
+  <ul class="third-layer layer">
+    <li *ngFor="let item of thirdLayerData">
+      <div class="title">{{item.order}}.{{item.title}}</div>
+    </li>
+  </ul>
+  <ul class="fourth-layer">
+    <li  *ngFor="let item of fourthLayerData">
+      <div class="group-layer">{{item.order}}.{{item.title}}</div>
+    </li>
+  </ul> -->
+
+  <ul class="right">
+    <li *ngFor="let item of right">{{item.order}}.{{item.title}}</li>
+    <li class="group">
+      <div  *ngFor="let item of middle">
+        {{item.order}}.{{item.title}}
+      </div>
+    </li>
+    <li class="group">
+      <div  *ngFor="let item of bottom">
+        {{item.order}}.{{item.title}}
+      </div>
+    </li>
+  
+  </ul>
+  <ul class="left">
+    <li *ngFor="let item of left">  {{item.order}}.{{item.title}}</li>
+  </ul>
+
 </div>
 
