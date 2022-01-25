@@ -52,43 +52,66 @@
 // }
 
 .create-document {
-  display: flex;
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  
-  ul {
-    flex: 50%;
-  }
-  .right {
-    li {
-      height: 150px;
-      border: 1px solid #ececec;
-      &.group {
-        height: 100px;
-        display: flex;
-        div {
-          flex: 1;
-          &:nth-child(2) {
-            border-right: 1px solid #ececec;
-            border-left: 1px solid #ececec;
+
+  .layer {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    
+    ul {
+      flex: 50%;
+    }
+    .right-layer {
+      li {
+        height: 150px;
+        border: 1px solid #ececec;
+        &.group {
+          height: 100px;
+          display: flex;
+          div {
+            flex: 1;
+            &:nth-child(2) {
+              border-right: 1px solid #ececec;
+              border-left: 1px solid #ececec;
+            }
           }
         }
       }
     }
-
-  }
-  .left {
-    li {
-      height: 75px;
-      border: 1px solid #ececec;
-
-      &:nth-child(5){
-        height: 150px;
-      }
-      &:nth-child(6) {
-        height: 200px;
+    .left-layer {
+      li {
+        height: 75px;
+        border: 1px solid #ececec;
+  
+        &:nth-child(5){
+          height: 150px;
+        }
+        &:nth-child(6) {
+          height: 200px;
+        }
       }
     }
+  }
+  .grid-header {
+    width: 100%;
+    .example-list {
+      display: flex;
+      margin: 20px 0 0;
+      border-top: 1px solid black;
+    }
+    .drag-box {
+      padding: 10px 20px;
+      flex:1;
+    border: 1px solid #ececec;
+    }
+
+  }
+  .grid {
+    margin: 0 0 20px;
+    padding: 0 0 20px;
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ececec;
   }
 }

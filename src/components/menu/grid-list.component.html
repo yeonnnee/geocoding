@@ -4,6 +4,17 @@
   <li *ngFor="let column of columns; let k=index" >
    
     <ng-container *ngFor="let data of item.data let j=index">
+      
+      <li (click)="activeOverlay(item.row,column,j)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+       
+        <ng-container *ngIf="column==='palletNo' else dataCol">
+          <div  [ngClass]="{'merge-cell': j > 0}" class="cell">{{j == 0 ? data.palletNo: ''}}</div>
+        </ng-container>
+        <ng-template #dataCol>
+          <div class="cell">{{ data[column]  || 'N/A'}}</div>
+        </ng-template>
+
+      </li>
       <div class="add-sub-list-btn" *ngIf="k === 0" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
         <button (click)="openOtpion(i)" ><i class="fas fa-ellipsis-v"></i></button>
   
@@ -19,16 +30,10 @@
         </ul>
         </ng-template>
       </div>
-      <li (click)="activeOverlay(item.row,column,j)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-       
-        <ng-container *ngIf="column==='palletNo' else dataCol">
-          <div  [ngClass]="{'merge-cell': j > 0}" class="cell">{{j == 0 ? data.palletNo: ''}}</div>
-        </ng-container>
-        <ng-template #dataCol>
-          <div class="cell">{{ data[column]  || 'N/A'}}</div>
-        </ng-template>
 
-      </li>
+
+
+
       <ng-template
         cdkConnectedOverlay
         [cdkConnectedOverlayOrigin]="trigger"

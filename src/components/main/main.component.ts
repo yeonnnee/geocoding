@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GridIndex } from '../menu/menu.component';
 
 @Component({
   selector: 'app-main',
@@ -67,9 +68,88 @@ export class MainComponent implements OnInit {
     {title: 'Shipping Mark', order: 13, rename: '', value: ''},
 
   ]
+
+  addedFormIndex:Array<GridIndex> = 
+  [
+    { title: 'Pallet No.', isOpen: false, key:'palletNo'},
+    { title: 'C/T No.', isOpen: false, key:'ctNo' },
+    { title: 'SKU', isOpen: false, key:'sku'},
+    { title: 'Description of Goods', isOpen: false, key:'descOfGoods' },
+    { title: 'Quantity', isOpen: false, key:'qty' },
+    { title: 'N/W(Unit)', isOpen: false, key:'nwUnit' },
+    { title: 'G/W(Unit)', isOpen: false, key:'gwUnit' },
+  ]
+  
+  
+  gridData: Array<any> = [];
+  columns:Array<string> = [];
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  drop(event: any) {
+    console.log(event)
+  }
+
+  paintGrid() {
+    if (this.columns.length === 0) {
+      this.addedFormIndex.forEach(item => this.columns.push(item.key));
+    }
+
+    const newRow = {
+      row: this.gridData.length + 1,
+      data: [
+        {
+          palletNo: this.gridData.length + 1,
+          ctNo: '',
+          sku: '',
+          descOfGoods: '',
+          qty: '',
+          nwUnit: '',
+          gwUnit:'',
+        }
+      ]
+    }
+
+    this.gridData.push(newRow)
+
+    console.log('paint',this.gridData)
+  }
+
+
+  saveConfirmedValue(target:any) {
+    this.gridData.forEach((d) => {
+      if (d.row === target.row) {
+        d.data[target.index][target.column] = target.value;
+      }
+    })
+
+    return this.gridData;
+  }
+
+  addSubList(target: any) {
+    console.log(target)
+    const palletNo = target.data[0].palletNo;
+    const subData = {
+      palletNo: palletNo,
+      ctNo: '',
+      sku: '',
+      descOfGoods: '',
+      qty: '',
+      nwUnit: '',
+      gwUnit:'',
+    }
+    target.data.push(subData);
+  }
+
+  deleteList(target: any) {
+    console.log(target)
+    this.gridData.forEach(d => {
+      if (d.row === target.row) {
+        d.data.pop(target.index);
+      }
+    })
+  }
 }
