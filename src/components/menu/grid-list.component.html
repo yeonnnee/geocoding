@@ -5,36 +5,16 @@
    
     <ng-container *ngFor="let data of item.data let j=index">
       
-      <li (click)="activeOverlay(item.row,column,j)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+      <div class="grid-list-item"  cdkOverlayOrigin #trigger="cdkOverlayOrigin">
        
         <ng-container *ngIf="column==='palletNo' else dataCol">
-          <div  [ngClass]="{'merge-cell': j > 0}" class="cell">{{j == 0 ? data.palletNo: ''}}</div>
+          <div (click)="activeOverlay(item.row,column,j)"  [ngClass]="{'merge-cell': j > 0}" class="cell">{{j == 0 ? data.palletNo: ''}}</div>
         </ng-container>
         <ng-template #dataCol>
-          <div class="cell">{{ data[column]  || 'N/A'}}</div>
+          <div class="cell" (click)="activeOverlay(item.row,column,j)" >{{ data[column]  || 'N/A'}}</div>
         </ng-template>
 
-      </li>
-      <div class="add-sub-list-btn" *ngIf="k === 0" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-        <button (click)="openOtpion(i)" ><i class="fas fa-ellipsis-v"></i></button>
-  
         <ng-template
-          cdkConnectedOverlay
-          [cdkConnectedOverlayOrigin]="trigger"
-          [cdkConnectedOverlayOpen]="openGridControl === i"
-        >
-        <ul class="overlay-list">
-          <button class="close-btn" (click)="closeOption()">x</button>
-          <li (click)="addRow(item)">항목 추가하기</li>
-          <li (click)="deleteRow(item.row,j)">행 삭제하기</li>
-        </ul>
-        </ng-template>
-      </div>
-
-
-
-
-      <ng-template
         cdkConnectedOverlay
         [cdkConnectedOverlayOrigin]="trigger"
         [cdkConnectedOverlayOpen]="overlayTarget.row === item.row && overlayTarget.column === column && overlayTarget.index === j"
@@ -46,6 +26,31 @@
         <button class="confirm-btn" (click)="saveValue(item.row, column, j)">확인</button>
       </ul>
       </ng-template>
+
+
+        
+        <div class="add-sub-list-btn" *ngIf="k === columns.length -1" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+          <button (click)="openOtpion(i)" ><i class="fas fa-ellipsis-v"></i></button>
+    
+          <ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayOrigin]="trigger"
+            [cdkConnectedOverlayOpen]="openGridControl === i"
+          >
+          <ul class="overlay-list">
+            <button class="close-btn" (click)="closeOption()">x</button>
+            <li (click)="addRow(item)">항목 추가하기</li>
+            <li (click)="deleteRow(item.row,j)">행 삭제하기</li>
+          </ul>
+          </ng-template>
+        </div>
+  
+  
+      </div>
+      
+
+
+     
     </ng-container>
   </li>
 </ul>

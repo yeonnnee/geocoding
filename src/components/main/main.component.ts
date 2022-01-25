@@ -78,6 +78,7 @@ export class MainComponent implements OnInit {
     { title: 'Quantity', isOpen: false, key:'qty' },
     { title: 'N/W(Unit)', isOpen: false, key:'nwUnit' },
     { title: 'G/W(Unit)', isOpen: false, key:'gwUnit' },
+    { title: 'measurement', isOpen: false, key:'measurement' },
   ]
   
   

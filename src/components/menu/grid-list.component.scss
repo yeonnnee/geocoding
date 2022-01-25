@@ -1,16 +1,19 @@
 .grid-list {
   display: flex;
+  margin: 0 20px 0 0;
 
   li {
     flex:1;
-
+    position: relative;
     .add-sub-list-btn {
-      float: left;
+      position: absolute;
+      top: 0;
+      right: -21px;
       border: 1px solid #ececec;
       text-align: center;
       padding: 8px 0;
     }
-    li {
+    .grid-list-item {
       padding: 10px;
       margin: 0;
       border: 1px solid #ececec;
