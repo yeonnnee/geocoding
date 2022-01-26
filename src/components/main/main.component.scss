@@ -50,6 +50,29 @@
 //     }
 //   }
 // }
+@media print{
+ .create-document { 
+
+   .document {
+
+     .layer {
+        width: 100%;
+        .right-layer, .left-layer{
+          li {
+            width: 378px;
+          }
+        }
+      }
+    }
+  }
+  .grid, .example-list {
+    width: 756px;
+  }
+  .drag-box {
+    background-color: #ececec;
+  }
+
+}
 
 .create-document {
   padding: 20px;

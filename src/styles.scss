@@ -2,6 +2,21 @@
 * {
   box-sizing: border-box;
 }
+@media print {
+  @page { 
+    size:  A4 portrait;
+    margin: 0mm; // added mm
+    page-break-after: [always];
+
+  }
+  body { 
+    margin: 2cm;
+    overflow: hidden;
+  }
+  header, footer, .no-print { display:none }
+ 
+  
+}
 .cdk-overlay-container {
   .cdk-overlay-connected-position-bounding-box {
     .cdk-overlay-pane{

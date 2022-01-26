@@ -1,6 +1,6 @@
 <div class="create-document">
-  <div class="column-controller">
-    <div class="header">활성 가능 항목</div>
+  <div class="column-controller no-print">
+    <div class="header ">활성 가능 항목</div>
     <ul>
       <li *ngFor="let item of exceptionList">
         <input type="checkbox" id="active-cbx" name="active-cbx">
@@ -8,6 +8,7 @@
         <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)" *ngIf="item.order > 13">
           {{item.title}}
         </label>
+      </li>
     </ul>
   </div>
   <div class="document">
@@ -29,7 +30,7 @@
         <li class="group">
           <div class="item" *ngFor="let item of middle">
             <div class="header">
-              <div class="title">{{item.order}}.{{item.title}} <button *ngIf="item.order === 5.1" (click)="disableColumn(item)">x</button></div>
+              <div class="title">{{item.order}}.{{item.title}} <button class="no-print" *ngIf="item.order === 5.1" (click)="disableColumn(item)">x</button></div>
               <div class="content">
                 <input type="text" placeholder="입력">
               </div>
@@ -69,9 +70,9 @@
       >
       <div class="drag-box" *ngFor="let item of addedFormIndex; let i = index" cdkDrag>
         <span>{{item.title}}</span>
-        <button *ngIf="item.key === 'palletNo'" (click)="enableGridColumn(item)">x</button>
+        <button class="no-print" *ngIf="item.key === 'palletNo'" (click)="enableGridColumn(item)">x</button>
       </div>
-      <button (click)="paintGrid()">+</button>
+      <button class="no-print" (click)="paintGrid()">+</button>
     </div>
   
     <ul class="grid">
