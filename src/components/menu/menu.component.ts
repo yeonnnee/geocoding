@@ -38,13 +38,13 @@ export class ExpansionOverviewExample {
 
   addedFormIndex:Array<GridIndex> = 
   [
-    { title: 'Pallet No.', isOpen: false, key:'palletNo'},
-    { title: 'C/T No.', isOpen: false, key:'ctNo' },
-    { title: 'SKU', isOpen: false, key:'sku'},
-    { title: 'Description of Goods', isOpen: false, key:'descOfGoods' },
-    { title: 'Quantity', isOpen: false, key:'qty' },
-    { title: 'N/W(Unit)', isOpen: false, key:'nwUnit' },
-    { title: 'G/W(Unit)', isOpen: false, key:'gwUnit' },
+    { title: 'Pallet No.', order:14, isOpen: false, key:'palletNo'},
+    { title: 'C/T No.',order:15, isOpen: false, key:'ctNo' },
+    { title: 'SKU',order:16, isOpen: false, key:'sku'},
+    { title: 'Description of Goods',order:17, isOpen: false, key:'descOfGoods' },
+    { title: 'Quantity',order:18, isOpen: false, key:'qty' },
+    { title: 'N/W(Unit)',order:19, isOpen: false, key:'nwUnit' },
+    { title: 'G/W(Unit)', order:20,isOpen: false, key:'gwUnit' },
   ]
 
 
@@ -200,6 +200,7 @@ export class GridIndex {
   title = '';
   isOpen = false;
   key = '';
+  order:number = 0;
 }
 
 export class RowData {

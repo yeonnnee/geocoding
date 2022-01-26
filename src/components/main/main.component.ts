@@ -69,21 +69,22 @@ export class MainComponent implements OnInit {
 
   ]
 
-  exceptionList:any = [];
+  exceptionList:any[] = [];
 
 
   inputVal:string ='';
   renamedTitle:string ='';
+
   addedFormIndex:Array<GridIndex> = 
   [
-    { title: 'Pallet No.', isOpen: false, key:'palletNo'},
-    { title: 'C/T No.', isOpen: false, key:'ctNo' },
-    { title: 'SKU', isOpen: false, key:'sku'},
-    { title: 'Description of Goods', isOpen: false, key:'descOfGoods' },
-    { title: 'Quantity', isOpen: false, key:'qty' },
-    { title: 'N/W(Unit)', isOpen: false, key:'nwUnit' },
-    { title: 'G/W(Unit)', isOpen: false, key:'gwUnit' },
-    { title: 'measurement', isOpen: false, key:'measurement' },
+    { title: 'Pallet No.', order:14, isOpen: false, key:'palletNo'},
+    { title: 'C/T No.',order:15, isOpen: false, key:'ctNo' },
+    { title: 'SKU',order:16, isOpen: false, key:'sku'},
+    { title: 'Description of Goods',order:17, isOpen: false, key:'dog' },
+    { title: 'Quantity',order:18, isOpen: false, key:'qty' },
+    { title: 'N/W(Unit)',order:19, isOpen: false, key:'nwUnit' },
+    { title: 'G/W(Unit)', order:20,isOpen: false, key:'gwUnit' },
+    { title: 'Measurement', order:21,isOpen: false, key:'measurement' },
   ]
   
   
@@ -186,6 +187,15 @@ export class MainComponent implements OnInit {
     })
   }
 
+  activeLeftListOverlay(list: any) {
+    console.log('opne')
+    this.left.forEach(index => {
+      if(index.title === list.title) {
+        index.isOpen = !index.isOpen;
+      }
+    })
+  }
+
   setBttomValue(e:any, list:any) {
     this.inputVal = e.target.value;
   }
@@ -204,8 +214,17 @@ export class MainComponent implements OnInit {
     this.exceptionList.push(item)
     this.middle = this.middle.filter(li => li.order !== item.order);
   }
+  enableGridColumn(item:any) {
+    this.exceptionList.push(item)
+    this.addedFormIndex = this.addedFormIndex.filter(li => li.key !== item.key);
+  }
 
   activeColumn(item:any) {
+    this.exceptionList = this.exceptionList.filter(li => li.title !== item.title);
     this.middle.push(item)
+  }
+  activeGridColumn(item:any) {
+    this.exceptionList = this.exceptionList.filter(li => li.title !== item.title);
+    this.addedFormIndex = [item, ...this.addedFormIndex]
   }
 }
