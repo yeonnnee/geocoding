@@ -26,12 +26,8 @@
         <button class="confirm-btn" (click)="saveValue(item.row, column, j)">확인</button>
       </ul>
       </ng-template>
-
-
-        
         <div class="add-sub-list-btn" *ngIf="k === columns.length -1" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
           <button (click)="openOtpion(i)" ><i class="fas fa-ellipsis-v"></i></button>
-    
           <ng-template
             cdkConnectedOverlay
             [cdkConnectedOverlayOrigin]="trigger"
@@ -40,17 +36,12 @@
           <ul class="overlay-list">
             <button class="close-btn" (click)="closeOption()">x</button>
             <li (click)="addRow(item)">항목 추가하기</li>
-            <li (click)="deleteRow(item.row,j)">행 삭제하기</li>
+            <li (click)="deleteRow(item.row,j)">항목 삭제하기</li>
+            <li>CBM 계산하기</li>
           </ul>
           </ng-template>
         </div>
-  
-  
       </div>
-      
-
-
-     
     </ng-container>
   </li>
 </ul>

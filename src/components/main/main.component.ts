@@ -1,3 +1,4 @@
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { GridIndex } from '../menu/menu.component';
 
@@ -8,70 +9,68 @@ import { GridIndex } from '../menu/menu.component';
 })
 export class MainComponent implements OnInit {
 
-  // firstLayerData = [
-  //   { title: 'No.& date of invoice', order: 8, isOpen:false, rename: '', value: '' },
-  //   { title: 'L/C No. and date', order: 9, isOpen:false, rename: '', value: '' },
-  //   { title: 'Shipper/Exporter', order: 1, isOpen:false, rename: '', value: '' },
-
-  // ];
-
-  // secondLayerData = [
-  //   { title: 'L/C Issuing Bank', order: 10, isOpen:false, rename: '', value: '' },
-  //   { title: 'Terms of Delivery and payment', isOpen:false, order: 11, rename: '', value: '' },
-  //   { title: 'Consignee', order: 2, rename: '', isOpen:false, value: '' },
-  // ];
-
-  // thirdLayerData = [
-  //   {title: 'Notify party', order: 3, isOpen:false, rename: '', value: ''},
-  //   {title: 'Remarks', order: 12, isOpen:false, rename: '', value: ''},
-
-  // ];
-  // fourthLayerData = [
-  //   {title: 'Port of loading', order: 4, isOpen:false, rename: '', value: ''},
-  //   {title: 'Vessel & Voy', order: 6, isOpen:false, rename: '', value: ''},
-  //   { title: 'Port of Discharging', order: 5, isOpen:false, rename: '', value: '' },
-  //   { title: 'Sailing on or about', order: 7, isOpen:false, rename: '', value: '' },
-  //   {title: 'Final destination', order: 5.1, isOpen:false, rename: '', value: ''},
-  //   {title: 'Shipping Mark', order: 13, isOpen:false, rename: '', value: ''},
-  // ];
-
-  // lastLayerData = [
-  //   {title: 'Empty', order: null, isOpen:false, rename: '', value: ''},
-  //   {title: 'Empty', order: null, isOpen:false, rename: '', value: ''},
-  // ]
-
-
-  right = [
-    { title: 'Shipper/Exporter', order: 1, isOpen:false, rename: '', value: '' },
-    { title: 'Consignee', order: 2, isOpen:false, rename: '', value: '' },
+  // TODO 구조 수정 , title에 맞게 필요한 필드 생성하도록
+  addressNeededCol = [
+    {title: 'Shipper/Exporter', order: 1, isOpen:false, rename: '', value: '' },
+    {title: 'Consignee', order: 2, isOpen:false, rename: '', value: '' },
     {title: 'Notify party', order: 3, isOpen:false, rename: '', value: ''},
   ]
   middle = [
     {title: 'Port of loading', order: 4, isOpen:false, rename: '', value: ''},
-    { title: 'Port of Discharging', order: 5, isOpen:false, rename: '', value: '' },
+    {title: 'Port of Discharging', order: 5, isOpen:false, rename: '', value: '' },
     {title: 'Final destination', order: 5.1, isOpen:false, rename: '', value: ''},
-
   ]
   bottom = [
     {title: 'Vessel & Voy', order: 6, isOpen:false, rename: '', value: ''},
-    { title: 'Sailing on or about', order: 7, isOpen:false, rename: '', value: '' },
-
+    {title: 'Sailing on or about', order: 7, isOpen:false, rename: '', value: '' },
   ]
 
   left = [
-    { title: 'No.& date of invoice', order: 8, isOpen:false, rename: '', value: '' },
-    { title: 'L/C No. and date', order: 9, isOpen:false, rename: '', value: '' },
-    { title: 'L/C Issuing Bank', order: 10, isOpen:false, rename: '', value: '' },
-    { title: 'Terms of Delivery and payment', order: 11, isOpen:false, rename: '', value: '' },
-
+    {title: 'No.& date of invoice', order: 8, isOpen:false, rename: '', value: '' },
+    {title: 'L/C No. and date', order: 9, isOpen:false, rename: '', value: '' },
+    {title: 'L/C Issuing Bank', order: 10, isOpen:false, rename: '', value: '' },
+    {title: 'Terms of Delivery and payment', order: 11, isOpen:false, rename: '', value: '' },
     {title: 'Remarks', order: 12, isOpen:false, rename: '', value: ''},
     {title: 'Shipping Mark', order: 13, isOpen:false, rename: '', value: ''},
-
   ]
 
+  // {
+  //   "SHIPPER_EXPORTER": {
+  //     "name": "Shipper/Exporter",
+  //     "details": [
+  //       {
+  //         "order": 1,
+  //         "name": "회사명",
+  //         "type": "string"
+  //       },
+  //       {
+  //         "order": 2,
+  //         "name": "주소",
+  //         "type": "string"
+  //       },
+  //       {
+  //         "name": "가족",
+  //         "order": 0
+  //       }
+  //     ]
+  //   },
+  //   "CONSIGNEE": {
+  //     "name": "Consignee",
+  //     "details": [
+  //       {
+  //         "name": "회사명",
+  //         "type": "string"
+  //       },
+  //       {
+  //         "name": "주소",
+  //         "type": "string"
+  //       }
+  //     ]
+  //   }
+  // }
+  
+
   exceptionList:any[] = [];
-
-
   inputVal:string ='';
   renamedTitle:string ='';
 
@@ -81,8 +80,8 @@ export class MainComponent implements OnInit {
     { title: 'C/T No.',order:15, isOpen: false, key:'ctNo' },
     { title: 'SKU',order:16, isOpen: false, key:'sku'},
     { title: 'Description of Goods',order:17, isOpen: false, key:'dog' },
-    { title: 'Quantity',order:18, isOpen: false, key:'qty' },
-    { title: 'N/W(Unit)',order:19, isOpen: false, key:'nwUnit' },
+    { title: 'Quantity', order:18, isOpen: false, key:'qty' },
+    { title: 'N/W(Unit)', order:19, isOpen: false, key:'nwUnit' },
     { title: 'G/W(Unit)', order:20,isOpen: false, key:'gwUnit' },
     { title: 'Measurement', order:21,isOpen: false, key:'measurement' },
   ]
@@ -97,7 +96,18 @@ export class MainComponent implements OnInit {
   }
 
   drop(event: any) {
-    console.log(event)
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+    this.columns = [];
+    this.addedFormIndex.forEach(item => this.columns.push(item.key));
   }
 
   paintGrid() {
@@ -124,7 +134,10 @@ export class MainComponent implements OnInit {
 
     console.log('paint',this.gridData)
   }
-
+  disableColumn(item:any) {
+    this.exceptionList.push(item)
+    this.middle = this.middle.filter(li => li.order !== item.order);
+  }
 
   saveConfirmedValue(target:any) {
     this.gridData.forEach((d) => {
@@ -171,7 +184,7 @@ export class MainComponent implements OnInit {
 
   activeRightListOverlay(list: any) {
     console.log('opne')
-    this.right.forEach(index => {
+    this.addressNeededCol.forEach(index => {
       if(index.title === list.title) {
         index.isOpen = !index.isOpen;
       }
@@ -196,7 +209,7 @@ export class MainComponent implements OnInit {
     })
   }
 
-  setBttomValue(e:any, list:any) {
+  setValue(e:any, list:any) {
     this.inputVal = e.target.value;
   }
 
@@ -205,6 +218,27 @@ export class MainComponent implements OnInit {
       if(index.title === item.title) {
         index.rename = this.renamedTitle;
         index.value = this.inputVal;
+        index.isOpen = false;
+      }
+    })
+  }
+
+  saveRightValue(item:any) {
+    this.addressNeededCol.forEach(index => {
+      if(index.title === item.title) {
+        index.rename = this.renamedTitle;
+        index.value = this.inputVal;
+        index.isOpen = false;
+      }
+    })
+  }
+
+  saveMiddleValue(item:any) {
+    this.middle.forEach(index => {
+      if(index.title === item.title) {
+        index.rename = this.renamedTitle;
+        index.value = this.inputVal;
+        index.isOpen = false;
       }
     })
   }

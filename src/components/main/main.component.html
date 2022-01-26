@@ -5,7 +5,7 @@
       <li *ngFor="let item of exceptionList">
         <input type="checkbox" id="active-cbx" name="active-cbx">
         <label class="cbx" for="active-cbx" (click)="activeColumn(item)" *ngIf="item.order < 14">{{item.title}}</label>
-        <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)"  *ngIf="item.order > 13">
+        <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)" *ngIf="item.order > 13">
           {{item.title}}
         </label>
     </ul>
@@ -13,103 +13,49 @@
   <div class="document">
     <div class="layer">
       <ul class="right-layer">
-        <li  class="item" *ngFor="let item of right">
+        <li class="item" *ngFor="let item of addressNeededCol">
           <div class="header">
             <div class="title">{{item.order}}.{{item.title}}</div>
-            <div class="editor" (click)="activeRightListOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-              <button><i class="fas fa-ellipsis-v"></i></button>
-              <ng-template
-                cdkConnectedOverlay
-                [cdkConnectedOverlayOrigin]="trigger"
-                [cdkConnectedOverlayOpen]="item.isOpen"
-              >
-              <div class="overlay-list">
-                <button class="close-btn" (click)="activeRightListOverlay(item)">x</button>
-                <div>Title : <input placeholder={{item.title}}></div>
-                <div>value : <input (input)="setBttomValue($event, item)"/></div>
-                <button class="confirm-btn" (click)="saveBottomValue(item)">확인</button>
-              </div>
-              </ng-template>
+            <div class="content">
+              <input type="text" placeholder="회사명">
+              <input type="text" placeholder="주소">
+              <input type="text" placeholder="상세주소">
+              <input type="text" placeholder="TEL/E-mail">
+              <input type="text" placeholder="기타">
             </div>
           </div>
-          <p>{{item.value}}</p>
         </li>
-        
-        
+
         <li class="group">
           <div class="item" *ngFor="let item of middle">
             <div class="header">
-              <div class="title">{{item.order}}.{{item.title}}</div>
-              <div class="editor" (click)="activeMiddleListOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-                <button><i class="fas fa-ellipsis-v"></i></button>
-                <ng-template
-                  cdkConnectedOverlay
-                  [cdkConnectedOverlayOrigin]="trigger"
-                  [cdkConnectedOverlayOpen]="item.isOpen"
-                >
-                <div class="overlay-list">
-                  <button class="close-btn" (click)="activeMiddleListOverlay(item)">x</button>
-                  <div>Title : <input placeholder={{item.title}}></div>
-                  <div>value : <input (input)="setBttomValue($event, item)"/></div>
-                  <div *ngIf="item.order === 5.1"><button (click)="enableColumn(item)">비활성화</button></div>
-                  <button class="confirm-btn" (click)="saveBottomValue(item)">확인</button>
-                </div>
-                </ng-template>
+              <div class="title">{{item.order}}.{{item.title}} <button *ngIf="item.order === 5.1" (click)="disableColumn(item)">x</button></div>
+              <div class="content">
+                <input type="text" placeholder="입력">
               </div>
             </div>
-  
-            <p>{{item.value}}</p>
           </div>
         </li>
         <li class="group">
-   
           <div  class="item"  *ngFor="let item of bottom">
             <div class="header">
               <div class="title">{{item.order}}.{{item.title}}</div>
-              <div class="editor" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-                <button (click)="activeBttomListOverlay(item)" ><i class="fas fa-ellipsis-v"></i></button>
-                <ng-template
-                  cdkConnectedOverlay
-                  [cdkConnectedOverlayOrigin]="trigger"
-                  [cdkConnectedOverlayOpen]="item.isOpen"
-                >
-                <div class="overlay-list">
-                  <button class="close-btn" (click)="activeBttomListOverlay(item)">x</button>
-                  <div>Title : <input placeholder={{item.title}}></div>
-                  <div>value : <input (input)="setBttomValue($event, item)"/></div>
-                  <button class="confirm-btn" (click)="saveBottomValue(item)">확인</button>
-                </div>
-                </ng-template>
+              <div class="content">
+                <input type="text" placeholder="입력">
               </div>
             </div>
-  
-            <p>{{item.value}}</p>
           </div>
         </li>
-      
       </ul>
       <ul class="left-layer">
         <li  class="item" *ngFor="let item of left">
           <div class="header">
             <div class="title">{{item.order}}.{{item.title}}</div>
-            <div class="editor" (click)="activeLeftListOverlay(item)" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-              <button><i class="fas fa-ellipsis-v"></i></button>
-              <ng-template
-                cdkConnectedOverlay
-                [cdkConnectedOverlayOrigin]="trigger"
-                [cdkConnectedOverlayOpen]="item.isOpen"
-              >
-              <div class="overlay-list">
-                <button class="close-btn" (click)="activeLeftListOverlay(item)">x</button>
-                <div>Title : <input placeholder={{item.title}}></div>
-                <div>value : <input (input)="setBttomValue($event, item)"/></div>
-                <button class="confirm-btn" (click)="saveBottomValue(item)">확인</button>
-              </div>
-              </ng-template>
+            <div class="content">
+              <input type="text" placeholder="입력">
+              <input type="text" placeholder="입력" *ngIf="item.order === 8 || item.order === 12 || item.order === 13">
             </div>
           </div>
-  
-          <p>{{item.value}}</p>
         </li>
       </ul>
     </div>
@@ -124,7 +70,6 @@
       <div class="drag-box" *ngFor="let item of addedFormIndex; let i = index" cdkDrag>
         <span>{{item.title}}</span>
         <button *ngIf="item.key === 'palletNo'" (click)="enableGridColumn(item)">x</button>
-        
       </div>
       <button (click)="paintGrid()">+</button>
     </div>
@@ -132,10 +77,6 @@
     <ul class="grid">
       <grid-list [category]="addedFormIndex" [columns]="columns" [gridList]="gridData" (confirmVal)="saveConfirmedValue($event)" (addList)="addSubList($event)" (deleteList)="deleteList($event)"></grid-list>
     </ul>
-  
   </div>
-  
-
-
 </div>
 
