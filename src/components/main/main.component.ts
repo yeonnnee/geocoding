@@ -8,67 +8,72 @@ import { GridIndex } from '../menu/menu.component';
 })
 export class MainComponent implements OnInit {
 
-  firstLayerData = [
-    { title: 'No.& date of invoice', order: 8, rename: '', value: '' },
-    { title: 'L/C No. and date', order: 9, rename: '', value: '' },
-    { title: 'Shipper/Exporter', order: 1, rename: '', value: '' },
+  // firstLayerData = [
+  //   { title: 'No.& date of invoice', order: 8, isOpen:false, rename: '', value: '' },
+  //   { title: 'L/C No. and date', order: 9, isOpen:false, rename: '', value: '' },
+  //   { title: 'Shipper/Exporter', order: 1, isOpen:false, rename: '', value: '' },
 
-  ];
+  // ];
 
-  secondLayerData = [
-    { title: 'L/C Issuing Bank', order: 10, rename: '', value: '' },
-    { title: 'Terms of Delivery and payment', order: 11, rename: '', value: '' },
-    { title: 'Consignee', order: 2, rename: '', value: '' },
-  ];
+  // secondLayerData = [
+  //   { title: 'L/C Issuing Bank', order: 10, isOpen:false, rename: '', value: '' },
+  //   { title: 'Terms of Delivery and payment', isOpen:false, order: 11, rename: '', value: '' },
+  //   { title: 'Consignee', order: 2, rename: '', isOpen:false, value: '' },
+  // ];
 
-  thirdLayerData = [
-    {title: 'Notify party', order: 3, rename: '', value: ''},
-    {title: 'Remarks', order: 12, rename: '', value: ''},
+  // thirdLayerData = [
+  //   {title: 'Notify party', order: 3, isOpen:false, rename: '', value: ''},
+  //   {title: 'Remarks', order: 12, isOpen:false, rename: '', value: ''},
 
-  ];
-  fourthLayerData = [
-    {title: 'Port of loading', order: 4, rename: '', value: ''},
-    {title: 'Vessel & Voy', order: 6, rename: '', value: ''},
-    { title: 'Port of Discharging', order: 5, rename: '', value: '' },
-    { title: 'Sailing on or about', order: 7, rename: '', value: '' },
-    {title: 'Final destination', order: 5.1, rename: '', value: ''},
-    {title: 'Shipping Mark', order: 13, rename: '', value: ''},
-  ];
+  // ];
+  // fourthLayerData = [
+  //   {title: 'Port of loading', order: 4, isOpen:false, rename: '', value: ''},
+  //   {title: 'Vessel & Voy', order: 6, isOpen:false, rename: '', value: ''},
+  //   { title: 'Port of Discharging', order: 5, isOpen:false, rename: '', value: '' },
+  //   { title: 'Sailing on or about', order: 7, isOpen:false, rename: '', value: '' },
+  //   {title: 'Final destination', order: 5.1, isOpen:false, rename: '', value: ''},
+  //   {title: 'Shipping Mark', order: 13, isOpen:false, rename: '', value: ''},
+  // ];
 
-  lastLayerData = [
-    {title: 'Empty', order: null, rename: '', value: ''},
-    {title: 'Empty', order: null, rename: '', value: ''},
-  ]
+  // lastLayerData = [
+  //   {title: 'Empty', order: null, isOpen:false, rename: '', value: ''},
+  //   {title: 'Empty', order: null, isOpen:false, rename: '', value: ''},
+  // ]
 
 
   right = [
-    { title: 'Shipper/Exporter', order: 1, rename: '', value: '' },
-    { title: 'Consignee', order: 2, rename: '', value: '' },
-    {title: 'Notify party', order: 3, rename: '', value: ''},
+    { title: 'Shipper/Exporter', order: 1, isOpen:false, rename: '', value: '' },
+    { title: 'Consignee', order: 2, isOpen:false, rename: '', value: '' },
+    {title: 'Notify party', order: 3, isOpen:false, rename: '', value: ''},
   ]
   middle = [
-    {title: 'Port of loading', order: 4, rename: '', value: ''},
-    { title: 'Port of Discharging', order: 5, rename: '', value: '' },
-    {title: 'Final destination', order: 5.1, rename: '', value: ''},
+    {title: 'Port of loading', order: 4, isOpen:false, rename: '', value: ''},
+    { title: 'Port of Discharging', order: 5, isOpen:false, rename: '', value: '' },
+    {title: 'Final destination', order: 5.1, isOpen:false, rename: '', value: ''},
 
   ]
   bottom = [
-    {title: 'Vessel & Voy', order: 6, rename: '', value: ''},
-    { title: 'Sailing on or about', order: 7, rename: '', value: '' },
+    {title: 'Vessel & Voy', order: 6, isOpen:false, rename: '', value: ''},
+    { title: 'Sailing on or about', order: 7, isOpen:false, rename: '', value: '' },
 
   ]
 
   left = [
-    { title: 'No.& date of invoice', order: 8, rename: '', value: '' },
-    { title: 'L/C No. and date', order: 9, rename: '', value: '' },
-    { title: 'L/C Issuing Bank', order: 10, rename: '', value: '' },
-    { title: 'Terms of Delivery and payment', order: 11, rename: '', value: '' },
+    { title: 'No.& date of invoice', order: 8, isOpen:false, rename: '', value: '' },
+    { title: 'L/C No. and date', order: 9, isOpen:false, rename: '', value: '' },
+    { title: 'L/C Issuing Bank', order: 10, isOpen:false, rename: '', value: '' },
+    { title: 'Terms of Delivery and payment', order: 11, isOpen:false, rename: '', value: '' },
 
-    {title: 'Remarks', order: 12, rename: '', value: ''},
-    {title: 'Shipping Mark', order: 13, rename: '', value: ''},
+    {title: 'Remarks', order: 12, isOpen:false, rename: '', value: ''},
+    {title: 'Shipping Mark', order: 13, isOpen:false, rename: '', value: ''},
 
   ]
 
+  exceptionList:any = [];
+
+
+  inputVal:string ='';
+  renamedTitle:string ='';
   addedFormIndex:Array<GridIndex> = 
   [
     { title: 'Pallet No.', isOpen: false, key:'palletNo'},
@@ -152,5 +157,55 @@ export class MainComponent implements OnInit {
         d.data.pop(target.index);
       }
     })
+  }
+
+  activeBttomListOverlay(list: any) {
+    console.log('opne')
+    this.bottom.forEach(index => {
+      if(index.title === list.title) {
+        index.isOpen = !index.isOpen;
+      }
+    })
+  }
+
+  activeRightListOverlay(list: any) {
+    console.log('opne')
+    this.right.forEach(index => {
+      if(index.title === list.title) {
+        index.isOpen = !index.isOpen;
+      }
+    })
+  }
+
+  activeMiddleListOverlay(list: any) {
+    console.log('opne')
+    this.middle.forEach(index => {
+      if(index.title === list.title) {
+        index.isOpen = !index.isOpen;
+      }
+    })
+  }
+
+  setBttomValue(e:any, list:any) {
+    this.inputVal = e.target.value;
+  }
+
+  saveBottomValue(item:any) {
+    this.bottom.forEach(index => {
+      if(index.title === item.title) {
+        index.rename = this.renamedTitle;
+        index.value = this.inputVal;
+      }
+    })
+  }
+
+  enableColumn(item:any) {
+    item.isOpen = false;
+    this.exceptionList.push(item)
+    this.middle = this.middle.filter(li => li.order !== item.order);
+  }
+
+  activeColumn(item:any) {
+    this.middle.push(item)
   }
 }

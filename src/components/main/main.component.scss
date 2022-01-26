@@ -52,66 +52,100 @@
 // }
 
 .create-document {
-
-  .layer {
-    display: flex;
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    
-    ul {
-      flex: 50%;
-    }
-    .right-layer {
-      li {
-        height: 150px;
-        border: 1px solid #ececec;
-        &.group {
-          height: 100px;
-          display: flex;
-          div {
-            flex: 1;
-            &:nth-child(2) {
-              border-right: 1px solid #ececec;
-              border-left: 1px solid #ececec;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  .document {
+    width: 75%;
+    .layer {
+      display: flex;
+      
+      ul {
+        flex: 50%;
+      }
+      .right-layer {
+        li {
+          height: 150px;
+          border: 1px solid #ececec;
+          .header {
+            display: flex;
+            .title {
+              flex: 1;
+            }
+          }
+          &.group {
+            height: 100px;
+            display: flex;
+            .item {
+              flex: 1;
+              &:nth-child(2) {
+                border-right: 1px solid #ececec;
+                border-left: 1px solid #ececec;
+              }
+              .header {
+                display: flex;
+                .title {
+                  flex: 1;
+                }
+              }
             }
           }
         }
       }
-    }
-    .left-layer {
-      li {
-        height: 75px;
-        border: 1px solid #ececec;
-  
-        &:nth-child(5){
-          height: 150px;
-        }
-        &:nth-child(6) {
-          height: 200px;
+      .left-layer {
+        li {
+          height: 75px;
+          border: 1px solid #ececec;
+          .header {
+            .editor {
+              float: right;
+            }
+            .title {
+              float: left;
+            }
+          }
+          &:nth-child(5){
+            height: 150px;
+          }
+          &:nth-child(6) {
+            height: 200px;
+          }
         }
       }
     }
+    .grid-header {
+      width: 100%;
+  
+      .example-list {
+        display: flex;
+        margin: 20px 0 0;
+        padding: 20px 0 0;
+        border-top: 1px solid black;
+      }
+      .drag-box {
+        padding: 10px 20px;
+        flex:1;
+        border: 1px solid #ececec;
+      }
+  
+    }
+    .grid {
+  
+      margin: 0 0 20px;
+      padding: 0 0 20px;
+      height: 500px;
+      overflow-y: auto;
+      border: 1px solid #ececec;
+    }
   }
-  .grid-header {
-    width: 100%;
-    .example-list {
-      display: flex;
-      margin: 20px 0 0;
-      border-top: 1px solid black;
-    }
-    .drag-box {
-      padding: 10px 20px;
-      flex:1;
-    border: 1px solid #ececec;
-    }
+  
 
-  }
-  .grid {
-    margin: 0 0 20px;
-    padding: 0 0 20px;
-    height: 500px;
-    overflow-y: auto;
+  .column-controller {
+    height: 200px;
+    padding: 20px;
+    margin: 0 20px 0 0;
     border: 1px solid #ececec;
+
   }
 }
