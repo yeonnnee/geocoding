@@ -41,6 +41,30 @@
             <ng-template #noOptions>
               <div>5-1.{{section.options[0]}} <button class="no-print" (click)="disablePortInfoColumn(section)">x</button> </div>
             </ng-template>
+
+            <div class="content">
+              <input type="text" placeholder="입력">
+            </div>
+          </li>
+        </ul>
+
+        <!-- 출발지 정보 -->
+        <ul class="departure-info-section">
+          <li *ngFor="let section of departureInfo let i = index;">
+            <ng-container *ngIf="section.options.length > 1 else noOptions">
+              <span>{{section.order}}.</span>
+              <select name="option" id="" >
+                <option value="{{option}}" *ngFor="let option of section.options">{{option}}</option>
+              </select>
+            </ng-container>
+
+            <ng-template #noOptions>
+              <span>{{section.order}}. {{section.options[0]}}</span>
+            </ng-template>
+
+            <div class="content">
+              <input type="text" placeholder="입력">
+            </div>
           </li>
         </ul>
       </div>

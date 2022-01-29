@@ -26,14 +26,6 @@
             height: 130px;
             padding: 10px;
             border: 1px solid #ececec;
-            .content{
-              margin: 10px 0 0;
-              input {
-                display: block;
-                width: 100%;
-                border: none;
-              }
-            }
           }
         }
         .port-section {
@@ -44,6 +36,23 @@
             border: 1px solid #ececec;
             height: 80px;
           }
+        }
+        .departure-info-section {
+          display: flex;
+          li {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ececec;
+            height: 80px;
+          }
+        }
+      }
+      .content{
+        margin: 10px 0 0;
+        input {
+          display: block;
+          width: 100%;
+          border: none;
         }
       }
     }
