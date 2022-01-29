@@ -7,10 +7,12 @@ import { PageNotFoundComponent } from 'src/components/page-not-found/page-not-fo
 import { AuthGuard } from 'src/guard/auth-guard';
 import { RegisterComponent } from 'src/components/register/register.component';
 import { MonitoringComponent } from 'src/components/monitoring/monitoring.component';
+import { FormComponent } from 'src/components/form/form.component';
 
 const routes: Routes = [
   { path: 'home',  component: MainComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'form', component: FormComponent },
   // { path: 'register', component: RegisterComponent },
   { path: 'menu', component: ExpansionOverviewExample},
   { path: 'monitoring', component: MonitoringComponent},

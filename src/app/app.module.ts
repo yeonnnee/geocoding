@@ -23,6 +23,7 @@ import { GridListComponent } from '../components/menu/grid-list.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { CommonModule } from '@angular/common';
 import { MonitoringComponent } from 'src/components/monitoring/monitoring.component';
+import { FormComponent } from 'src/components/form/form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { MonitoringComponent } from 'src/components/monitoring/monitoring.compon
     ErrorDirective,
     ErrorMsgComponent,
     GridListComponent,
-    MonitoringComponent
+    MonitoringComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

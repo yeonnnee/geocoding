@@ -1,0 +1,133 @@
+@media print{
+ .create-document { 
+
+   .document {
+
+     .layer {
+        width: 100%;
+        .right-layer, .left-layer{
+          li {
+            width: 378px;
+          }
+        }
+      }
+    }
+  }
+  .grid, .example-list {
+    width: 756px;
+  }
+  .drag-box {
+    background-color: #ececec;
+  }
+
+}
+
+.create-document {
+  padding: 20px;
+  width: 100%;
+
+  display: flex;
+  .document {
+    width: 75%;
+    .layer {
+      display: flex;
+      
+      ul {
+        flex: 50%;
+      }
+      .right-layer {
+        li {
+          height: 200px;
+          border: 1px solid #ececec;
+          .header {
+            .title {
+              padding: 10px 5px;
+            }
+            .content {
+              margin: 20px 0 0 ;
+              input {
+                display: block;
+                width: 100%;
+                border: none;
+                padding: 5px;
+              }
+            }
+
+          }
+          &.group {
+            height: 100px;
+            display: flex;
+            .item {
+              flex: 1;
+              &:nth-child(2) {
+                border-right: 1px solid #ececec;
+                border-left: 1px solid #ececec;
+              }
+            }
+          }
+        }
+      }
+      .left-layer {
+        li {
+          height: 100px;
+          border: 1px solid #ececec;
+          .header {
+            .title {
+              padding: 10px 5px;
+            }
+            .content {
+    
+              input {
+                display: block;
+                width: 100%;
+                border: none;
+                padding: 5px;
+              }
+            }
+
+          }
+          &:nth-child(5){
+            height: 200px;
+          }
+          &:nth-child(6) {
+            height: 200px;
+          }
+        }
+      }
+    }
+    .grid-header {
+      width: 100%;
+  
+      .example-list {
+        display: flex;
+        margin: 20px 0 0;
+        padding: 20px 0 0;
+        border-top: 1px solid black;
+      }
+      .drag-box {
+        padding: 10px 20px;
+        flex:1;
+        border: 1px solid #ececec;
+      }
+  
+    }
+    .grid {
+  
+      margin: 0 0 20px;
+      padding: 0 0 20px;
+      height: 300px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #ececec;
+    }
+  }
+  
+
+  .column-controller {
+    height: 200px;
+    padding: 20px;
+    margin: 0 20px 0 0;
+    border: 1px solid #ececec;
+
+  }
+}
