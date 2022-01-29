@@ -4,6 +4,7 @@
 
     <div class="form-layout">
       <div class="right-side">
+        <!-- 거래처 정보 -->
         <ul class="address-section">
           <li *ngFor="let section of addressInfo let i = index;">
             <ng-container *ngIf="section.options.length > 1 else noOptions">
@@ -26,6 +27,22 @@
             </div>
           </li>
         </ul>
+
+        <!-- PORT 정보 -->
+        <ul class="port-section">
+          <li *ngFor="let section of portInfo let i = index;">
+            <ng-container *ngIf="section.options.length > 1 else noOptions">
+              <span>{{section.order}}.</span>
+              <select name="option" id="" >
+                <option value="{{option}}" *ngFor="let option of section.options">{{option}}</option>
+              </select>
+            </ng-container>
+
+            <ng-template #noOptions>
+              <div>5-1.{{section.options[0]}} <button class="no-print" (click)="disablePortInfoColumn(section)">x</button> </div>
+            </ng-template>
+          </li>
+        </ul>
       </div>
      
       <div class="left-side"></div>
@@ -35,15 +52,15 @@
 
   <div class="column-controller no-print">
     <div class="header">활성 가능 항목</div>
-    <!-- <ul>
+    <ul>
       <li *ngFor="let item of exceptionList">
         <input type="checkbox" id="active-cbx" name="active-cbx">
-        <label class="cbx" for="active-cbx" (click)="activeColumn(item)" *ngIf="item.order < 14">{{item.title}}</label>
-        <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)" *ngIf="item.order > 13">
+        <label class="cbx" for="active-cbx" (click)="activePortInfoColumn(item)" *ngIf="item.order < 14">{{item.options[0]}}</label>
+        <!-- <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)" *ngIf="item.order > 13">
           {{item.title}}
-        </label>
+        </label> -->
       </li>
-    </ul> -->
+    </ul>
   </div>
 </div>
 

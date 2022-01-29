@@ -36,6 +36,15 @@
             }
           }
         }
+        .port-section {
+          display: flex;
+          li {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ececec;
+            height: 80px;
+          }
+        }
       }
     }
   }
