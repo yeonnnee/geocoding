@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'form', component: FormComponent },
   // { path: 'register', component: RegisterComponent },
+  { path: 'grid', component: PageNotFoundComponent },
+
   { path: 'menu', component: ExpansionOverviewExample},
   { path: 'monitoring', component: MonitoringComponent},
   { path: 'menu3', component: ExpansionOverviewExample,canActivate:[AuthGuard] },
@@ -21,7 +23,6 @@ const routes: Routes = [
   { path: 'menu5', component: ExpansionOverviewExample,canActivate:[AuthGuard] },
   // { path: 'register', component: RegisterComponent},
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

@@ -1,6 +1,40 @@
-<div class="create-document">
+<div class="packing-list">
+  <div class="packing-list-form">
+    <h1>Packing List</h1>
+
+    <div class="form-layout">
+      <div class="right-side">
+        <ul class="address-section">
+          <li *ngFor="let section of addressInfo let i = index;">
+            <ng-container *ngIf="section.options.length > 1 else noOptions">
+              <span>{{section.order}}.</span>
+              <select name="option" id="" >
+                <option value="{{option}}" *ngFor="let option of section.options">{{option}}</option>
+              </select>
+            </ng-container>
+
+            <ng-template #noOptions>
+              <span>{{section.order}}. {{section.options[0]}}</span>
+            </ng-template>
+
+            <div class="content">
+              <input type="text" placeholder="회사명">
+              <input type="text" placeholder="주소">
+              <input type="text" placeholder="상세주소">
+              <input type="text" placeholder="TEL / Email">
+              <input type="text" placeholder="기타">
+            </div>
+          </li>
+        </ul>
+      </div>
+     
+      <div class="left-side"></div>
+    </div>
+   
+  </div>
+
   <div class="column-controller no-print">
-    <div class="header ">활성 가능 항목</div>
+    <div class="header">활성 가능 항목</div>
     <!-- <ul>
       <li *ngFor="let item of exceptionList">
         <input type="checkbox" id="active-cbx" name="active-cbx">
