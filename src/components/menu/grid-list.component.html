@@ -49,32 +49,18 @@
 <table class="table table-striped" id="table">
   <thead>
     <tr>
-      <th colspan="2">No.</th>
-      <th colspan="2">No.</th>
-      <th rowspan="2" class="longer" colspan="2">SKU</th>
-      <th rowspan="2" class="longer" colspan="2">Description of Goods</th>
-      <th colspan="2">Quantity</th>
-      <th colspan="2">N/W</th>
-      <th colspan="2">G/W</th>
-      <th rowspan="2" class="longer">Measurement</th>
-      <th rowspan="2" class="longer">  <button class="no-print" (click)="paintGrid()">+</button></th>
+      <ng-container *ngFor="let listForm of category; let rowIdx = index;">
+          <th colspan="2" *ngIf="listForm.unit">{{listForm.title}}</th>
+          <th rowspan="2" colspan="2" *ngIf="!listForm.unit">{{listForm.title}}</th>
+      </ng-container>
+      <th rowspan="2"> <button class="no-print" (click)="paintGrid()">+</button></th>
     </tr>
     <tr>
-      <th colspan="2">
-        <b>(PALLET)</b>
-      </th>
-      <th colspan="2">
-        <b>(CARTONS)</b>
-      </th>
-      <th colspan="2">
-        <b>(PCS)</b>
-      </th>
-      <th colspan="2">
-        <b>(KG)</b>
-      </th>
-      <th colspan="2">
-        <b>(KG)</b>
-      </th>
+      <ng-container *ngFor="let listForm of category; let rowIdx = index;">
+        <th colspan="2" *ngIf="listForm.unit">
+          <b>({{listForm.unit}})</b>
+        </th>
+    </ng-container>
     </tr>
   </thead>
   <tbody >

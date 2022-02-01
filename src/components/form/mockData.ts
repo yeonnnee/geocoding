@@ -120,6 +120,17 @@ export const packingList = [
   }
 ];
 
+export const gridIndex = [
+  { title: 'No.', order:14, isOpen: false, key:'palletNo', unit:'PALLET'},
+  { title: 'No.',order:15, isOpen: false, key:'ctNo', unit:'CARTONS' },
+  { title: 'SKU',order:16, isOpen: false, key:'sku', unit:''},
+  { title: 'Description of Goods',order:17, isOpen: false, key:'dog', unit:'' },
+  { title: 'Quantity', order:18, isOpen: false, key:'qty', unit:'PCS' },
+  { title: 'N/W', order:19, isOpen: false, key:'nwUnit', unit:'KG' },
+  { title: 'G/W', order:20,isOpen: false, key:'gwUnit', unit:'KG' },
+  { title: 'Measurement', order:21,isOpen: false, key:'measurement',unit:'' },
+]
+
 export interface PackingListInfo {
   order: number,
   options: Array<string>,
@@ -135,4 +146,25 @@ export interface AddressInfo {
   tel: string,
   email: string,
   etc: string,
+}
+export interface GridData {
+  row: number,
+  data: Array<RowData>
+}
+
+export interface RowData {
+  ctNo: string,
+  descOfGoods: string,
+  gwUnit: string,
+  nwUnit: string,
+  palletNo: number,
+  qty: string,
+  sku: string,
+}
+
+export interface RowTarget {
+  row: number,
+  index: number,
+  column: string,
+  value:string
 }

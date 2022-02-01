@@ -1,7 +1,7 @@
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { GridIndex } from '../menu/menu.component';
-import { PackingListInfo, packingList } from './mockData';
+import { PackingListInfo, packingList, gridIndex, GridData } from './mockData';
 
 @Component({
   selector: 'app-form',
@@ -16,21 +16,9 @@ export class FormComponent implements OnInit {
   others: PackingListInfo[] = [];
 
   exceptionList: PackingListInfo[] = [];
-  gridData: Array<any> = [];
+  gridData: Array<GridData> = [];
   columns:Array<string> = [];
-
-  addedFormIndex:Array<GridIndex> = 
-  [
-    { title: 'Pallet No.', order:14, isOpen: false, key:'palletNo'},
-    { title: 'C/T No.',order:15, isOpen: false, key:'ctNo' },
-    { title: 'SKU',order:16, isOpen: false, key:'sku'},
-    { title: 'Description of Goods',order:17, isOpen: false, key:'dog' },
-    { title: 'Quantity', order:18, isOpen: false, key:'qty' },
-    { title: 'N/W(Unit)', order:19, isOpen: false, key:'nwUnit' },
-    { title: 'G/W(Unit)', order:20,isOpen: false, key:'gwUnit' },
-    { title: 'Measurement', order:21,isOpen: false, key:'measurement' },
-  ]
-  
+  addedFormIndex: Array<GridIndex> = gridIndex;
 
   constructor() { }
 
@@ -76,12 +64,13 @@ export class FormComponent implements OnInit {
       ]
     }
 
-    this.gridData.push(newRow)
+    this.gridData.push(newRow);
+    console.log(this.gridData)
 
     console.log('paint',this.gridData)
   }
   saveConfirmedValue(target:any) {
-    this.gridData.forEach((d) => {
+    this.gridData.forEach((d:any) => {
       if (d.row === target.row) {
         d.data[target.index][target.column] = target.value;
       }
@@ -107,7 +96,7 @@ export class FormComponent implements OnInit {
 
   deleteList(target: any) {
     console.log(target)
-    this.gridData.forEach(d => {
+    this.gridData.forEach((d:any) => {
       if (d.row === target.row) {
         d.data.pop(target.index);
       }

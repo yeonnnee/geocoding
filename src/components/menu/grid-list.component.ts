@@ -72,7 +72,7 @@ export class GridListComponent {
     this.inputVal = e.target.value;
   }
 
-  saveValue(item:any,column:any, index:number) {
+  saveValue(item:number,column:string, index:number) {
     console.log(item)
     const target = {
       row: item,

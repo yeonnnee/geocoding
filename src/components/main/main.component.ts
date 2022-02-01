@@ -125,7 +125,8 @@ export class MainComponent implements OnInit {
           descOfGoods: '',
           qty: '',
           nwUnit: '',
-          gwUnit:'',
+          gwUnit: '',
+          measurement:''
         }
       ]
     }
