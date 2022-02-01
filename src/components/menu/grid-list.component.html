@@ -73,7 +73,21 @@
           <td colspan="2" *ngIf="column === 'palletNo'" [ngClass]="{'merge-cell': listForm.data.length > 1}">
             {{ data[column] }}
           </td>
-          <button (click)="addRow(listForm)" *ngIf="k === columns.length - 1"><i class="fas fa-ellipsis-v"></i></button>
+          <div class="add-sub-list-btn" *ngIf="k === columns.length -1 " cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+            <button (click)="openOtpion(rowIdx, j)"><i class="fas fa-ellipsis-v"></i></button>
+            <ng-template
+              cdkConnectedOverlay
+              [cdkConnectedOverlayOrigin]="trigger"
+              [cdkConnectedOverlayOpen]="openGridControl.row === rowIdx &&  openGridControl.index === j"
+            >
+            <ul class="overlay-list">
+              <button class="close-btn" (click)="closeOption()">x</button>
+              <li (click)="addRow(listForm)" *ngIf="data['palletNo']">항목 추가하기</li>
+              <li (click)="deleteRow(listForm.row,j)">항목 삭제하기</li>
+              <li>CBM 계산하기</li>
+            </ul>
+            </ng-template>
+          </div>
         </ng-container>
       </tr>
     </ng-container>

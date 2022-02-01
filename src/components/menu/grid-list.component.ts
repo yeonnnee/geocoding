@@ -11,7 +11,7 @@ export class GridListComponent {
   gridData: Array<any> = [];
   overlayTarget = {row:0, title:'', column:'', index:0}
   inputVal: string = '';
-  openGridControl : number | null = null;
+  openGridControl : {row: number|null, index: number|null} = {row: null, index: null}
   @Input() gridList:Array<any> = [];
   @Input() columns:Array<string> = [];
   @Input() category:Array<any> = [];
@@ -28,12 +28,12 @@ export class GridListComponent {
   // deleteColumn(target:any) {
   //   this.deleteList.emit(target);
   // }
-  openOtpion(rowNum: number) {
+  openOtpion(rowNum: number, j: number) {
     console.log('rew', rowNum)
-    this.openGridControl = rowNum;
+    this.openGridControl = {row: rowNum, index: j}
   }
   closeOption() {
-    this.openGridControl = null;
+    this.openGridControl =  {row: null, index: null}
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.gridList || this.columns) {
@@ -94,7 +94,7 @@ export class GridListComponent {
       index:index
     }
     console.log('del',this.gridData)
-    this.openGridControl = null;
+    this.openGridControl = { row: null, index: null };
     this.deleteList.emit(target);
   }
 }
