@@ -50,8 +50,8 @@
   <thead>
     <tr>
       <ng-container *ngFor="let listForm of category; let rowIdx = index;">
-          <th colspan="2" *ngIf="listForm.unit">{{listForm.title}}</th>
-          <th rowspan="2" colspan="2" *ngIf="!listForm.unit">{{listForm.title}}</th>
+          <th colspan="2" *ngIf="listForm.unit">{{listForm.order}}. {{listForm.title}}</th>
+          <th rowspan="2" colspan="2" *ngIf="!listForm.unit">{{listForm.order}}. {{listForm.title}}</th>
       </ng-container>
       <th rowspan="2"> <button class="no-print" (click)="paintGrid()">+</button></th>
     </tr>
@@ -66,13 +66,15 @@
   <tbody >
     <ng-container *ngFor="let listForm of gridData; let rowIdx = index;">
       <tr *ngFor="let data of listForm.data let j=index">
-        <td colspan="2" *ngFor="let column of columns; let k=index">
-          {{ data[column]  || 'N/A'}}
-
-
-          <button *ngIf="k === columns.length - 1"><i class="fas fa-ellipsis-v"></i></button>
-      
-        </td>
+        <ng-container *ngFor="let column of columns; let k=index">
+          <td colspan="2" *ngIf="column !== 'palletNo'">
+            {{ data[column]  || 'N/A'}}
+          </td>
+          <td colspan="2" *ngIf="column === 'palletNo'" [ngClass]="{'merge-cell': listForm.data.length > 1}">
+            {{ data[column] }}
+          </td>
+          <button (click)="addRow(listForm)" *ngIf="k === columns.length - 1"><i class="fas fa-ellipsis-v"></i></button>
+        </ng-container>
       </tr>
     </ng-container>
   </tbody>

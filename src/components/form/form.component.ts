@@ -83,7 +83,7 @@ export class FormComponent implements OnInit {
     console.log(target)
     const palletNo = target.data[0].palletNo;
     const subData = {
-      palletNo: palletNo,
+      palletNo: '',
       ctNo: '',
       sku: '',
       descOfGoods: '',
