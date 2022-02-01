@@ -65,7 +65,6 @@ export class FormComponent implements OnInit {
     }
 
     this.gridData.push(newRow);
-    console.log(this.gridData)
 
     console.log('paint',this.gridData)
   }
@@ -80,8 +79,6 @@ export class FormComponent implements OnInit {
   }
 
   addSubList(target: any) {
-    console.log(target)
-    const palletNo = target.data[0].palletNo;
     const subData = {
       palletNo: '',
       ctNo: '',
@@ -95,12 +92,13 @@ export class FormComponent implements OnInit {
   }
 
   deleteList(target: any) {
-    console.log(target)
     this.gridData.forEach((d:any) => {
       if (d.row === target.row) {
         d.data.pop(target.index);
       }
     })
+
+    console.log('ela',this.gridData)
   }
 
 }
