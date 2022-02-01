@@ -18,8 +18,13 @@ export class GridListComponent {
   @Output() deleteList: EventEmitter<any> = new EventEmitter()
   @Output() addList: EventEmitter<any> = new EventEmitter()
   @Output() confirmVal:EventEmitter<any> = new EventEmitter()
+  @Output() paintGridAgain:EventEmitter<any> = new EventEmitter()
+
   constructor() {}
 
+  paintGrid() {
+    this.paintGridAgain.emit();
+  }
   // deleteColumn(target:any) {
   //   this.deleteList.emit(target);
   // }

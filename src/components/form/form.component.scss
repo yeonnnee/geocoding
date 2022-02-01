@@ -17,6 +17,7 @@
     }
 
     .form-layout {
+
       display: flex;
 
       .right-side {
@@ -53,6 +54,33 @@
           display: block;
           width: 100%;
           border: none;
+        }
+      }
+
+      .grid {
+        width: 100%;
+      }
+
+      
+    }
+    .total {
+      width: 100%;
+      margin: 20px 0 0;
+      border-top: 2px solid rgb(58, 57, 57);
+      background-color: pink;
+      font-weight: bold;
+      li {
+        display: flex;
+        .vacancy {
+          flex: 1;
+        }
+
+        .val {
+          margin: 0 10px;
+          &:nth-child(4) {
+            flex: 0.3;
+            text-align: center;
+          }
         }
       }
     }

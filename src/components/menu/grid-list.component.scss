@@ -38,3 +38,25 @@
     }
   }
 }
+
+
+  table, th, td { border: 1px solid #ececec; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    
+  }
+
+
+  
+
+  tbody {
+    td {
+      text-align: center;
+      button {
+        float: right;
+        height: 20px;
+      }
+    }
+  }

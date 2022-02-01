@@ -4,6 +4,7 @@
 
     <div class="form-layout">
       <div class="right-side">
+
         <!-- 거래처 정보 -->
         <ul class="address-section">
           <li *ngFor="let section of addressInfo let i = index;">
@@ -47,7 +48,6 @@
             </div>
           </li>
         </ul>
-
         <!-- 출발지 정보 -->
         <ul class="departure-info-section">
           <li *ngFor="let section of departureInfo let i = index;">
@@ -69,9 +69,29 @@
         </ul>
       </div>
      
-      <div class="left-side"></div>
+      <!-- <div class="left-side"></div> --> 
     </div>
-   
+    <ul class="grid">
+      <grid-list 
+        [category]="addedFormIndex" 
+        [gridList]="gridData"
+        (confirmVal)="saveConfirmedValue($event)" 
+        (addList)="addSubList($event)" 
+        (deleteList)="deleteList($event)"
+        (paintGridAgain)="paintGrid()"
+        [columns]="columns"
+      >
+      </grid-list>
+    </ul>
+    <ul class="total">
+      <li>G.Total: 5 PALLETS</li>
+      <li>
+        <div class="vacancy"></div>
+        <div class="val">2.23Kg</div>
+        <div class="val">2.23Kg</div>
+        <div class="val">2.23Kg</div>
+      </li>
+    </ul>
   </div>
 
   <div class="column-controller no-print">
