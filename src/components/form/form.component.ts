@@ -61,8 +61,6 @@ export class FormComponent implements OnInit {
   }
 
   paintGrid() {
-
-
     const newRow = {
       row: this.gridData.length + 1,
       data: [

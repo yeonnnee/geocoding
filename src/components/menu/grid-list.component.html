@@ -1,51 +1,3 @@
-<!-- 
-
-<ul class="grid-list" *ngFor="let item of gridData; let i = index">
-  <li *ngFor="let column of columns; let k=index" >
-   
-    <ng-container *ngFor="let data of item.data let j=index">
-      
-      <div class="grid-list-item"  cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-       
-        <ng-container *ngIf="column==='palletNo' else dataCol">
-          <div (click)="activeOverlay(item.row,column,j)"  [ngClass]="{'merge-cell': j > 0}" class="cell">{{j == 0 ? data.palletNo: ''}}</div>
-        </ng-container>
-        <ng-template #dataCol>
-          <div class="cell" (click)="activeOverlay(item.row,column,j)" >{{ data[column]  || 'N/A'}}</div>
-        </ng-template>
-
-        <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayOrigin]="trigger"
-        [cdkConnectedOverlayOpen]="overlayTarget.row === item.row && overlayTarget.column === column && overlayTarget.index === j"
-      >
-      <ul class="overlay-list">
-        <button class="close-btn" (click)="closeOverlay()">x</button>
-        <li>{{overlayTarget.title}}</li>
-        <li>value : <input (input)="setValue($event)"></li>
-        <button class="confirm-btn" (click)="saveValue(item.row, column, j)">확인</button>
-      </ul>
-      </ng-template>
-        <div class="add-sub-list-btn" *ngIf="k === columns.length -1" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-          <button (click)="openOtpion(i)" ><i class="fas fa-ellipsis-v"></i></button>
-          <ng-template
-            cdkConnectedOverlay
-            [cdkConnectedOverlayOrigin]="trigger"
-            [cdkConnectedOverlayOpen]="openGridControl === i"
-          >
-          <ul class="overlay-list">
-            <button class="close-btn" (click)="closeOption()">x</button>
-            <li (click)="addRow(item)">항목 추가하기</li>
-            <li (click)="deleteRow(item.row,j)">항목 삭제하기</li>
-            <li>CBM 계산하기</li>
-          </ul>
-          </ng-template>
-        </div>
-      </div>
-    </ng-container>
-  </li>
-</ul> -->
-
 <table class="table table-striped" id="table">
   <thead>
     <tr>
@@ -70,14 +22,29 @@
   </thead>
   <tbody >
     <ng-container *ngFor="let listForm of gridData; let rowIdx = index;">
-      <tr *ngFor="let data of listForm.data let dataIdx=index">
+      <tr *ngFor="let data of listForm.data let dataIdx=index" class="grid-list-item"  cdkOverlayOrigin #trigger="cdkOverlayOrigin">
         <ng-container *ngFor="let column of columns; let colIdx=index">
-          <td colspan="2" *ngIf="column !== 'palletNo'">
+
+          <td colspan="2" *ngIf="column !== 'palletNo'" (click)="activeOverlay(data.row,column,dataIdx)">
             {{ data[column]  || 'N/A'}}
           </td>
-          <td colspan="2" *ngIf="column === 'palletNo'" [ngClass]="{'merge-cell': listForm.data.length > 1}">
+
+          <td colspan="2" *ngIf="column === 'palletNo'" [ngClass]="{'merge-cell': listForm.data.length > 1}" (click)="activeOverlay(data.row,column,dataIdx)" >
             {{ data[column] }}
           </td>
+          
+          <ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayOrigin]="trigger"
+            [cdkConnectedOverlayOpen]="overlayTarget.row === data.row && overlayTarget.column === column && overlayTarget.index === dataIdx"
+          >
+          <ul class="overlay-list">
+            <button class="close-btn" (click)="closeOverlay()">x</button>
+            <li>{{overlayTarget.title}}</li>
+            <li>value : <input (input)="setValue($event)"></li>
+            <button class="confirm-btn" (click)="saveValue(data.row, column, dataIdx)">확인</button>
+          </ul>
+          </ng-template>
           <div class="add-sub-list-btn" *ngIf="colIdx === columns.length -1 " cdkOverlayOrigin #trigger="cdkOverlayOrigin">
             <button (click)="openOtpion(rowIdx, dataIdx)"><i class="fas fa-ellipsis-v"></i></button>
             <ng-template

@@ -12,9 +12,11 @@ export class GridListComponent {
   overlayTarget = {row:0, title:'', column:'', index:0}
   inputVal: string = '';
   openGridControl : {row: number|null, index: number|null} = {row: null, index: null}
-  @Input() gridList:Array<any> = [];
+
+  @Input() gridList: Array<any> = [];
   @Input() columns:Array<string> = [];
-  @Input() category:Array<any> = [];
+  @Input() category: Array<any> = [];
+
   @Output() deleteList: EventEmitter<any> = new EventEmitter()
   @Output() addList: EventEmitter<any> = new EventEmitter()
   @Output() confirmVal:EventEmitter<any> = new EventEmitter()
@@ -26,9 +28,7 @@ export class GridListComponent {
   paintGrid() {
     this.paintGridAgain.emit();
   }
-  // deleteColumn(target:any) {
-  //   this.deleteList.emit(target);
-  // }
+
   openOtpion(rowNum: number, j: number) {
     console.log('rew', rowNum)
     this.openGridControl = {row: rowNum, index: j}
@@ -41,8 +41,6 @@ export class GridListComponent {
       this.gridData = this.gridList;
       console.log('change',this.gridData)
     }
-    
-    console.log(this.columns)
   }
   activeOverlay(row:any, item: any,index:number) {
     if(item === "palletNo") {
@@ -69,7 +67,6 @@ export class GridListComponent {
   }
 
   setValue(e:any) {
-    console.log('asdf',e.target.value)
     this.inputVal = e.target.value;
   }
 
