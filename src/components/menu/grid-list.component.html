@@ -1,7 +1,7 @@
 <table class="table table-striped" id="table">
   <thead>
     <tr>
-      <ng-container *ngFor="let listForm of category; let rowIdx = index;">
+      <ng-container *ngFor="let listForm of gridHeader; let rowIdx = index;">
           <th colspan="2" *ngIf="listForm.unit">
             {{listForm.order}}. {{listForm.title}}
             <button *ngIf="listForm.order == 14" (click)="disableGridCol(listForm)">x</button>
@@ -13,7 +13,7 @@
       <th rowspan="2"> <button class="no-print" (click)="paintGrid()">+</button></th>
     </tr>
     <tr>
-      <ng-container *ngFor="let listForm of category; let rowIdx = index;">
+      <ng-container *ngFor="let listForm of gridHeader; let rowIdx = index;">
         <th colspan="2" *ngIf="listForm.unit">
           <b>({{listForm.unit}})</b>
         </th>

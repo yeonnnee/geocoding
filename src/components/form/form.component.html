@@ -92,8 +92,8 @@
     </div>
     <ul class="grid">
       <grid-list 
-        [category]="addedFormIndex" 
-        [gridList]="gridData"
+        [gridHeader]="gridHeader" 
+        [productInfo]="productInfo"
         (confirmVal)="saveConfirmedValue($event)" 
         (addList)="addSubList($event)" 
         (deleteList)="deleteList($event)"

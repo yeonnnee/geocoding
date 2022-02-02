@@ -13,9 +13,9 @@ export class GridListComponent {
   inputVal: string = '';
   openGridControl : {row: number|null, index: number|null} = {row: null, index: null}
 
-  @Input() gridList: Array<any> = [];
+  @Input() productInfo: Array<any> = [];
   @Input() columns:Array<string> = [];
-  @Input() category: Array<any> = [];
+  @Input() gridHeader: Array<any> = [];
 
   @Output() deleteList: EventEmitter<any> = new EventEmitter()
   @Output() addList: EventEmitter<any> = new EventEmitter()
@@ -38,7 +38,7 @@ export class GridListComponent {
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.gridList || this.columns) {
-      this.gridData = this.gridList;
+      this.gridData = this.productInfo;
       console.log('change',this.gridData)
     }
   }
@@ -54,7 +54,7 @@ export class GridListComponent {
       column: item,
       index:index
     }
-    this.category.reduce((acc, curr, index) => {
+    this.gridHeader.reduce((acc, curr, index) => {
       if (curr.key === item) {
         this.overlayTarget.title = curr.title;
       }

@@ -16,9 +16,9 @@ export class FormComponent implements OnInit {
   others: PackingListInfo[] = [];
 
   exceptionList: any[] = [];
-  gridData: Array<GridData> = [];
+  productInfo: Array<GridData> = [];
   columns:Array<string> = [];
-  addedFormIndex: Array<GridIndex> = gridIndex;
+  gridHeader: Array<GridIndex> = gridIndex;
 
   constructor() { }
 
@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
     this.seperateData(data);
 
     if (this.columns.length === 0) {
-      this.addedFormIndex.forEach(item => this.columns.push(item.key));
+      this.gridHeader.forEach(item => this.columns.push(item.key));
     }
   }
 
@@ -49,23 +49,23 @@ export class FormComponent implements OnInit {
 
   disableGridCol(item:any) {
     this.columns = this.columns.filter(col => col !== item.key);
-    this.addedFormIndex = this.addedFormIndex.filter(formIdx => formIdx.key !== item.key);
+    this.gridHeader = this.gridHeader.filter(formIdx => formIdx.key !== item.key);
     this.exceptionList.push(item);
     console.log(this.columns)
   }
 
   activeGridColumn(item: any) {
     this.exceptionList = this.exceptionList.filter(d => d.title !== item.title);
-    this.addedFormIndex = [item, ...this.addedFormIndex];
+    this.gridHeader = [item, ...this.gridHeader];
     this.columns = [item.key, ...this.columns];
   }
 
   paintGrid() {
     const newRow = {
-      row: this.gridData.length + 1,
+      row: this.productInfo.length + 1,
       data: [
         {
-          palletNo: this.gridData.length + 1,
+          palletNo: this.productInfo.length + 1,
           ctNo: '',
           sku: '',
           descOfGoods: '',
@@ -76,18 +76,18 @@ export class FormComponent implements OnInit {
       ]
     }
 
-    this.gridData.push(newRow);
+    this.productInfo.push(newRow);
 
-    console.log('paint',this.gridData)
+    console.log('paint',this.productInfo)
   }
   saveConfirmedValue(target:any) {
-    this.gridData.forEach((d:any) => {
+    this.productInfo.forEach((d:any) => {
       if (d.row === target.row) {
         d.data[target.index][target.column] = target.value;
       }
     })
 
-    return this.gridData;
+    return this.productInfo;
   }
 
   addSubList(target: any) {
@@ -104,13 +104,13 @@ export class FormComponent implements OnInit {
   }
 
   deleteList(target: any) {
-    this.gridData.forEach((d:any) => {
+    this.productInfo.forEach((d:any) => {
       if (d.row === target.row) {
         d.data.pop(target.index);
       }
     })
 
-    console.log('ela',this.gridData)
+    console.log('ela',this.productInfo)
   }
 
 }
