@@ -19,6 +19,7 @@ export class GridListComponent {
   @Output() addList: EventEmitter<any> = new EventEmitter()
   @Output() confirmVal:EventEmitter<any> = new EventEmitter()
   @Output() paintGridAgain:EventEmitter<any> = new EventEmitter()
+  @Output() disabledGridCol:EventEmitter<any> = new EventEmitter()
 
   constructor() {}
 
@@ -97,4 +98,9 @@ export class GridListComponent {
     this.openGridControl = { row: null, index: null };
     this.deleteList.emit(target);
   }
+  disableGridCol(item:any) {
+    this.disabledGridCol.emit(item);
+  }
+
+
 }

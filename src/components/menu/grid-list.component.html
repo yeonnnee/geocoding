@@ -50,8 +50,13 @@
   <thead>
     <tr>
       <ng-container *ngFor="let listForm of category; let rowIdx = index;">
-          <th colspan="2" *ngIf="listForm.unit">{{listForm.order}}. {{listForm.title}}</th>
-          <th rowspan="2" colspan="2" *ngIf="!listForm.unit">{{listForm.order}}. {{listForm.title}}</th>
+          <th colspan="2" *ngIf="listForm.unit">
+            {{listForm.order}}. {{listForm.title}}
+            <button *ngIf="listForm.order == 14" (click)="disableGridCol(listForm)">x</button>
+          </th>
+          <th rowspan="2" colspan="2" *ngIf="!listForm.unit">
+            {{listForm.order}}. {{listForm.title}} 
+          </th>
       </ng-container>
       <th rowspan="2"> <button class="no-print" (click)="paintGrid()">+</button></th>
     </tr>
@@ -65,25 +70,25 @@
   </thead>
   <tbody >
     <ng-container *ngFor="let listForm of gridData; let rowIdx = index;">
-      <tr *ngFor="let data of listForm.data let j=index">
-        <ng-container *ngFor="let column of columns; let k=index">
+      <tr *ngFor="let data of listForm.data let dataIdx=index">
+        <ng-container *ngFor="let column of columns; let colIdx=index">
           <td colspan="2" *ngIf="column !== 'palletNo'">
             {{ data[column]  || 'N/A'}}
           </td>
           <td colspan="2" *ngIf="column === 'palletNo'" [ngClass]="{'merge-cell': listForm.data.length > 1}">
             {{ data[column] }}
           </td>
-          <div class="add-sub-list-btn" *ngIf="k === columns.length -1 " cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-            <button (click)="openOtpion(rowIdx, j)"><i class="fas fa-ellipsis-v"></i></button>
+          <div class="add-sub-list-btn" *ngIf="colIdx === columns.length -1 " cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+            <button (click)="openOtpion(rowIdx, dataIdx)"><i class="fas fa-ellipsis-v"></i></button>
             <ng-template
               cdkConnectedOverlay
               [cdkConnectedOverlayOrigin]="trigger"
-              [cdkConnectedOverlayOpen]="openGridControl.row === rowIdx &&  openGridControl.index === j"
+              [cdkConnectedOverlayOpen]="openGridControl.row === rowIdx &&  openGridControl.index === dataIdx"
             >
             <ul class="overlay-list">
               <button class="close-btn" (click)="closeOption()">x</button>
               <li (click)="addRow(listForm)" *ngIf="data['palletNo']">항목 추가하기</li>
-              <li (click)="deleteRow(listForm.row,j)">항목 삭제하기</li>
+              <li (click)="deleteRow(listForm.row,dataIdx)">항목 삭제하기</li>
               <li>CBM 계산하기</li>
             </ul>
             </ng-template>

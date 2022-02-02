@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
   departureInfo: PackingListInfo[] = [];
   others: PackingListInfo[] = [];
 
-  exceptionList: PackingListInfo[] = [];
+  exceptionList: any[] = [];
   gridData: Array<GridData> = [];
   columns:Array<string> = [];
   addedFormIndex: Array<GridIndex> = gridIndex;
@@ -25,6 +25,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     const data = packingList;
     this.seperateData(data);
+
+    if (this.columns.length === 0) {
+      this.addedFormIndex.forEach(item => this.columns.push(item.key));
+    }
   }
 
   seperateData(data: PackingListInfo[]) {
@@ -43,11 +47,21 @@ export class FormComponent implements OnInit {
     this.portInfo.push(item)
   }
 
+  disableGridCol(item:any) {
+    this.columns = this.columns.filter(col => col !== item.key);
+    this.addedFormIndex = this.addedFormIndex.filter(formIdx => formIdx.key !== item.key);
+    this.exceptionList.push(item);
+    console.log(this.columns)
+  }
+
+  activeGridColumn(item: any) {
+    this.exceptionList = this.exceptionList.filter(d => d.title !== item.title);
+    this.addedFormIndex = [item, ...this.addedFormIndex];
+    this.columns = [item.key, ...this.columns];
+  }
 
   paintGrid() {
-    if (this.columns.length === 0) {
-      this.addedFormIndex.forEach(item => this.columns.push(item.key));
-    }
+
 
     const newRow = {
       row: this.gridData.length + 1,

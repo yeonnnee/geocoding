@@ -98,6 +98,7 @@
         (addList)="addSubList($event)" 
         (deleteList)="deleteList($event)"
         (paintGridAgain)="paintGrid()"
+        (disabledGridCol)="disableGridCol($event)"
         [columns]="columns"
       >
       </grid-list>
@@ -119,9 +120,9 @@
       <li *ngFor="let item of exceptionList">
         <input type="checkbox" id="active-cbx" name="active-cbx">
         <label class="cbx" for="active-cbx" (click)="activePortInfoColumn(item)" *ngIf="item.order < 14">{{item.options[0]}}</label>
-        <!-- <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)" *ngIf="item.order > 13">
-          {{item.title}}
-        </label> -->
+        <label class="cbx" for="active-cbx" (click)="activeGridColumn(item)" *ngIf="item.order > 13">
+          {{item.title}} ({{item.unit}})
+        </label>
       </li>
     </ul>
   </div>
