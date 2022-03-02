@@ -18,5 +18,19 @@ export class FormComponent {
     dirty: new FormControl(''),
     pristine: new FormControl(''),
     pending: new FormControl(''),
-  })
+  });
+
+  constructor() { }
+  
+  markAllAsTouched() {
+    this.statusForm.markAllAsTouched();
+  }
+
+  disableForm() {
+    this.statusForm.disable();
+  }
+
+  enableForm() {
+    this.statusForm.enable();
+  }
 }
