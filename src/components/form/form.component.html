@@ -1,5 +1,60 @@
 <div class="about-form" [formGroup]="statusForm">
   <h1>Form Status</h1>
+
+  <p>Create Form and Test</p>
+  <div class="form">
+
+    <div class="form-container">
+      <div class="form-condition">
+        <input class="type-state" name="form-type" id="form-type" type="checkbox">
+        <label class="cbx"  for="form-type">TYPE</label>
+        <div class="make-form-type">
+          <div class="type-option">
+            <div class="option">
+              <input type="checkbox" id="checkbox-type">
+              <label class="cbx" for="checkbox-type">Checkbox</label>
+            </div>
+    
+            <div class="option">
+              <input type="checkbox" id="input-type">
+              <label class="cbx" for="input-type">Input</label>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-condition">
+        <input class="validation-state" name="form-validation" id="form-validation" type="checkbox">
+        <label class="cbx"  for="form-validation">VALIDATION</label>
+        <div class="make-validation-form">
+          <div class="validation-option">
+            <input type="checkbox" id="min-length">
+            <label class="cbx"  for="min-length">Min Length</label>
+            <input type="text" id="min-length">
+          </div>
+          <div class="validation-option">
+            <input type="checkbox" id="max-length">
+    
+            <label class="cbx"  for="max-length">Max Length</label>
+            <input type="text" id="max-length">
+          </div>
+    
+          <div class="validation-option">
+            <input type="checkbox" id="required">
+            <label class="cbx" for="required">Required</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="generate">
+      <button class="generate-btn">Generate</button>
+    </div>
+
+  </div>
+
+
   <div class="example" *ngFor="let example of statusList let index = index">
     <input type="text" formControlName="{{example}}">
     <div class="status">

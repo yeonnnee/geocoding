@@ -1,6 +1,122 @@
 .about-form {
   padding: 20px;
 
+  .form {
+    width: 50%;
+    border: 1px solid #000;
+    .form-container {
+      display: flex;
+      padding: 10px 20px 0;
+      margin: 0 0 20px;
+      .form-condition {
+        margin: 0 20px 0 0;
+      }
+  
+      .validation-state {
+        &:checked ~ .make-validation-form {
+          opacity: 1;
+          visibility: visible;
+          transition: all 1s ease;
+        }
+      }
+  
+      .make-validation-form {
+        position: relative;
+        padding: 20px;
+        margin: 10px 0 0;
+        border: 1px solid #000;
+        background: #fff;
+        opacity: 0;
+  
+        &::before {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #000;
+          top: -6px;
+          transform: rotate(45deg);
+          background: #fff;
+          z-index: -1;
+        }
+        .validation-option {
+          display: flex;
+          margin: 0 0 10px;
+  
+          &:nth-child(3) {
+            margin: 0;
+          }
+  
+          .cbx {
+            width: 90px;
+          }
+          input {
+            margin: 0 0 0 20px;
+          }
+        }
+      }
+  
+      .type-state {
+        &:checked ~ .make-form-type {
+          opacity: 1;
+          transition: all 1s ease;
+        }
+      }
+  
+      .make-form-type {
+        position: relative;
+        padding: 20px 20px 20px 0;
+        margin: 10px 0 0;
+        border: 1px solid #000;
+        background: #fff;
+        opacity: 0;
+        // display: none;
+  
+        &::before {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border: 1px solid #000;
+          top: -6px;
+          left: 10px;
+          transform: rotate(45deg);
+          background: #fff;
+          z-index: -1;
+        }
+        .type-option {
+          .option {
+            display: inline-block;
+            margin: 0 0 0 34px;
+          }
+          .cbx {
+            width: 90px;
+          }
+        }
+      }
+    }
+
+    .generate {
+      text-align: center;
+      margin: 0 0 10px;
+
+      button {
+        margin: 0 20px 0 0;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ececec;
+        background-color: rgb(103, 138, 165);
+        color:#ececec;
+        border-radius: 5px;
+
+        &:hover {
+          box-shadow: 1px 1px 0px #40526d, 1px 2px 8px #40526d;
+        }
+      }
+    }
+  }
+  
+
   .example {
     margin: 20px;
     .status {
