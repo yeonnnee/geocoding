@@ -1,46 +1,51 @@
-<div class="about-form" [formGroup]="statusForm">
+<div class="about-form">
   <h1>Form Status</h1>
 
   <p>Create Form and Test</p>
   <div class="form">
 
     <div class="form-container">
-      <div class="form-condition">
-        <input class="type-state" name="form-type" id="form-type" type="checkbox">
+      <div class="form-condition" [formGroup]="type">
+        <input class="type-state" name="form-type" id="form-type" type="checkbox" formControlName="isChecked">
         <label class="cbx"  for="form-type">TYPE</label>
         <div class="make-form-type">
           <div class="type-option">
             <div class="option">
-              <input type="checkbox" id="checkbox-type">
+              <input type="checkbox" id="checkbox-type" formControlName="isCheckBox">
               <label class="cbx" for="checkbox-type">Checkbox</label>
             </div>
     
             <div class="option">
-              <input type="checkbox" id="input-type">
+              <input type="checkbox" id="input-type" formControlName="isInput">
               <label class="cbx" for="input-type">Input</label>
+            </div>
+                
+            <div class="option">
+              <label class="cbx" for="input-name">Name</label>
+              <input type="text" id="input-name" formControlName="name">
             </div>
           </div>
         </div>
       </div>
   
-      <div class="form-condition">
-        <input class="validation-state" name="form-validation" id="form-validation" type="checkbox">
+      <div class="form-condition" [formGroup]="validation">
+        <input class="validation-state" name="form-validation" id="form-validation" type="checkbox" formControlName="isChecked">
         <label class="cbx"  for="form-validation">VALIDATION</label>
         <div class="make-validation-form">
           <div class="validation-option">
-            <input type="checkbox" id="min-length">
+            <input type="checkbox" id="min-length" >
             <label class="cbx"  for="min-length">Min Length</label>
-            <input type="text" id="min-length">
+            <input type="text" id="min-length" formControlName="minLength">
           </div>
           <div class="validation-option">
             <input type="checkbox" id="max-length">
     
             <label class="cbx"  for="max-length">Max Length</label>
-            <input type="text" id="max-length">
+            <input type="text" id="max-length" formControlName="maxLength">
           </div>
     
           <div class="validation-option">
-            <input type="checkbox" id="required">
+            <input type="checkbox" id="required" formControlName="required">
             <label class="cbx" for="required">Required</label>
           </div>
         </div>
@@ -49,13 +54,23 @@
     
 
     <div class="generate">
-      <button class="generate-btn">Generate</button>
+      <button class="generate-btn" (click)="createForm()">Generate</button>
     </div>
 
   </div>
 
+  <div class="example"  *ngFor="let form of forms.controls let index = index">
+    <ng-container *ngIf="form.get('type')?.value === 'checkbox'"  [formGroup]="getFormGroup(form)">
+      <input id="example" type="checkbox">
+      <label class="cbx" for="example">{{form.get('name')?.value}}</label>
+    </ng-container>
+    <ng-container *ngIf="form.get('type')?.value === 'Input'"  [formGroup]="getFormGroup(form)">
+      <label for="example">{{form.get('name')?.value}}</label>
+      <input type="text" id="example">
+    </ng-container>
+  </div>
 
-  <div class="example" *ngFor="let example of statusList let index = index">
+  <!-- <div class="example" *ngFor="let example of forms.controls let index = index">
     <input type="text" formControlName="{{example}}">
     <div class="status">
       <ul>
@@ -79,6 +94,6 @@
     <button class="mark-btn" (click)="markAllAsTouched()">markAllAsTouched</button>
     <button class="disable-btn" (click)="disableForm()">disable</button>
     <button class="enable-btn" (click)="enableForm()">enable</button>
-  </div>
+  </div> -->
 
 </div>

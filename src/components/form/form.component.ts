@@ -1,6 +1,6 @@
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GridIndex } from '../menu/menu.component';
 import { PackingListInfo, packingList, gridIndex, GridData } from './mockData';
 
@@ -11,26 +11,52 @@ import { PackingListInfo, packingList, gridIndex, GridData } from './mockData';
 })
 export class FormComponent {
   statusList: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
-  statusForm: FormGroup = new FormGroup({
-    valid: new FormControl('', Validators.minLength(6)),
-    invalid: new FormControl(''),
-    touched: new FormControl(''),
-    dirty: new FormControl(''),
-    pristine: new FormControl(''),
-    pending: new FormControl(''),
+  type: FormGroup = this.formBuilder.group({
+    isChecked: true,
+    isInput: false,
+    isCheckBox: false,
+    name:null,
   });
 
-  constructor() { }
+  validation: FormGroup = this.formBuilder.group({
+    isChecked: false,
+    minLength: null,
+    maxLength: null,
+    required: false
+  });
+  forms: FormArray = new FormArray([]); 
+
+  constructor(private formBuilder: FormBuilder) {
+    
+   }
+
+
+  getFormGroup(abstractControl: AbstractControl):FormGroup {
+    return abstractControl as FormGroup;
+  }
+  
+  createForm() {
+    console.log('type', this.type.value);
+    const type = this.type.get('isCheckBox')?.value ? 'checkbox' : 'Input';
+    console.log('validation', this.validation.value);
+    const form: FormGroup = this.formBuilder.group({
+      value: null,
+      type: type,
+      name: this.type.get('name')?.value,
+      status: this.formBuilder.array([])
+    })
+    this.forms.push(form);
+  }
   
   markAllAsTouched() {
-    this.statusForm.markAllAsTouched();
+    this.forms.markAllAsTouched();
   }
 
   disableForm() {
-    this.statusForm.disable();
+    this.forms.disable();
   }
 
   enableForm() {
-    this.statusForm.enable();
+    this.forms.enable();
   }
 }

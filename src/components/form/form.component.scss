@@ -88,6 +88,11 @@
           .option {
             display: inline-block;
             margin: 0 0 0 34px;
+
+            &:nth-child(3) {
+              display: flex;
+
+            }
           }
           .cbx {
             width: 90px;
