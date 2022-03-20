@@ -1,6 +1,6 @@
 <div class="about-form" [formGroup]="statusForm">
   <h1>Form Status</h1>
-  <div class="example" *ngFor="let example of statusList">
+  <div class="example" *ngFor="let example of statusList let index = index">
     <input type="text" formControlName="{{example}}">
     <div class="status">
       <ul>
@@ -14,7 +14,8 @@
           'pending':statusForm.get(example)?.pending && status ==='pending'
         }">{{status}}</li>
       </ul>
-      <p>{{statusForm.get(example)?.status | json}}</p>
+      <p *ngIf="index === 0">VALIDATION : Min Length 6</p>
+      <p> STATUS: {{statusForm.get(example)?.status | json}}</p>
     </div>
     <hr>
   </div>
