@@ -132,12 +132,31 @@
   
 
   .example {
-    margin: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ececec;
+    width: 50%;
+
+    .form-box {
+      padding: 20px;
+      border: 1px solid #ececec;
+
+      input {
+        margin: 0 20px;
+      }
+    }
     .status {
       margin: 10px 0;
 
       p {
         margin: 10px 0 0;
+      }
+
+      .validation {
+        span {
+          border: 1px solid red;
+          border-radius: 3px;
+        }
       }
       ul {
         display: flex;
@@ -196,6 +215,7 @@
   
   .button-container {
     padding: 0 20px;
+    margin: 20px 0;
     // margin: 52px 0 0 10%;
     button {
       margin: 0 20px 0 0;

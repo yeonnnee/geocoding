@@ -79,7 +79,17 @@
           'pending':form.get('value')?.pending && status ==='pending'
         }">{{status}}</li>
       </ul>
-      <p *ngIf="index === 0">VALIDATION : Min Length 6</p>
+   
+      <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
+        <p class="validation"> <span>VALIDATION</span>
+          Min Length : {{form.get('validationTypes')?.value.minLength}} </p>
+      </ng-container>
+      <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
+        <p class="validation"><span>VALIDATION</span> Max Length : {{form.get('validationTypes')?.value.maxLength}}</p>
+      </ng-container>
+      <ng-container *ngIf="form.get('validationTypes')?.value.required"> 
+        <p class="validation"><span>VALIDATION</span> Required </p>
+      </ng-container>
       <p> STATUS: {{form.get('value')?.status | json}}</p>
     </div>
   </div>

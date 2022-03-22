@@ -1,8 +1,5 @@
-import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { GridIndex } from '../menu/menu.component';
-import { PackingListInfo, packingList, gridIndex, GridData } from './mockData';
 
 @Component({
   selector: 'app-form',
@@ -26,6 +23,7 @@ export class FormComponent {
     maxLength: null,
     required: false
   });
+
   forms: FormArray = new FormArray([]); 
 
   constructor(private formBuilder: FormBuilder) {
@@ -55,14 +53,29 @@ export class FormComponent {
 
   create() {
     const type = this.type.get('isCheckBox')?.value ? 'checkbox' : 'Input';
-    console.log('validation', this.validation.value);
+    const minLengthVali = this.validation.get('minLength')?.value;
+    const maxLengthVali = this.validation.get('maxLength')?.value;
+    const requiredVali = this.validation.get('required')?.value;
+
     const form: FormGroup = this.formBuilder.group({
       value: null,
       type: type,
       name: this.type.get('name')?.value,
-      status: this.formBuilder.array([])
+      status: this.formBuilder.array([]),
+      validationTypes: this.validation.value
     });
 
+    if (minLengthVali) {
+      form.get('value')?.setValidators(Validators.minLength(+minLengthVali));
+    }
+
+    if (maxLengthVali) {
+      form.get('value')?.setValidators(Validators.maxLength(+maxLengthVali));
+    }
+
+    if (requiredVali) {
+      form.get('value')?.setValidators(Validators.required);
+    }
     
     this.forms.push(form);
   }
@@ -73,10 +86,6 @@ export class FormComponent {
 
   disableForm() {
     this.forms.disable();
-
-    // this.forms.controls.forEach(con => {
-    //   con.get('value')?.disable();
-    // })
   }
 
   enableForm() {
