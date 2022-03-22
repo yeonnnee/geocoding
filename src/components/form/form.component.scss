@@ -93,9 +93,18 @@
               display: flex;
 
             }
+
+            .invalid {
+              border: 1px solid red;
+            }
           }
           .cbx {
             width: 90px;
+            &.required {
+              &::before {
+                border: 1px solid red;
+              }
+            }
           }
         }
       }

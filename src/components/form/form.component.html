@@ -12,17 +12,18 @@
           <div class="type-option">
             <div class="option">
               <input type="checkbox" id="checkbox-type" formControlName="isCheckBox">
-              <label class="cbx" for="checkbox-type">Checkbox</label>
+              <label [ngClass]="{'required': type.get('isCheckBox')?.hasError('required') }" class="cbx" for="checkbox-type">Checkbox</label>
             </div>
     
             <div class="option">
               <input type="checkbox" id="input-type" formControlName="isInput">
-              <label class="cbx" for="input-type">Input</label>
+              <label [ngClass]="{'required': type.get('isInput')?.hasError('required') }" class="cbx" for="input-type">Input</label>
             </div>
                 
             <div class="option">
+              <input type="checkbox" id="input-name" [checked]="type.get('name')?.value">
               <label class="cbx" for="input-name">Name</label>
-              <input type="text" id="input-name" formControlName="name">
+              <input [ngClass]="{'invalid': type.get('name')?.touched && type.get('name')?.invalid }" type="text" formControlName="name">
             </div>
           </div>
         </div>
@@ -30,15 +31,15 @@
   
       <div class="form-condition" [formGroup]="validation">
         <input class="validation-state" name="form-validation" id="form-validation" type="checkbox" formControlName="isChecked">
-        <label class="cbx"  for="form-validation">VALIDATION</label>
+        <label class="cbx" for="form-validation">VALIDATION</label>
         <div class="make-validation-form">
           <div class="validation-option">
-            <input type="checkbox" id="min-length" >
+            <input type="checkbox" id="min-length" [checked]="validation.get('minLength')?.value">
             <label class="cbx"  for="min-length">Min Length</label>
             <input type="text" id="min-length" formControlName="minLength">
           </div>
           <div class="validation-option">
-            <input type="checkbox" id="max-length">
+            <input type="checkbox" id="max-length" [checked]="validation.get('maxLength')?.value">
     
             <label class="cbx"  for="max-length">Max Length</label>
             <input type="text" id="max-length" formControlName="maxLength">
@@ -51,49 +52,43 @@
         </div>
       </div>
     </div>
-    
-
     <div class="generate">
       <button class="generate-btn" (click)="createForm()">Generate</button>
     </div>
-
   </div>
 
-  <div class="example"  *ngFor="let form of forms.controls let index = index">
-    <ng-container *ngIf="form.get('type')?.value === 'checkbox'"  [formGroup]="getFormGroup(form)">
+  <div class="example" *ngFor="let form of forms.controls; let index=index;">
+    <div class="form-box" *ngIf="form.get('type')?.value === 'checkbox'" [formGroup]="getFormGroup(form)">
       <input id="example" type="checkbox">
       <label class="cbx" for="example">{{form.get('name')?.value}}</label>
-    </ng-container>
-    <ng-container *ngIf="form.get('type')?.value === 'Input'"  [formGroup]="getFormGroup(form)">
-      <label for="example">{{form.get('name')?.value}}</label>
-      <input type="text" id="example">
-    </ng-container>
-  </div>
+    </div>
 
-  <!-- <div class="example" *ngFor="let example of forms.controls let index = index">
-    <input type="text" formControlName="{{example}}">
+    <div class="form-box" *ngIf="form.get('type')?.value === 'Input'" [formGroup]="getFormGroup(form)">
+      <label for="example">{{form.get('name')?.value}}</label>
+      <input type="text" id="example" formControlName="value">
+    </div>
     <div class="status">
       <ul>
         <li *ngFor="let status of statusList" 
         [ngClass]="{
-          'valid':statusForm.get(example)?.valid && status ==='valid', 
-          'invalid':statusForm.get(example)?.invalid && status ==='invalid',
-          'touched':statusForm.get(example)?.touched && status ==='touched',
-          'dirty':statusForm.get(example)?.dirty && status ==='dirty',
-          'pristine':statusForm.get(example)?.pristine && status ==='pristine',
-          'pending':statusForm.get(example)?.pending && status ==='pending'
+          'valid':form.get('value')?.valid && status ==='valid', 
+          'invalid':form.get('value')?.invalid && status ==='invalid',
+          'touched':form.get('value')?.touched && status ==='touched',
+          'dirty':form.get('value')?.dirty && status ==='dirty',
+          'pristine':form.get('value')?.pristine && status ==='pristine',
+          'pending':form.get('value')?.pending && status ==='pending'
         }">{{status}}</li>
       </ul>
       <p *ngIf="index === 0">VALIDATION : Min Length 6</p>
-      <p> STATUS: {{statusForm.get(example)?.status | json}}</p>
+      <p> STATUS: {{form.get('value')?.status | json}}</p>
     </div>
-    <hr>
   </div>
+
 
   <div class="button-container">
     <button class="mark-btn" (click)="markAllAsTouched()">markAllAsTouched</button>
     <button class="disable-btn" (click)="disableForm()">disable</button>
     <button class="enable-btn" (click)="enableForm()">enable</button>
-  </div> -->
+  </div>
 
 </div>

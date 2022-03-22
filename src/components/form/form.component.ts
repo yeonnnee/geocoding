@@ -13,10 +13,12 @@ export class FormComponent {
   statusList: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
   type: FormGroup = this.formBuilder.group({
     isChecked: true,
-    isInput: false,
+    isInput: true,
     isCheckBox: false,
-    name:null,
+    name:[null, Validators.required]
   });
+
+  checked: boolean = true;
 
   validation: FormGroup = this.formBuilder.group({
     isChecked: false,
@@ -36,7 +38,22 @@ export class FormComponent {
   }
   
   createForm() {
-    console.log('type', this.type.value);
+    this.type.markAllAsTouched();
+
+    if (!this.type.get('isInput')?.value && !this.type.get('isCheckBox')?.value) {
+      this.type.get('isInput')?.setErrors({ 'required': true });
+      this.type.get('isCheckBox')?.setErrors({ 'required': true });
+    } else {
+      this.type.get('isInput')?.setErrors(null);
+      this.type.get('isCheckBox')?.setErrors(null);
+    }
+
+    if (this.type.invalid) return;
+  
+    this.create();
+  }
+
+  create() {
     const type = this.type.get('isCheckBox')?.value ? 'checkbox' : 'Input';
     console.log('validation', this.validation.value);
     const form: FormGroup = this.formBuilder.group({
@@ -44,7 +61,9 @@ export class FormComponent {
       type: type,
       name: this.type.get('name')?.value,
       status: this.formBuilder.array([])
-    })
+    });
+
+    
     this.forms.push(form);
   }
   
@@ -54,6 +73,10 @@ export class FormComponent {
 
   disableForm() {
     this.forms.disable();
+
+    // this.forms.controls.forEach(con => {
+    //   con.get('value')?.disable();
+    // })
   }
 
   enableForm() {

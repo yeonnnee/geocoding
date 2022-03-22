@@ -10,7 +10,7 @@ import { PageNotFoundComponent } from '../components/page-not-found/page-not-fou
 import { ExpansionOverviewExample } from '../components/menu/menu.component';
 import { AuthGuard } from 'src/guard/auth-guard';
 import { AuthService } from 'src/service/auth-service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from '../components/register/register.component';
 import { ErrorDirective } from 'src/directives/ErrorDirective';
 import { ErrorMsgComponent } from 'src/components/common/error-message';
@@ -49,7 +49,8 @@ import { FormComponent } from 'src/components/form/form.component';
     DragDropModule,
     OverlayModule,
     SignaturePadModule,
-    CommonModule
+    CommonModule,
+    FormsModule
 
   ],
   providers: [
