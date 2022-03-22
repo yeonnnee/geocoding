@@ -1,22 +1,35 @@
 .about-form {
   padding: 20px;
+  // width: 50%;
 
   .form {
     width: 50%;
+
     border: 1px solid #000;
     .form-container {
-      display: flex;
+      width: 50%;
+      // display: flex;
       padding: 10px 20px 0;
       margin: 0 0 20px;
       .form-condition {
-        margin: 0 20px 0 0;
+        margin: 20px 20px 0 0;
       }
   
-      .validation-state {
-        &:checked ~ .make-validation-form {
-          opacity: 1;
-          visibility: visible;
-          transition: all 1s ease;
+      // .validation-state {
+      //   &:checked ~ .make-validation-form {
+      //     opacity: 1;
+      //     visibility: visible;
+      //     transition: all 1s ease;
+      //   }
+      // }
+
+      .option {
+        .cbx {
+          margin: 0 10px 0 0;
+        }
+
+        .invalid {
+          border: 1px solid red;
         }
       }
   
@@ -26,7 +39,7 @@
         margin: 10px 0 0;
         border: 1px solid #000;
         background: #fff;
-        opacity: 0;
+
   
         &::before {
           content: "";
@@ -56,12 +69,12 @@
         }
       }
   
-      .type-state {
-        &:checked ~ .make-form-type {
-          opacity: 1;
-          transition: all 1s ease;
-        }
-      }
+      // .type-state {
+      //   &:checked ~ .make-form-type {
+      //     opacity: 1;
+      //     transition: all 1s ease;
+      //   }
+      // }
   
       .make-form-type {
         position: relative;
@@ -69,7 +82,7 @@
         margin: 10px 0 0;
         border: 1px solid #000;
         background: #fff;
-        opacity: 0;
+        // opacity: 0;
         // display: none;
   
         &::before {
@@ -84,29 +97,21 @@
           background: #fff;
           z-index: -1;
         }
-        .type-option {
-          .option {
-            display: inline-block;
-            margin: 0 0 0 34px;
-
-            &:nth-child(3) {
-              display: flex;
-
-            }
-
-            .invalid {
-              border: 1px solid red;
-            }
-          }
-          .cbx {
-            width: 90px;
-            &.required {
-              &::before {
-                border: 1px solid red;
-              }
-            }
-          }
-        }
+        // .type-option {
+        //   .option {
+        //     .invalid {
+        //       border: 1px solid red;
+        //     }
+        //   }
+        //   .cbx {
+        //     width: 90px;
+        //     &.required {
+        //       &::before {
+        //         border: 1px solid red;
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
 

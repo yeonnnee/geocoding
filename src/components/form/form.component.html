@@ -3,32 +3,15 @@
 
   <p>Create Form and Test</p>
   <div class="form">
-
     <div class="form-container">
       <div class="form-condition" [formGroup]="type">
-        <input class="type-state" name="form-type" id="form-type" type="checkbox" formControlName="isChecked">
-        <label class="cbx"  for="form-type">TYPE</label>
-        <div class="make-form-type">
-          <div class="type-option">
-            <div class="option">
-              <input type="checkbox" id="checkbox-type" formControlName="isCheckBox">
-              <label [ngClass]="{'required': type.get('isCheckBox')?.hasError('required') }" class="cbx" for="checkbox-type">Checkbox</label>
-            </div>
-    
-            <div class="option">
-              <input type="checkbox" id="input-type" formControlName="isInput">
-              <label [ngClass]="{'required': type.get('isInput')?.hasError('required') }" class="cbx" for="input-type">Input</label>
-            </div>
-                
-            <div class="option">
-              <input type="checkbox" id="input-name" [checked]="type.get('name')?.value">
-              <label class="cbx" for="input-name">Name</label>
-              <input [ngClass]="{'invalid': type.get('name')?.touched && type.get('name')?.invalid }" type="text" formControlName="name">
-            </div>
-          </div>
+        <div class="option">
+          <input type="checkbox" id="input-name" [checked]="type.get('name')?.value">
+          <label class="cbx" for="input-name">Name</label>
+          <input [ngClass]="{'invalid': type.get('name')?.touched && type.get('name')?.invalid }" type="text" formControlName="name">
         </div>
       </div>
-  
+
       <div class="form-condition" [formGroup]="validation">
         <input class="validation-state" name="form-validation" id="form-validation" type="checkbox" formControlName="isChecked">
         <label class="cbx" for="form-validation">VALIDATION</label>
