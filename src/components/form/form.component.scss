@@ -2,317 +2,182 @@
   padding: 20px;
   .generator-section {
     float: left;
-    box-shadow: 1px 6px 7px 0px #b1bac0;
 
-    .generator-header{
-      padding: 10px;
-      font-weight: bold;
-      border-radius: 10px 10px 0 0;
-      background-color: #788a96;
-    }
-
-    .generator-content {
-      border-bottom: 1px solid #ececec;
-
-      p {
-        font-weight: bold;
-        background-color: #f1f1f1;
-        padding: 5px 10px;
-
-      }
-      .options {
-        display: flex;
+    .generator {
+      box-shadow: 1px 6px 7px 0px #b1bac0;
+      .generator-header{
         padding: 10px;
-        margin: 0 0 10px;
-
-        li {
-          margin: 0 20px;
-        }
+        font-weight: bold;
+        border-radius: 10px 10px 0 0;
+        background-color: #788a96;
       }
-      .vali-options {
-        padding: 0 10px;
-
-        .option {
-          margin: 15px 20px;
-          label {
-            display: block;
+  
+      .generator-content {
+        border-bottom: 1px solid #ececec;
+  
+        p {
+          font-weight: bold;
+          background-color: #f1f1f1;
+          padding: 5px 10px;
+  
+        }
+        .options {
+          display: flex;
+          padding: 10px;
+          margin: 0 0 10px;
+  
+          li {
+            margin: 0 20px;
+          }
+        }
+        .vali-options {
+          padding: 0 10px;
+  
+          .option {
+            margin: 15px 20px;
+            label {
+              display: block;
+            }
           }
         }
       }
-    }
-    .generator-btn {
-      padding: 10px 0;
-      text-align: center;
-
-      button {
-        padding: 10px;
-        background-color: #fff;
-        border-radius: 20px;
-        box-shadow: 0px 2px 8px 0px #b1bac0;
+      .generator-btn {
+        padding: 10px 0;
+        text-align: center;
+  
+        button {
+          padding: 10px;
+          background-color: #fff;
+          border-radius: 20px;
+          box-shadow: 0px 2px 8px 0px #b1bac0;
+        }
       }
     }
+
+  
+    .button-container {
+      margin: 30px 0;
+      padding: 20px;
+      box-shadow: 0px 2px 11px #bebdbd;
+
+      p {
+        font-weight: bold;
+      }
+      button {
+        margin: 0 10px 0 0;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ececec;
+        // color:#ececec;
+
+        border-radius: 5px;
+        background-color: transparent;
+        box-shadow: 1px 1px 0px #353434, 1px 2px 0 #000;
+  
+        &:hover {
+          box-shadow: 1px 1px 0px #353434, 1px 2px 8px #000;
+        }
+  
+        &.mark-btn {
+          background-color: rgb(111, 165, 209);
+        }
+        &.disable-btn {
+          background-color: rgb(137, 139, 141);
+        }
+        &.enable-btn {
+          background-color: rgb(103, 138, 165);
+        }
+      }
+    }
+  
   }
-
-
 
   
   .test-form {
     float: right;
     width: calc(100% - 340px);
-    border: 1px solid #000;
     margin: 0 0 0 10px;
+    padding: 0 20px 20px;
+
     .cbx {
       margin: 0 10px 0 0;
     }
-  }
 
-  
-
-  .form {
-    width: 50%;
-
-    border: 1px solid #000;
-    .form-container {
-      width: 50%;
-      // display: flex;
-      padding: 10px 20px 0;
-      margin: 0 0 20px;
-      .form-condition {
-        margin: 20px 20px 0 0;
-      }
-  
-      // .validation-state {
-      //   &:checked ~ .make-validation-form {
-      //     opacity: 1;
-      //     visibility: visible;
-      //     transition: all 1s ease;
-      //   }
-      // }
-
-      .option {
-        .cbx {
-          margin: 0 10px 0 0;
-        }
-
-        .invalid {
-          border: 1px solid red;
-        }
-      }
-  
-      .make-validation-form {
-        position: relative;
-        padding: 20px;
-        margin: 10px 0 0;
-        border: 1px solid #000;
-        background: #fff;
-
-  
-        &::before {
-          content: "";
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          border: 1px solid #000;
-          top: -6px;
-          transform: rotate(45deg);
-          background: #fff;
-          z-index: -1;
-        }
-        .validation-option {
-          display: flex;
-          margin: 0 0 10px;
-  
-          &:nth-child(3) {
-            margin: 0;
-          }
-  
-          .cbx {
-            width: 90px;
-          }
-          input {
-            margin: 0 0 0 20px;
-          }
-        }
-      }
-  
-      // .type-state {
-      //   &:checked ~ .make-form-type {
-      //     opacity: 1;
-      //     transition: all 1s ease;
-      //   }
-      // }
-  
-      .make-form-type {
-        position: relative;
-        padding: 20px 20px 20px 0;
-        margin: 10px 0 0;
-        border: 1px solid #000;
-        background: #fff;
-        // opacity: 0;
-        // display: none;
-  
-        &::before {
-          content: "";
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          border: 1px solid #000;
-          top: -6px;
-          left: 10px;
-          transform: rotate(45deg);
-          background: #fff;
-          z-index: -1;
-        }
-        // .type-option {
-        //   .option {
-        //     .invalid {
-        //       border: 1px solid red;
-        //     }
-        //   }
-        //   .cbx {
-        //     width: 90px;
-        //     &.required {
-        //       &::before {
-        //         border: 1px solid red;
-        //       }
-        //     }
-        //   }
-        // }
-      }
-    }
-
-    .generate {
-      text-align: center;
-      margin: 0 0 10px;
-
-      button {
-        margin: 0 20px 0 0;
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #ececec;
-        background-color: rgb(103, 138, 165);
-        color:#ececec;
-        border-radius: 5px;
-
-        &:hover {
-          box-shadow: 1px 1px 0px #40526d, 1px 2px 8px #40526d;
-        }
-      }
-    }
-  }
-  
-
-  .example {
-    padding: 20px;
-    margin: 20px 0;
-    border: 1px solid #ececec;
-    width: 50%;
-
-    .form-box {
+    .form-info {
+      border: 1px solid #c2c1c1;
       padding: 20px;
-      border: 1px solid #ececec;
+      margin: 0 0 20px;
+    
+      .form-box {
+        border: 1px solid #c2c1c1;
+        padding: 20px;
 
-      input {
-        margin: 0 20px;
-      }
-    }
-    .status {
-      margin: 10px 0;
-
-      p {
-        margin: 10px 0 0;
-      }
-
-      .validation {
-        span {
-          border: 1px solid red;
-          border-radius: 3px;
-        }
-      }
-      ul {
-        display: flex;
-  
-        li {
+        label {
           margin: 0 10px 0 0;
-          width: 100px;
-          padding: 3px 0;
-          text-align: center;
-          border: 1px solid #000;
-          border-radius: 5px;
-          cursor: default;
-          opacity: 0.2;
-
-          &.valid {
-            // border: 1px solid #4580b8;
-            // background-color: #92b2cf;
-            box-shadow: inset -1px -1px 3px #92b2cf;
-            opacity: 1;
-
-          }
-          &.invalid{
-            border: 1px solid #b84545;
-            box-shadow: inset -1px -1px 3px #95767b;
-            opacity: 1;
-
-          }
-          &.touched{
-            border: 1px solid #dab550;
-            box-shadow: inset -1px -1px 3px #cad962;
-            opacity: 1;
-
-          }
-          &.dirty{
-            border: 1px solid #93629c;
-            box-shadow: inset -1px -1px 3px #aa89b1;
-            opacity: 1;
-
-          }
-          &.pristine{
-            border: 1px solid #db6b8d;
-            box-shadow: inset -1px -1px 3px #cc98b5;
-            opacity: 1;
-
-          }
-          &.pending {
-            border: 1px solid #2a7c6a;
-            box-shadow: inset -1px -1px 3px #566671;
-            opacity: 1;
-
+        }
+      }
+    
+      .status {
+        margin: 10px 0;
+  
+        .title {
+          margin: 10px 0 0;
+          font-weight: bold;
+        }
+  
+        ul {
+          display: flex;
+    
+          li {
+            margin: 0 10px 0 0;
+            width: 100px;
+            padding: 3px 0;
+            text-align: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            cursor: default;
+            opacity: 0.2;
+  
+            &.valid {
+              box-shadow: inset -1px -1px 3px #92b2cf;
+              opacity: 1;
+  
+            }
+            &.invalid{
+              border: 1px solid #b84545;
+              box-shadow: inset -1px -1px 3px #95767b;
+              opacity: 1;
+  
+            }
+            &.touched{
+              border: 1px solid #dab550;
+              box-shadow: inset -1px -1px 3px #cad962;
+              opacity: 1;
+  
+            }
+            &.dirty{
+              border: 1px solid #93629c;
+              box-shadow: inset -1px -1px 3px #aa89b1;
+              opacity: 1;
+  
+            }
+            &.pristine{
+              border: 1px solid #db6b8d;
+              box-shadow: inset -1px -1px 3px #cc98b5;
+              opacity: 1;
+  
+            }
+            &.pending {
+              border: 1px solid #2a7c6a;
+              box-shadow: inset -1px -1px 3px #566671;
+              opacity: 1;
+            }
           }
         }
       }
     }
   }
-  
-  .button-container {
-    padding: 0 20px;
-    margin: 20px 0;
-    // margin: 52px 0 0 10%;
-    button {
-      margin: 0 20px 0 0;
-      padding: 10px;
-      text-align: center;
-      border: 1px solid #ececec;
-      color:#ececec;
-      border-radius: 5px;
-      background-color: transparent;
-      box-shadow: 1px 1px 0px #353434, 1px 2px 0 #000;
 
-      &:hover {
-        box-shadow: 1px 1px 0px #353434, 1px 2px 8px #000;
-      }
-
-      &.mark-btn {
-        background-color: rgb(62, 123, 173);
-      }
-      &.disable-btn {
-        background-color: rgb(71, 80, 87);
-      }
-      &.enable-btn {
-        background-color: rgb(103, 138, 165);
-      }
-    }
-  }
 
   
 }

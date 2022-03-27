@@ -2,109 +2,117 @@
   <h1>Reactive Forms Status</h1>
 
   <div class="generator-section">
-    <div class="generator-header">테스트할 Form을 생성해보세요</div>
-    <div class="generator-content">
-      <ul class="vali-options" [formGroup]="formType">
-        <li class="option">
-          <label for="radio-btn">Name</label>
-          <input type="text" id="radio-btn" formControlName="name" >
-        </li>
-      </ul>
-     
+    <div class="generator">
+      <div class="generator-header">테스트할 Form을 생성해보세요</div>
+      <div class="generator-content">
+        <ul class="vali-options" [formGroup]="formType">
+          <li class="option">
+            <label for="radio-btn">Name</label>
+            <input type="text" id="radio-btn" formControlName="name" >
+          </li>
+        </ul>
+       
+      </div>
+      <div class="generator-content">
+        <p>Type</p>
+        <ul class="options" [formGroup]="formType">
+          <li class="type-option">
+            <input type="radio" value="radio" id="radio" [checked]="formType.get('type')?.value === 'radio'">
+            <label class="cbx" for="radio" (click)="setFormType($event)">Radio</label>
+          </li>
+          <li class="type-option">
+            <input type="radio" value="checkbox" id="checkbox" [checked]="formType.get('type')?.value === 'checkbox'">
+            <label class="cbx" for="checkbox" (click)="setFormType($event)">CheckBox</label>
+          </li>
+          <li class="type-option">
+            <input type="radio" value="input" id="input" [checked]="formType.get('type')?.value === 'input'">
+            <label class="cbx" for="input" (click)="setFormType($event)">Input</label>
+          </li>
+        </ul>
+       
+      </div>
+      <div class="generator-content">
+        <p>Validation</p>
+  
+        <ul class="vali-options" [formGroup]="validation">
+          <li class="option">
+            <input type="checkbox" id="required" formControlName="required">
+            <label class="cbx" for="required">Required</label>
+          </li>
+          <li class="option">
+            <input type="checkbox" id="min-length" [checked]="validation.get('minLength')?.value">
+            <label class="cbx" for="min-length">Min Length</label>
+            <input type="text" formControlName="minLength">
+          </li>
+          <li class="option">
+            <input type="checkbox" id="max-length" [checked]="validation.get('maxLength')?.value">
+            <label class="cbx" for="max-length">Max Length</label>
+            <input type="text" formControlName="maxLength">
+          </li>
+        </ul>
+      </div>
+  
+      <div class="generator-btn">
+        <button (click)="createForm()">Generate</button>
+      </div>
     </div>
-    <div class="generator-content">
-      <p>Type</p>
-      <ul class="options" [formGroup]="formType">
-        <li class="type-option">
-          <input type="radio" value="radio" id="radio" [checked]="formType.get('type')?.value === 'radio'">
-          <label class="cbx" for="radio" (click)="setFormType($event)">Radio</label>
-        </li>
-        <li class="type-option">
-          <input type="radio" value="checkbox" id="checkbox" [checked]="formType.get('type')?.value === 'checkbox'">
-          <label class="cbx" for="checkbox" (click)="setFormType($event)">CheckBox</label>
-        </li>
-        <li class="type-option">
-          <input type="radio" value="input" id="input" [checked]="formType.get('type')?.value === 'input'">
-          <label class="cbx" for="input" (click)="setFormType($event)">Input</label>
-        </li>
-      </ul>
-     
-    </div>
-    <div class="generator-content">
-      <p>Validation</p>
-
-      <ul class="vali-options" [formGroup]="validation">
-        <li class="option">
-          <input type="checkbox" id="required" formControlName="required">
-          <label class="cbx" for="required">Required</label>
-        </li>
-        <li class="option">
-          <input type="checkbox" id="min-length" [checked]="validation.get('minLength')?.value">
-          <label class="cbx" for="min-length">Min Length</label>
-          <input type="text" formControlName="minLength">
-        </li>
-        <li class="option">
-          <input type="checkbox" id="max-length" [checked]="validation.get('maxLength')?.value">
-          <label class="cbx" for="max-length">Max Length</label>
-          <input type="text" formControlName="maxLength">
-        </li>
-      </ul>
-    </div>
-
-    <div class="generator-btn">
-      <button (click)="createForm()">Generate</button>
-    </div>
-  </div>
-
-
-
-
-  <div class="test-form">
-    <ul>
-      <li *ngFor="let form of forms.controls; let index=index;">
-        <div class="form-box" *ngIf="form.get('type')?.value === 'checkbox'" [formGroup]="getFormGroup(form)">
-          <input id="example" type="checkbox">
-          <label class="cbx" for="example">{{form.get('name')?.value}}</label>
-        </div>
-    
-        <div class="form-box" *ngIf="form.get('type')?.value === 'Input'" [formGroup]="getFormGroup(form)">
-          <label for="example">{{form.get('name')?.value}}</label>
-          <input type="text" id="example" formControlName="value">
-        </div>
-
-        <div class="status">
-          <ul>
-            <li *ngFor="let status of statusList" 
-            [ngClass]="{
-              'valid':form.get('value')?.valid && status ==='valid', 
-              'invalid':form.get('value')?.invalid && status ==='invalid',
-              'touched':form.get('value')?.touched && status ==='touched',
-              'dirty':form.get('value')?.dirty && status ==='dirty',
-              'pristine':form.get('value')?.pristine && status ==='pristine',
-              'pending':form.get('value')?.pending && status ==='pending'
-            }">{{status}}</li>
-          </ul>
-        
-          <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
-            <p class="validation"> <span>VALIDATION</span>
-              Min Length : {{form.get('validationTypes')?.value.minLength}} </p>
-          </ng-container>
-          <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
-            <p class="validation"><span>VALIDATION</span> Max Length : {{form.get('validationTypes')?.value.maxLength}}</p>
-          </ng-container>
-          <ng-container *ngIf="form.get('validationTypes')?.value.required"> 
-            <p class="validation"><span>VALIDATION</span> Required </p>
-          </ng-container>
-          <p> STATUS: {{form.get('value')?.status | json}}</p>
-        </div>
-      </li>
-    </ul>
-    
+  
     <div class="button-container">
+      <p>전체 적용</p>
       <button class="mark-btn" (click)="markAllAsTouched()">markAllAsTouched</button>
       <button class="disable-btn" (click)="disableForm()">disable</button>
       <button class="enable-btn" (click)="enableForm()">enable</button>
     </div>
   </div>
 
+  <ul class="test-form">
+    <li class="form-info" *ngFor="let form of forms.controls; let index=index;">
+      <div class="form-box" *ngIf="form.get('type')?.value === 'checkbox'" [formGroup]="getFormGroup(form)">
+        <input id="example-{{index}}" type="checkbox">
+        <label class="cbx" for="example">{{form.get('name')?.value}}</label>
+      </div>
+  
+      <div class="form-box" *ngIf="form.get('type')?.value === 'input'" [formGroup]="getFormGroup(form)">
+        <label for="example-{{index}}">{{form.get('name')?.value}}</label>
+        <input type="text" id="example" formControlName="value">
+      </div>
+
+      <div class="form-box" *ngIf="form.get('type')?.value === 'radio'" [formGroup]="getFormGroup(form)">
+        <label for="example-{{index}}">{{form.get('name')?.value}}</label>
+        <input type="radio" id="example" formControlName="value">
+      </div>
+
+      <div class="status">
+        <p class="title">STAUTS</p>
+        <ul>
+          <li *ngFor="let status of statusList" 
+          [ngClass]="{
+            'valid':form.get('value')?.valid && status ==='valid', 
+            'invalid':form.get('value')?.invalid && status ==='invalid',
+            'touched':form.get('value')?.touched && status ==='touched',
+            'dirty':form.get('value')?.dirty && status ==='dirty',
+            'pristine':form.get('value')?.pristine && status ==='pristine',
+            'pending':form.get('value')?.pending && status ==='pending'
+          }">{{status}}</li>
+        </ul>
+      
+        <div class="validation-info">
+          <p class="title" *ngIf="hasValidationForm(form)">VALIDATION</p>
+          <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
+            <p> Min Length : {{form.get('validationTypes')?.value.minLength}} </p>
+          </ng-container>
+          <ng-container *ngIf="form.get('validationTypes')?.value.maxLength"> 
+            <p> Max Length : {{form.get('validationTypes')?.value.maxLength}}</p>
+          </ng-container>
+          <ng-container *ngIf="form.get('validationTypes')?.value.required"> 
+            <p>Required</p>
+          </ng-container>
+        </div>
+        <!-- <p> STATUS: {{form.get('value')?.status | json}}</p> -->
+      </div>
+    </li>
+  </ul>
+  
 </div>
+
+

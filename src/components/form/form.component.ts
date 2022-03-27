@@ -16,7 +16,6 @@ export class FormComponent {
   checked: boolean = true;
 
   validation: FormGroup = this.formBuilder.group({
-    isChecked: false,
     minLength: null,
     maxLength: null,
     required: false
@@ -36,21 +35,13 @@ export class FormComponent {
   createForm() {
     this.formType.markAllAsTouched();
 
-    if (!this.formType.get('isInput')?.value && !this.formType.get('isCheckBox')?.value) {
-      this.formType.get('isInput')?.setErrors({ 'required': true });
-      this.formType.get('isCheckBox')?.setErrors({ 'required': true });
-    } else {
-      this.formType.get('isInput')?.setErrors(null);
-      this.formType.get('isCheckBox')?.setErrors(null);
-    }
-
     if (this.formType.invalid) return;
   
     this.create();
   }
 
   create() {
-    const type = this.formType.get('isCheckBox')?.value ? 'checkbox' : 'Input';
+    const type = this.formType.get('type')?.value;
     const minLengthVali = this.validation.get('minLength')?.value;
     const maxLengthVali = this.validation.get('maxLength')?.value;
     const requiredVali = this.validation.get('required')?.value;
@@ -83,6 +74,18 @@ export class FormComponent {
     const value = target.getAttribute('for');
     
     this.formType.get('type')?.setValue(value);
+  }
+
+  hasValidationForm(form: AbstractControl) {
+    const minLengthVali = form.get('validationTypes')?.value.minLength;
+    const maxLengthVali = form.get('validationTypes')?.value.maxLength;
+    const requiredVali = form.get('validationTypes')?.value.required;
+
+    if (minLengthVali || maxLengthVali || requiredVali) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   markAllAsTouched() {
