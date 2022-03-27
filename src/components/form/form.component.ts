@@ -8,11 +8,8 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 })
 export class FormComponent {
   statusList: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
-  type: FormGroup = this.formBuilder.group({
-    isChecked: true,
-    isInput: true,
-    isCheckBox: false,
-    isRadio: false,
+  formType: FormGroup = this.formBuilder.group({
+    type: 'input',
     name:[null, Validators.required]
   });
 
@@ -37,23 +34,23 @@ export class FormComponent {
   }
   
   createForm() {
-    this.type.markAllAsTouched();
+    this.formType.markAllAsTouched();
 
-    if (!this.type.get('isInput')?.value && !this.type.get('isCheckBox')?.value) {
-      this.type.get('isInput')?.setErrors({ 'required': true });
-      this.type.get('isCheckBox')?.setErrors({ 'required': true });
+    if (!this.formType.get('isInput')?.value && !this.formType.get('isCheckBox')?.value) {
+      this.formType.get('isInput')?.setErrors({ 'required': true });
+      this.formType.get('isCheckBox')?.setErrors({ 'required': true });
     } else {
-      this.type.get('isInput')?.setErrors(null);
-      this.type.get('isCheckBox')?.setErrors(null);
+      this.formType.get('isInput')?.setErrors(null);
+      this.formType.get('isCheckBox')?.setErrors(null);
     }
 
-    if (this.type.invalid) return;
+    if (this.formType.invalid) return;
   
     this.create();
   }
 
   create() {
-    const type = this.type.get('isCheckBox')?.value ? 'checkbox' : 'Input';
+    const type = this.formType.get('isCheckBox')?.value ? 'checkbox' : 'Input';
     const minLengthVali = this.validation.get('minLength')?.value;
     const maxLengthVali = this.validation.get('maxLength')?.value;
     const requiredVali = this.validation.get('required')?.value;
@@ -61,7 +58,7 @@ export class FormComponent {
     const form: FormGroup = this.formBuilder.group({
       value: null,
       type: type,
-      name: this.type.get('name')?.value,
+      name: this.formType.get('name')?.value,
       status: this.formBuilder.array([]),
       validationTypes: this.validation.value
     });
@@ -81,6 +78,13 @@ export class FormComponent {
     this.forms.push(form);
   }
   
+  setFormType(event:Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.getAttribute('for');
+    
+    this.formType.get('type')?.setValue(value);
+  }
+
   markAllAsTouched() {
     this.forms.markAllAsTouched();
   }
