@@ -1,6 +1,117 @@
-<div class="about-form">
-  <h1>Form Status</h1>
+<div class="reactive-form">
+  <h1>Reactive Forms Status</h1>
 
+  <div class="generator-section">
+    <div class="generator-header">테스트할 Form을 생성해보세요</div>
+    <div class="generator-content">
+      <!-- <p>Control Name</p> -->
+      <ul class="vali-options" [formGroup]="type">
+        <li class="option">
+          <label for="radio-btn">Name</label>
+          <input type="text" id="radio-btn" formControlName="name" >
+        </li>
+      </ul>
+     
+    </div>
+    <div class="generator-content">
+      <p>Type</p>
+      <ul class="options" [formGroup]="type">
+        <li class="type-option">
+          <input type="radio" id="radio-btn" formControlName="isRadio">
+          <label class="cbx" for="radio-btn">Radio</label>
+        </li>
+        <li class="type-option">
+          <input type="radio" id="checkbox" formControlName="isCheckBox">
+          <label class="cbx" for="checkbox">CheckBox</label>
+        </li>
+        <li class="type-option">
+          <input type="radio" id="input"formControlName="isInput">
+          <label class="cbx" for="input">Input</label>
+        </li>
+      </ul>
+     
+    </div>
+    <div class="generator-content">
+      <p>Validation</p>
+
+      <ul class="vali-options" [formGroup]="validation">
+        <li class="option">
+          <input type="checkbox" id="required" formControlName="required">
+          <label class="cbx" for="required">Required</label>
+        </li>
+        <li class="option">
+          <label class="cbx" for="min-length"></label>
+          <label for="min-length">Min Length</label>
+          <input type="text" id="min-length" formControlName="minLength">
+        </li>
+        <li class="option">
+          <label class="cbx" for="max-length"></label>
+          <label for="max-length">Max Length</label>
+          <input type="text" id="max-length" formControlName="maxLength">
+        </li>
+      </ul>
+    </div>
+
+    <div class="generator-btn">
+      <button (click)="createForm()">Generate</button>
+    </div>
+  </div>
+
+
+
+
+  <div class="test-form">
+    <ul>
+      <li *ngFor="let form of forms.controls; let index=index;">
+        <div class="form-box" *ngIf="form.get('type')?.value === 'checkbox'" [formGroup]="getFormGroup(form)">
+          <input id="example" type="checkbox">
+          <label class="cbx" for="example">{{form.get('name')?.value}}</label>
+        </div>
+    
+        <div class="form-box" *ngIf="form.get('type')?.value === 'Input'" [formGroup]="getFormGroup(form)">
+          <label for="example">{{form.get('name')?.value}}</label>
+          <input type="text" id="example" formControlName="value">
+        </div>
+
+        <div class="status">
+          <ul>
+            <li *ngFor="let status of statusList" 
+            [ngClass]="{
+              'valid':form.get('value')?.valid && status ==='valid', 
+              'invalid':form.get('value')?.invalid && status ==='invalid',
+              'touched':form.get('value')?.touched && status ==='touched',
+              'dirty':form.get('value')?.dirty && status ==='dirty',
+              'pristine':form.get('value')?.pristine && status ==='pristine',
+              'pending':form.get('value')?.pending && status ==='pending'
+            }">{{status}}</li>
+          </ul>
+        
+          <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
+            <p class="validation"> <span>VALIDATION</span>
+              Min Length : {{form.get('validationTypes')?.value.minLength}} </p>
+          </ng-container>
+          <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
+            <p class="validation"><span>VALIDATION</span> Max Length : {{form.get('validationTypes')?.value.maxLength}}</p>
+          </ng-container>
+          <ng-container *ngIf="form.get('validationTypes')?.value.required"> 
+            <p class="validation"><span>VALIDATION</span> Required </p>
+          </ng-container>
+          <p> STATUS: {{form.get('value')?.status | json}}</p>
+        </div>
+      </li>
+    </ul>
+
+    
+    <div class="button-container">
+      <button class="mark-btn" (click)="markAllAsTouched()">markAllAsTouched</button>
+      <button class="disable-btn" (click)="disableForm()">disable</button>
+      <button class="enable-btn" (click)="enableForm()">enable</button>
+    </div>
+  </div>
+
+
+</div>
+<!-- 
   <p>Create Form and Test</p>
   <div class="form">
     <div class="form-container">
@@ -78,10 +189,5 @@
   </div>
 
 
-  <div class="button-container">
-    <button class="mark-btn" (click)="markAllAsTouched()">markAllAsTouched</button>
-    <button class="disable-btn" (click)="disableForm()">disable</button>
-    <button class="enable-btn" (click)="enableForm()">enable</button>
-  </div>
 
-</div>
+</div> -->

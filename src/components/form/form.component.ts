@@ -12,6 +12,7 @@ export class FormComponent {
     isChecked: true,
     isInput: true,
     isCheckBox: false,
+    isRadio: false,
     name:[null, Validators.required]
   });
 
