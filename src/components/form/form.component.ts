@@ -68,6 +68,10 @@ export class FormComponent {
     
     this.forms.push(form);
   }
+
+  deleteForm(index:number) {
+    this.forms.removeAt(index);
+  }
   
   setFormType(event:Event) {
     const target = event.target as HTMLInputElement;

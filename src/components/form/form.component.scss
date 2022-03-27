@@ -104,13 +104,28 @@
     }
 
     .form-info {
-      border: 1px solid #c2c1c1;
+      position: relative;
       padding: 20px;
       margin: 0 0 20px;
+      border: 1px solid #c2c1c1;
     
+      .delete-btn {
+        position: absolute;
+        right: 26px;
+        top: 24px;
+        font-size: 20px;
+        color: red;
+        opacity: 0.5;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+      }
       .form-box {
-        border: 1px solid #c2c1c1;
         padding: 20px;
+        border: 1px solid #c2c1c1;
 
         label {
           margin: 0 10px 0 0;

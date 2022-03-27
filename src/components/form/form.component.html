@@ -67,6 +67,7 @@
 
   <ul class="test-form">
     <li class="form-info" *ngFor="let form of forms.controls; let index=index;">
+      <div class="delete-btn" (click)="deleteForm(index)"><i class="far fa-times-circle"></i></div>
       <div class="form-box" *ngIf="form.get('type')?.value === 'checkbox'" [formGroup]="getFormGroup(form)">
         <input id="example-{{index}}" type="checkbox">
         <label class="cbx" for="example">{{form.get('name')?.value}}</label>
