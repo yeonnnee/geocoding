@@ -39,14 +39,14 @@
           <label class="cbx" for="required">Required</label>
         </li>
         <li class="option">
-          <label class="cbx" for="min-length"></label>
-          <label for="min-length">Min Length</label>
-          <input type="text" id="min-length" formControlName="minLength">
+          <input type="checkbox" id="min-length" [checked]="validation.get('minLength')?.value">
+          <label class="cbx" for="min-length">Min Length</label>
+          <input type="text" formControlName="minLength">
         </li>
         <li class="option">
-          <label class="cbx" for="max-length"></label>
-          <label for="max-length">Max Length</label>
-          <input type="text" id="max-length" formControlName="maxLength">
+          <input type="checkbox" id="max-length" [checked]="validation.get('maxLength')?.value">
+          <label class="cbx" for="max-length">Max Length</label>
+          <input type="text" formControlName="maxLength">
         </li>
       </ul>
     </div>
