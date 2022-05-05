@@ -10,6 +10,11 @@ import { map } from 'rxjs/operators';
 export class NavComponent implements OnInit {
   userNm = 'Lemon'
   isLoggedIn$: Observable<boolean>;
+  navMenus: NavigationMenu[] = [{
+    title: 'Reactive-Forms',
+    icon: 'far fa-file-alt',
+    routerLink: '/reactive-forms',
+  }]
 
   constructor(private authService: AuthService) {
     this.isLoggedIn$ = new Observable;
@@ -23,4 +28,11 @@ export class NavComponent implements OnInit {
     this.authService.logout();
   }
 
+}
+
+interface NavigationMenu {
+  title: string,
+  icon: string,
+  routerLink: string,
+  // linkActive: boolean
 }

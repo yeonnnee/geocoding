@@ -1,48 +1,28 @@
-<nav *ngIf="isLoggedIn$ | async">
+<!-- <nav *ngIf="isLoggedIn$ | async"> -->
+<nav>
+  <div class="logo">
+    <div class="logo-title">Lemonade</div>
+  </div>
   <ul>
-    <li class="logo"> Lemonade </li>
-    <li> 
-      <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true}" routerLinkActive="active">
-        <i class="fas fa-home"></i>
-        <!-- <span>HOME</span> -->
+    <li *ngFor="let menu of navMenus; let navIdx=index;">
+      <!-- routerLinkActive 디렉티브를 통해서 route 활성화 여부를 체크하여 클래스를 세팅해 줄 수 있다. -->
+      <!-- To add the classes only when the URL matches the link exactly, add the option exact: true: -->
+      <a routerLink="{{menu.routerLink}}" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+        <i class="{{menu.icon}}"></i>
+        <span>{{menu.title}}</span>
       </a>
-    </li>
-    <li>
-      <a routerLink="/menu1" [routerLinkActiveOptions]="{ exact: true}"  routerLinkActive="active">
-        <i class="fas fa-archive"></i>
-        <!-- <span>MENU1</span> -->
-      </a>
-    </li>
-    <li>
-      <a routerLink="/menu2" [routerLinkActiveOptions]="{ exact: true}"  routerLinkActive="active">
-        <i class="far fa-address-book"></i>
-        <!-- <span>MENU2</span> -->
-      </a>
-    </li>
-    <li> 
-      <a routerLink="/menu3" [routerLinkActiveOptions]="{ exact: true}"  routerLinkActive="active">
-        <i class="far fa-bookmark"></i>
-        <!-- <span>MENU3</span> -->
-      </a>
-    </li>
-    <li> 
-      <a routerLink="/menu4" [routerLinkActiveOptions]="{ exact: true}"  routerLinkActive="active">
-        <i class="fab fa-angular"></i>
-        <!-- <span>MENU4</span> -->
-      </a>
-    </li>
-    <li> 
-      <a routerLink="/menu5" [routerLinkActiveOptions]="{ exact: true}"  routerLinkActive="active">
-        <i class="far fa-check-square"></i>
-        <!-- <span>MENU5</span> -->
-      </a>
-    </li>
-    <li class="user"> 
-      <!-- <i class="fas fa-user-circle"></i>
-      <span>{{userNm}}</span> -->
-      <a (click)="onLogout()">
-        <i class="fas fa-sign-out-alt"></i>
-      </a>
+
+      <!-- class를 여려개 세팅해 줄 수도 있다. -->
+
+      <!-- <a routerLink="{{menu.routerLink}}" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active class2">
+        <i class="{{menu.icon}}"></i>
+        <span>{{menu.title}}</span>
+      </a> -->
+
+      <!-- <a routerLink="{{menu.routerLink}}" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active', 'class2']">
+        <i class="{{menu.icon}}"></i>
+        <span>{{menu.title}}</span>
+      </a> -->
     </li>
   </ul>
 </nav>
