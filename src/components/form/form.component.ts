@@ -7,7 +7,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
-  statusList: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
+  statusItems: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
 
   createFormInfo: FormGroup = new FormGroup({});
   generatedForms: FormGroup = new FormGroup({});
@@ -40,7 +40,8 @@ export class FormComponent {
 
   // TODO: 입력한 양식대로 form 생성
   createForm() {
-     
+    const forms = this.generatedForms.get('forms') as FormArray;
+    forms.push(this.createFormInfo);
   }
 
   // TODO: 생성한 모든 폼 touched 상태로
@@ -59,7 +60,7 @@ export class FormComponent {
   }
 
   // Form 삭제
-  deleteForm() {
+  deleteForm(formIdx: number) {
 
   }
 }
