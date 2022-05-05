@@ -8,99 +8,58 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 })
 export class FormComponent {
   statusList: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
-  formType: FormGroup = this.formBuilder.group({
-    type: 'input',
-    name:[null, Validators.required]
-  });
 
-  checked: boolean = true;
+  createFormInfo: FormGroup = new FormGroup({});
+  generatedForms: FormGroup = new FormGroup({});
 
-  validation: FormGroup = this.formBuilder.group({
-    minLength: null,
-    maxLength: null,
-    required: false
-  });
+  constructor() {
+    this.createFormInfo = new FormGroup({
+      formTitle: new FormControl(null),
+      formType: new FormControl('input'),
+      formInfoByType: new FormGroup({
+        labelName: new FormControl(null),
+        placeHolder: new FormControl(null),
+        defaultValueTxt: new FormControl(null),
+        isChecked: new FormControl(false),
+        validation: new FormGroup({
+          isRequired: new FormControl(false),
+          isEditable: new FormControl(true),
+          minLength: new FormControl(null),
+          maxLength: new FormControl(null)
+        })
+      })
+    });
 
-  forms: FormArray = new FormArray([]); 
-
-  constructor(private formBuilder: FormBuilder) {
-    
+    this.generatedForms = new FormGroup({
+      forms: new FormArray([])
+    });
    }
 
 
-  getFormGroup(abstractControl: AbstractControl):FormGroup {
-    return abstractControl as FormGroup;
-  }
-  
+
+
+  // TODO: 입력한 양식대로 form 생성
   createForm() {
-    this.formType.markAllAsTouched();
-
-    if (this.formType.invalid) return;
-  
-    this.create();
+     
   }
 
-  create() {
-    const type = this.formType.get('type')?.value;
-    const minLengthVali = this.validation.get('minLength')?.value;
-    const maxLengthVali = this.validation.get('maxLength')?.value;
-    const requiredVali = this.validation.get('required')?.value;
-
-    const form: FormGroup = this.formBuilder.group({
-      value: null,
-      type: type,
-      name: this.formType.get('name')?.value,
-      status: this.formBuilder.array([]),
-      validationTypes: this.validation.value
-    });
-
-    if (minLengthVali) {
-      form.get('value')?.setValidators(Validators.minLength(+minLengthVali));
-    }
-
-    if (maxLengthVali) {
-      form.get('value')?.setValidators(Validators.maxLength(+maxLengthVali));
-    }
-
-    if (requiredVali) {
-      form.get('value')?.setValidators(Validators.required);
-    }
-    
-    this.forms.push(form);
-  }
-
-  deleteForm(index:number) {
-    this.forms.removeAt(index);
-  }
-  
-  setFormType(event:Event) {
-    const target = event.target as HTMLInputElement;
-    const value = target.getAttribute('for');
-    
-    this.formType.get('type')?.setValue(value);
-  }
-
-  hasValidationForm(form: AbstractControl) {
-    const minLengthVali = form.get('validationTypes')?.value.minLength;
-    const maxLengthVali = form.get('validationTypes')?.value.maxLength;
-    const requiredVali = form.get('validationTypes')?.value.required;
-
-    if (minLengthVali || maxLengthVali || requiredVali) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
+  // TODO: 생성한 모든 폼 touched 상태로
   markAllAsTouched() {
-    this.forms.markAllAsTouched();
+
   }
 
+  // TODO: 생성한 모든 폼 disable 상태로
   disableForm() {
-    this.forms.disable();
+  
   }
+  // TODO: 생성한 모든 폼 enable 상태로
 
   enableForm() {
-    this.forms.enable();
+
+  }
+
+  // Form 삭제
+  deleteForm() {
+
   }
 }

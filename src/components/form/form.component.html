@@ -1,7 +1,7 @@
 <div class="reactive-form">
   <h1>Reactive Forms Status</h1>
 
-  <div class="generator-section">
+  <div class="generator-section" [formGroup]="createFormInfo">
     <div class="generator">
       <div class="generator-header">Create Form Elements</div>
 
@@ -11,7 +11,7 @@
         </div>
         <div class="section-contents">
           <label for="form-title">Title</label>
-          <input type="text" id="form-title"/>
+          <input type="text" id="form-title" formControlName="formTitle"/>
         </div>
       </div>
 
@@ -22,17 +22,17 @@
         <div class="section-contents">
           <ul>
             <li class="option">
-              <input type="checkbox" id="type-input">
+              <input type="checkbox" id="type-input" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'input'">
               <label class="cbx" for="type-input">Input</label>
             </li>
 
             <li class="option">
-              <input type="checkbox" id="type-checkBox">
+              <input type="checkbox" id="type-checkBox" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'checkbox'">
               <label class="cbx" for="type-checkBox">CheckBox</label>
             </li>
 
             <li class="option">
-              <input type="checkbox" id="type-radio">
+              <input type="checkbox" id="type-radio" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'radio'">
               <label class="cbx" for="type-radio">Radio</label>
             </li>
           </ul>
@@ -41,8 +41,8 @@
       </div>
 
 
-      
-      <div class="generator-content">
+    
+      <div class="generator-content" formGroupName="formInfoByType">
         <div class="section-header">
           <i class="far fa-check-square"></i>
           <span>CheckBox</span>
@@ -52,16 +52,16 @@
             <li>
               <span>*</span>
               <label for="label-text">Label</label>
-              <input type="text" id="label-text">
+              <input type="text" id="label-text" formControlName="labelName">
             </li>
 
             <li>
               <p>Default Value</p>
-              <input type="checkbox" id="checked-checkbox">
+              <input type="checkbox" id="checked-checkbox" formControlName="isChecked">
               <label class="cbx" for="checked-checkbox">checked</label>
             </li>
             <li>
-              <input type="checkbox" id="unChecked-checkbox">
+              <input type="checkbox" id="unChecked-checkbox" formControlName="isChecked">
               <label class="cbx" for="unChecked-checkbox">unChecked</label>
             </li>
           </ul>
@@ -82,7 +82,7 @@
         </div>
       </div>
 
-      <div class="generator-content">
+      <div class="generator-content" formGroupName="formInfoByType">
         <div class="section-header">
           <i class="fas fa-font"></i>
           <span>Input</span>
@@ -92,41 +92,41 @@
             <li>
               <span>*</span>
               <label for="label-text">Label</label>
-              <input type="text" id="label-text">
+              <input type="text" id="label-text" formControlName="labelName">
             </li>
 
             <li>
               <label for="label-text">Default Value</label>
-              <input type="text" id="label-text">
+              <input type="text" id="label-text" formControlName="defaultValueTxt">
             </li>
 
             <li>
               <label for="label-text">Place holder</label>
-              <input type="text" id="label-text">
+              <input type="text" id="label-text" formControlName="placeHolder">
             </li>
           </ul>
 
         </div>
-        <div class="input-validation-options">
+        <div class="input-validation-options" formGroupName="validation">
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required">
-              <label class="cbx" for="required">Required</label>
+              <input type="checkbox" id="required-input">
+              <label class="cbx" for="required-input">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only">
-              <label class="cbx" for="read-only">Read Only</label>
+              <input type="checkbox" id="read-only-input">
+              <label class="cbx" for="read-only-input">Read Only</label>
             </li>
             <li class="option length">
               <input type="checkbox" id="min-length">
               <label class="cbx" for="min-length">Min Length</label>
-              <input type="text" id="min-length">
+              <input type="text" id="min-length" formControlName="minLength">
             </li>
             <li class="option length">
               <input type="checkbox" id="max-length">
               <label class="cbx" for="max-length">Max Length</label>
-              <input type="text" id="max-length">
+              <input type="text" id="max-length" formControlName="maxLength">
             </li>
           </ul>
         </div>
@@ -194,7 +194,7 @@
     </div>
   </div>
 
-  <ul class="test-form">
+  <!-- <ul class="test-form">
     <li class="form-info" *ngFor="let form of forms.controls; let index=index;">
       <div class="delete-btn" (click)="deleteForm(index)"><i class="far fa-times-circle"></i></div>
       <div class="form-box" *ngIf="form.get('type')?.value === 'checkbox'" [formGroup]="getFormGroup(form)">
@@ -239,10 +239,10 @@
           </ng-container>
         </div>
         <!-- <p> STATUS: {{form.get('value')?.status | json}}</p> -->
-      </div>
+    <!-- </div>
     </li>
-  </ul>
-  
+  </ul> 
+   -->
 </div>
 
 
