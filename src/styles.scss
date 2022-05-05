@@ -114,14 +114,27 @@ input[type="checkbox"]:checked ~ .cbx {
   }
 }
 
+input[type="radio"]:checked ~ .cbx {
+  &::after {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    position: absolute;
+    left: -15px;
+    top: -3px;
+    font-size: 11px;
+    color: #963131;
+  }
+}
+
 .cbx {
   position: relative;
+  left: 20px;
   cursor: pointer;
 
   &::before {
     content: '';
     position: absolute;
-    left: -15px;
+    left: -17px;
     top: 2px;
     width: 9px;
     height: 9px;

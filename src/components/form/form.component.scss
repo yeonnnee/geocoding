@@ -1,27 +1,98 @@
 .reactive-form {
   padding: 20px;
-  margin: 0 18%;
+  margin: 0 220px;
+
   .generator-section {
     float: left;
 
     .generator {
-      box-shadow: 1px 6px 7px 0px #b1bac0;
+      // box-shadow: 1px 6px 7px 0px #b1bac0;
       .generator-header{
         padding: 10px;
         font-weight: bold;
-        border-radius: 10px 10px 0 0;
-        background-color: #788a96;
+        // border-radius: 10px 10px 0 0;
+        // background-color: #788a96;
       }
   
       .generator-content {
         border-bottom: 1px solid #ececec;
-  
-        p {
-          font-weight: bold;
-          background-color: #f1f1f1;
-          padding: 5px 10px;
-  
+        padding: 10px;
+        margin: 0 0 10px;
+        box-shadow: 3px 4px 10px #ececec, -3px -4px 10px #ececec;
+
+
+        .section-header {
+          padding: 10px 0;
+
+          border-bottom: 1px solid #ececec;
+
+          i{
+            margin: 0 10px 0 0;
+          }
         }
+
+        .section-contents {
+          padding: 10px 0;
+
+          label {
+            font-size: 12px;
+          }
+          span{
+            color: #c23616;
+          }
+          input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 5px;
+          }
+        }
+
+
+
+        .validation-options {
+          font-size: 13px;
+
+          p {
+            margin: 0 0 0 10px;
+            font-weight: bold;
+          }
+          ul {
+            display: flex;
+            justify-content: space-around;
+          }
+        }
+
+        .input-validation-options {
+          font-size: 12px;
+          ul {
+            li {
+              margin: 0 0 2px;
+              &.length {
+                display: flex;
+                justify-content: space-between;
+              }
+            }
+          }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        // p {
+        //   font-weight: bold;
+        //   background-color: #f1f1f1;
+        //   padding: 5px 10px;
+  
+        // }
         .options {
           display: flex;
           padding: 10px;
@@ -62,6 +133,7 @@
       box-shadow: 0px 2px 11px #bebdbd;
 
       p {
+        font-size: 13px;
         font-weight: bold;
       }
       button {
