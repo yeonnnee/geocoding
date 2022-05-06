@@ -23,11 +23,32 @@
 
         .section-header {
           padding: 10px 0;
-
           border-bottom: 1px solid #ececec;
 
           i{
             margin: 0 10px 0 0;
+          }
+
+          .circle {
+            position: relative;
+            display: inline-block;
+            top: 3px;
+            width: 16px;
+            height: 16px;
+            margin: 0 10px 0 0;
+            border-radius: 8px;
+            border: 1px solid #000;
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 2px;
+              left: 2px;
+              width: 10px;
+              height: 10px;
+              border-radius: 8px;
+              background-color: #92b2cf;
+            }
           }
         }
 
@@ -45,15 +66,27 @@
             width: 100%;
             padding: 5px;
           }
+
+          ul {
+            li {
+              &.default {
+                padding: 0 5px;
+                p {
+                  margin: 10px 0 5px;
+                  font-size: 13px;
+                }
+              }
+            }
+          }
         }
 
 
 
         .validation-options {
-          font-size: 13px;
+          font-size: 12px;
 
           p {
-            margin: 0 0 0 10px;
+            margin: 0 0 0 6px;
             font-weight: bold;
           }
           ul {
@@ -64,6 +97,10 @@
 
         .input-validation-options {
           font-size: 12px;
+
+          p {
+            font-weight: bold;
+          }
           ul {
             li {
               margin: 0 0 2px;
@@ -76,23 +113,6 @@
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        // p {
-        //   font-weight: bold;
-        //   background-color: #f1f1f1;
-        //   padding: 5px 10px;
-  
-        // }
         .options {
           display: flex;
           padding: 10px;
@@ -167,10 +187,8 @@
 
   
   .test-form {
-    float: right;
-    width: calc(100% - 340px);
-    margin: 0 0 0 10px;
-    padding: 0 20px 20px;
+    width: calc(100% - 164px);
+    margin: 57px 0 0 375px;
 
     .cbx {
       margin: 0 10px 0 0;
@@ -178,24 +196,37 @@
 
     .form-info {
       position: relative;
-      padding: 20px;
+      // padding: 20px;
       margin: 0 0 20px;
       border: 1px solid #c2c1c1;
-    
-      .delete-btn {
-        position: absolute;
-        right: 26px;
-        top: 24px;
-        font-size: 20px;
-        color: red;
-        opacity: 0.5;
-        cursor: pointer;
 
-        &:hover {
-          opacity: 1;
-          transition: all 0.3s ease;
+      .form-title {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background: #ececec;
+        margin: 0 0 13px;
+        font-size: 15px;
+        font-weight: bold;
+
+        .delete-btn {
+          color: #b84545;
+          cursor: pointer;
         }
       }
+
+      .input-case {
+        padding: 10px 19px;
+
+        label {
+          margin: 0 10px 0 0;
+        }
+        input[type="text"] {
+          width: 94%;
+          padding: 5px;
+        }
+      }
+
       .form-box {
         padding: 20px;
         border: 1px solid #c2c1c1;
@@ -207,10 +238,12 @@
     
       .status {
         margin: 10px 0;
+        padding: 0 20px;
   
         .title {
           margin: 10px 0 0;
           font-weight: bold;
+          font-size: 12px;
         }
   
         ul {
