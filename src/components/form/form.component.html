@@ -22,64 +22,25 @@
         <div class="section-contents">
           <ul>
             <li class="option">
-              <input type="radio" name="form-type" id="type-input" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'input'">
+              <input type="radio" id="type-input" [checked]="createFormInfo.get('formType')?.value === 'input'">
               <label class="cbx" for="type-input" (click)="selectFormTypeAsInput()">Input</label>
             </li>
 
             <li class="option">
-              <input type="radio" name="form-type" id="type-checkBox" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'checkbox'">
+              <input type="radio" id="type-checkBox" [checked]="createFormInfo.get('formType')?.value === 'checkbox'">
               <label class="cbx" for="type-checkBox" (click)="selectFormTypeAsCheckBox()">CheckBox</label>
             </li>
 
             <li class="option">
-              <input type="radio" name="form-type" id="type-radio" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'radio'">
+              <input type="radio" id="type-radio" [checked]="createFormInfo.get('formType')?.value === 'radio'">
               <label class="cbx" for="type-radio" (click)="selectFormTypeAsRadio()">Radio</label>
             </li>
           </ul>
         </div>
       </div>
 
-      <div class="generator-content" formGroupName="formInfoByType">
-        <div class="section-header">
-          <i class="far fa-check-square"></i>
-          <span>CheckBox</span>
-        </div>
-        <div class="section-contents">
-          <ul>
-            <li>
-              <span>*</span>
-              <label for="label-text">Label</label>
-              <input type="text" id="label-text" formControlName="labelName">
-            </li>
-
-            <li>
-              <p>Default Value</p>
-              <input type="checkbox" id="checked-checkbox" formControlName="isChecked">
-              <label class="cbx" for="checked-checkbox">checked</label>
-            </li>
-            <li>
-              <input type="checkbox" id="unChecked-checkbox" formControlName="isChecked">
-              <label class="cbx" for="unChecked-checkbox">unChecked</label>
-            </li>
-          </ul>
-
-        </div>
-        <div class="validation-options">
-          <p>Validation Settings</p>
-          <ul>
-            <li class="option">
-              <input type="checkbox" id="required">
-              <label class="cbx" for="required">Required</label>
-            </li>
-            <li class="option">
-              <input type="checkbox" id="read-only">
-              <label class="cbx" for="read-only">Read Only</label>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="generator-content" formGroupName="formInfoByType">
+      <!-- Input -->
+      <div class="generator-content" formGroupName="formInfoByType" *ngIf="createFormInfo.get('formType')?.value === 'input'">
         <div class="section-header">
           <i class="fas fa-font"></i>
           <span>Input</span>
@@ -102,28 +63,113 @@
               <input type="text" id="label-text" formControlName="placeHolder">
             </li>
           </ul>
-
         </div>
         <div class="input-validation-options" formGroupName="validation">
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required-input">
-              <label class="cbx" for="required-input">Required</label>
+              <input type="checkbox" id="required-input" [checked]="validationFormGroup.get('isRequired')?.value">
+              <label class="cbx" for="required-input" (click)="checkRequired()">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only-input">
-              <label class="cbx" for="read-only-input">Read Only</label>
+              <input type="checkbox" id="read-only-input" [checked]="validationFormGroup.get('isReadOnly')?.value">
+              <label class="cbx" for="read-only-input" (click)="checkReadOnly()">Read Only</label>
             </li>
             <li class="option length">
-              <input type="checkbox" id="min-length">
+              <input type="checkbox" id="min-length" [checked]="validationFormGroup.get('minLength')?.value">
               <label class="cbx" for="min-length">Min Length</label>
               <input type="text" id="min-length" formControlName="minLength">
             </li>
             <li class="option length">
-              <input type="checkbox" id="max-length">
+              <input type="checkbox" id="max-length" [checked]="validationFormGroup.get('maxLength')?.value">
               <label class="cbx" for="max-length">Max Length</label>
               <input type="text" id="max-length" formControlName="maxLength">
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="generator-content" formGroupName="formInfoByType" *ngIf="createFormInfo.get('formType')?.value === 'checkbox'">
+        <div class="section-header">
+          <i class="far fa-check-square"></i>
+          <span>CheckBox</span>
+        </div>
+        <div class="section-contents">
+          <ul>
+            <li>
+              <span>*</span>
+              <label for="label-text">Label</label>
+              <input type="text" id="label-text" formControlName="labelName">
+            </li>
+
+            <li class="default">
+              <p>Default Value</p>
+              <div class="default-option">
+                <input type="radio" id="checked-radio" [checked]="formInfoByType.get('isChecked')?.value">
+                <label class="cbx" for="checked-radio">checked</label>
+              </div>
+              <div class="default-option">
+                <input type="radio" id="unChecked-radio" [checked]="!formInfoByType.get('isChecked')?.value">
+                <label class="cbx" for="unChecked-radio">unChecked</label>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+        <div class="validation-options">
+          <p>Validation Settings</p>
+          <ul>
+            <li class="option">
+              <input type="checkbox" id="required">
+              <label class="cbx" for="required">Required</label>
+            </li>
+            <li class="option">
+              <input type="checkbox" id="read-only">
+              <label class="cbx" for="read-only">Read Only</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Radio -->
+      <div class="generator-content" formGroupName="formInfoByType" *ngIf="createFormInfo.get('formType')?.value === 'radio'">
+        <div class="section-header">
+          <div class="circle"></div>
+          <span>Radio</span>
+        </div>
+        <div class="section-contents">
+          <ul>
+            <li>
+              <span>*</span>
+              <label for="label-text">Label</label>
+              <input type="text" id="label-text" formControlName="labelName">
+            </li>
+
+            <li class="default">
+              <p>Default Value</p>
+              <div class="default-option">
+                <input type="radio" id="checked-radio" [checked]="formInfoByType.get('isChecked')?.value">
+                <label class="cbx" for="checked-radio">checked</label>
+              </div>
+              <div class="default-option">
+                <input type="radio" id="unChecked-radio" [checked]="!formInfoByType.get('isChecked')?.value">
+                <label class="cbx" for="unChecked-radio">unChecked</label>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+        <div class="validation-options">
+          <p>Validation Settings</p>
+          <ul>
+            <li class="option">
+              <input type="checkbox" id="required">
+              <label class="cbx" for="required">Required</label>
+            </li>
+            <li class="option">
+              <input type="checkbox" id="read-only">
+              <label class="cbx" for="read-only">Read Only</label>
             </li>
           </ul>
         </div>
@@ -142,42 +188,57 @@
     </div>
   </div>
 
-  <ul class="test-form" [formGroup]="generatedForms">
-    <li class="form-info" *ngFor="let form of generatedForms.get('forms')?.value; let formIdx=index" formArrayName="forms">
-     
-      <div class="delete-btn" (click)="deleteForm(formIdx)"><i class="far fa-times-circle"></i></div>
-      
+  <div class="form-list" [formGroup]="generatedForms">
+    <ul class="test-form" formArrayName="forms">
+      <li class="form-info" *ngFor="let form of forms.controls; let formIdx=index" >
+       
+ 
+        <ng-container >
+          <div class="form-title">
+            {{form.get('formTitle')?.value}}
+            <div class="delete-btn" (click)="deleteForm(formIdx)"><i class="far fa-times-circle"></i></div>
+          </div>
+  
+          <div class="input-case">
+            <label for="test-input">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
+            <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" [value]="form.get('formInfoByType')?.get('defaultValueTxt')?.value">
+          </div>
+       
+  
+          <div class="status">
+            <p class="title">STAUTS</p>
+            <ul>
+              <li *ngFor="let status of statusItems" 
+              [ngClass]="{
+                'valid':form.get('formInfoByType')?.get('valueTxt')?.valid && status ==='valid', 
+                'invalid':form.get('formInfoByType')?.get('valueTxt')?.invalid && status ==='invalid',
+                'touched':form.get('formInfoByType')?.get('valueTxt')?.touched && status ==='touched',
+                'dirty':form.get('formInfoByType')?.get('valueTxt')?.dirty && status ==='dirty',
+                'pristine':form.get('formInfoByType')?.get('valueTxt')?.pristine && status ==='pristine',
+                'pending':form.get('formInfoByType')?.get('valueTxt')?.pending && status ==='pending'
+              }">{{status}}</li>
+            </ul>
+          
+            <div class="validation-info">
+              <p class="title">VALIDATION</p>
+              <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('minLength')?.value"> 
+                <p> Min Length : {{form.get('formInfoByType')?.get('validation')?.get('minLength')?.value}} </p>
+              </ng-container>
+              <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value"> 
+                <p> Max Length : {{form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value}}</p>
+              </ng-container>
+              <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('isRequired')?.value"> 
+                <p>Required</p>
+              </ng-container>
+            </div>
 
-      <div class="status">
-        <p class="title">STAUTS</p>
-        <ul>
-          <li *ngFor="let status of statusItems" 
-          [ngClass]="{
-            'valid':form.get('value')?.valid && status ==='valid', 
-            'invalid':form.get('value')?.invalid && status ==='invalid',
-            'touched':form.get('value')?.touched && status ==='touched',
-            'dirty':form.get('value')?.dirty && status ==='dirty',
-            'pristine':form.get('value')?.pristine && status ==='pristine',
-            'pending':form.get('value')?.pending && status ==='pending'
-          }">{{status}}</li>
-        </ul>
-      
-        <div class="validation-info">
-          <p class="title">VALIDATION</p>
-          <ng-container *ngIf="form.get('validationTypes')?.value.minLength"> 
-            <p> Min Length : {{form.get('validationTypes')?.value.minLength}} </p>
-          </ng-container>
-          <ng-container *ngIf="form.get('validationTypes')?.value.maxLength"> 
-            <p> Max Length : {{form.get('validationTypes')?.value.maxLength}}</p>
-          </ng-container>
-          <ng-container *ngIf="form.get('validationTypes')?.value.required"> 
-            <p>Required</p>
-          </ng-container>
-        </div>
-        <p> STATUS: {{form.get('value')?.status | json}}</p>
-      </div>
-    </li>
-  </ul>
+          </div> 
+        </ng-container>
+     
+      </li>
+    </ul>
+  </div>
+
   
 </div>
 
