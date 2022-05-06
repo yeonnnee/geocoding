@@ -2,7 +2,7 @@
 import {Directive, ElementRef, Output, EventEmitter, HostListener} from '@angular/core';
 
 @Directive({
-  selector: '[clickOutside]'
+  selector: '[closeOverlay]'
 })
 export class CloseOverlayDirective {
   constructor(private _elementRef : ElementRef) {

@@ -33,10 +33,20 @@ export class FormComponent {
     this.generatedForms = new FormGroup({
       forms: new FormArray([])
     });
-   }
+  }
 
 
+  selectFormTypeAsInput() {
+    this.createFormInfo.get('formType')?.setValue('input');
+  }
 
+  selectFormTypeAsCheckBox() {
+    this.createFormInfo.get('formType')?.setValue('checkbox');
+  }
+
+  selectFormTypeAsRadio() {
+    this.createFormInfo.get('formType')?.setValue('radio');
+  }
 
   // TODO: 입력한 양식대로 form 생성
   createForm() {

@@ -22,26 +22,23 @@
         <div class="section-contents">
           <ul>
             <li class="option">
-              <input type="checkbox" id="type-input" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'input'">
-              <label class="cbx" for="type-input">Input</label>
+              <input type="radio" name="form-type" id="type-input" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'input'">
+              <label class="cbx" for="type-input" (click)="selectFormTypeAsInput()">Input</label>
             </li>
 
             <li class="option">
-              <input type="checkbox" id="type-checkBox" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'checkbox'">
-              <label class="cbx" for="type-checkBox">CheckBox</label>
+              <input type="radio" name="form-type" id="type-checkBox" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'checkbox'">
+              <label class="cbx" for="type-checkBox" (click)="selectFormTypeAsCheckBox()">CheckBox</label>
             </li>
 
             <li class="option">
-              <input type="checkbox" id="type-radio" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'radio'">
-              <label class="cbx" for="type-radio">Radio</label>
+              <input type="radio" name="form-type" id="type-radio" formControlName="formType" [checked]="createFormInfo.get('formType')?.value === 'radio'">
+              <label class="cbx" for="type-radio" (click)="selectFormTypeAsRadio()">Radio</label>
             </li>
           </ul>
         </div>
-
       </div>
 
-
-    
       <div class="generator-content" formGroupName="formInfoByType">
         <div class="section-header">
           <i class="far fa-check-square"></i>
