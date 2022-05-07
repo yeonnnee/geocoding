@@ -191,55 +191,54 @@
   <div class="form-list" [formGroup]="generatedForms">
     <ul class="test-form" formArrayName="forms">
       <li class="form-info" *ngFor="let form of forms.controls; let formIdx=index" >
-       
- 
-        <ng-container >
-          <div class="form-title">
-            {{form.get('formTitle')?.value}}
-            <div class="delete-btn" (click)="deleteForm(formIdx)"><i class="far fa-times-circle"></i></div>
-          </div>
-  
-          <div class="input-case">
-            <label for="test-input">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
-            <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" [value]="form.get('formInfoByType')?.get('defaultValueTxt')?.value">
-          </div>
-       
-  
-          <div class="status">
-            <p class="title">STAUTS</p>
-            <ul>
-              <li *ngFor="let status of statusItems" 
-              [ngClass]="{
-                'valid':form.get('formInfoByType')?.get('valueTxt')?.valid && status ==='valid', 
-                'invalid':form.get('formInfoByType')?.get('valueTxt')?.invalid && status ==='invalid',
-                'touched':form.get('formInfoByType')?.get('valueTxt')?.touched && status ==='touched',
-                'dirty':form.get('formInfoByType')?.get('valueTxt')?.dirty && status ==='dirty',
-                'pristine':form.get('formInfoByType')?.get('valueTxt')?.pristine && status ==='pristine',
-                'pending':form.get('formInfoByType')?.get('valueTxt')?.pending && status ==='pending'
-              }">{{status}}</li>
-            </ul>
-          
-            <div class="validation-info">
-              <p class="title">VALIDATION</p>
-              <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('minLength')?.value"> 
-                <p> Min Length : {{form.get('formInfoByType')?.get('validation')?.get('minLength')?.value}} </p>
-              </ng-container>
-              <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value"> 
-                <p> Max Length : {{form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value}}</p>
-              </ng-container>
-              <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('isRequired')?.value"> 
-                <p>Required</p>
-              </ng-container>
-            </div>
+        <div class="form-title">
+          {{form.get('formTitle')?.value}}
+          <div class="delete-btn" (click)="deleteForm(formIdx)"><i class="far fa-times-circle"></i></div>
+        </div>
 
-          </div> 
-        </ng-container>
-     
+        <div class="form-content">
+          <div class="form-case">
+            <div class="input-case">
+              <label for="test-input">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
+              <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" [value]="form.get('formInfoByType')?.get('defaultValueTxt')?.value">
+            </div>
+  
+  
+            <div class="status">
+              <p class="title">STAUTS</p>
+              <ul>
+                <li *ngFor="let status of statusItems" 
+                [ngClass]="{
+                  'valid':form.get('formInfoByType')?.get('valueTxt')?.valid && status ==='valid', 
+                  'invalid':form.get('formInfoByType')?.get('valueTxt')?.invalid && status ==='invalid',
+                  'touched':form.get('formInfoByType')?.get('valueTxt')?.touched && status ==='touched',
+                  'dirty':form.get('formInfoByType')?.get('valueTxt')?.dirty && status ==='dirty',
+                  'pristine':form.get('formInfoByType')?.get('valueTxt')?.pristine && status ==='pristine',
+                  'pending':form.get('formInfoByType')?.get('valueTxt')?.pending && status ==='pending'
+                }">{{status}}</li>
+              </ul>
+            </div> 
+          </div>
+  
+          
+  
+          <div class="validation-info">
+            <p class="title">VALIDATION</p>
+            <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('minLength')?.value"> 
+              <p> Min Length : {{form.get('formInfoByType')?.get('validation')?.get('minLength')?.value}} </p>
+            </ng-container>
+            <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value"> 
+              <p> Max Length : {{form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value}}</p>
+            </ng-container>
+            <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('isRequired')?.value"> 
+              <p>Required</p>
+            </ng-container>
+          </div>
+        </div>
+        
       </li>
     </ul>
   </div>
-
-  
 </div>
 
 

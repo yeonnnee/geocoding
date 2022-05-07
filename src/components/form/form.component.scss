@@ -203,9 +203,8 @@
       .form-title {
         display: flex;
         justify-content: space-between;
-        padding: 10px 20px;
+        padding: 5px 9px;
         background: #ececec;
-        margin: 0 0 13px;
         font-size: 15px;
         font-weight: bold;
 
@@ -215,83 +214,91 @@
         }
       }
 
-      .input-case {
-        padding: 10px 19px;
 
-        label {
-          margin: 0 10px 0 0;
-        }
-        input[type="text"] {
-          width: 94%;
-          padding: 5px;
-        }
-      }
+      .form-content {
+        display: flex;
 
-      .form-box {
-        padding: 20px;
-        border: 1px solid #c2c1c1;
+        .validation-info {
+          border-left: 1px solid #ececec;
+          padding: 10px;
 
-        label {
-          margin: 0 10px 0 0;
+          .title {
+            font-weight: bold;
+            font-size: 12px;
+          }
         }
-      }
+
+        .form-case {
+          .input-case {
+            padding: 10px 19px;
     
-      .status {
-        margin: 10px 0;
-        padding: 0 20px;
-  
-        .title {
-          margin: 10px 0 0;
-          font-weight: bold;
-          font-size: 12px;
-        }
-  
-        ul {
-          display: flex;
-    
-          li {
-            margin: 0 10px 0 0;
-            width: 100px;
-            padding: 3px 0;
-            text-align: center;
-            border: 1px solid #000;
-            border-radius: 5px;
-            cursor: default;
-            opacity: 0.2;
-  
-            &.valid {
-              box-shadow: inset -1px -1px 3px #92b2cf;
-              opacity: 1;
-  
+            label {
+              margin: 0 10px 0 0;
             }
-            &.invalid{
-              border: 1px solid #b84545;
-              box-shadow: inset -1px -1px 3px #95767b;
-              opacity: 1;
-  
+            input[type="text"] {
+              width: 94%;
+              padding: 5px;
             }
-            &.touched{
-              border: 1px solid #dab550;
-              box-shadow: inset -1px -1px 3px #cad962;
-              opacity: 1;
-  
+          }
+
+          .status {
+            margin: 10px 0;
+            padding: 0 20px;
+      
+            .title {
+              margin: 10px 0 0;
+              font-weight: bold;
+              font-size: 12px;
             }
-            &.dirty{
-              border: 1px solid #93629c;
-              box-shadow: inset -1px -1px 3px #aa89b1;
-              opacity: 1;
-  
-            }
-            &.pristine{
-              border: 1px solid #db6b8d;
-              box-shadow: inset -1px -1px 3px #cc98b5;
-              opacity: 1;
-  
-            }
-            &.pending {
-              border: 1px solid #2a7c6a;
-              box-shadow: inset -1px -1px 3px #566671;
-              opacity: 1;
+
+            ul {
+              display: flex;
+        
+              li {
+                margin: 0 10px 0 0;
+                width: 90px;
+                padding: 3px 0;
+                text-align: center;
+                border: 1px solid #000;
+                border-radius: 5px;
+                cursor: default;
+                opacity: 0.2;
+      
+                &.valid {
+                  box-shadow: inset -1px -1px 3px #92b2cf;
+                  opacity: 1;
+      
+                }
+                &.invalid{
+                  border: 1px solid #b84545;
+                  box-shadow: inset -1px -1px 3px #95767b;
+                  opacity: 1;
+      
+                }
+                &.touched{
+                  border: 1px solid #dab550;
+                  box-shadow: inset -1px -1px 3px #cad962;
+                  opacity: 1;
+      
+                }
+                &.dirty{
+                  border: 1px solid #93629c;
+                  box-shadow: inset -1px -1px 3px #aa89b1;
+                  opacity: 1;
+      
+                }
+                &.pristine{
+                  border: 1px solid #db6b8d;
+                  box-shadow: inset -1px -1px 3px #cc98b5;
+                  opacity: 1;
+      
+                }
+                &.pending {
+                  border: 1px solid #2a7c6a;
+                  box-shadow: inset -1px -1px 3px #566671;
+                  opacity: 1;
+                }
+              }
             }
           }
         }
