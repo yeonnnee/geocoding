@@ -229,6 +229,9 @@
         }
 
         .form-case {
+          .test {
+            border-bottom: 1px solid #ececec;
+          }
           .input-case {
             padding: 10px 19px;
     
@@ -239,6 +242,11 @@
               width: 94%;
               padding: 5px;
             }
+          }
+
+          .checkbox-case, .radio-case {
+            padding: 10px 0 0;
+            text-align: center;
           }
 
           .status {

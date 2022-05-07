@@ -198,9 +198,20 @@
 
         <div class="form-content">
           <div class="form-case">
-            <div class="input-case">
+
+            <div class="input-case test">
               <label for="test-input">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
               <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" [value]="form.get('formInfoByType')?.get('defaultValueTxt')?.value">
+            </div>
+
+            <div class="checkbox-case test">
+              <input type="checkbox" id="test-checkbox">
+              <label class="cbx" for="test-checkbox">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
+            </div>
+
+            <div class="radio-case test">
+              <input type="radio" id="test-radio">
+              <label class="cbx" for="test-radio">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
             </div>
   
   
