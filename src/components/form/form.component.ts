@@ -12,7 +12,11 @@ export class FormComponent {
   createFormInfo: FormGroup = new FormGroup({});
   generatedForms: FormGroup = new FormGroup({forms: new FormArray([])});
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
+    this.buildForm();
+  }
+
+  buildForm() {
     this.createFormInfo = new FormGroup({
       formTitle: new FormControl(null),
       formType: new FormControl('input'),
@@ -31,7 +35,6 @@ export class FormComponent {
       })
     });
   }
-
 
   get forms() {
     return this.generatedForms.get('forms') as FormArray;
@@ -82,9 +85,10 @@ export class FormComponent {
 
   // TODO: 입력한 양식대로 form 생성
   createForm() {
+    const form = this.createFormInfo;
     const forms = this.generatedForms.get('forms') as FormArray;
-    forms.push(this.createFormInfo);
-    console.log(forms.controls[0].get('formTitle'))
+    forms.push(form);
+    this.buildForm();
   }
 
   // TODO: 생성한 모든 폼 touched 상태로

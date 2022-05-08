@@ -1,7 +1,7 @@
-<div class="reactive-form">
+<div class="reactive-form" [formGroup]="createFormInfo">
   <h1>Reactive Forms Status</h1>
 
-  <div class="generator-section" [formGroup]="createFormInfo">
+  <div class="generator-section" >
     <div class="generator">
       <div class="generator-header">Create Form Elements</div>
 
@@ -188,28 +188,29 @@
     </div>
   </div>
 
+  <!-- 리스트 항목 -->
   <div class="form-list" [formGroup]="generatedForms">
     <ul class="test-form" formArrayName="forms">
       <li class="form-info" *ngFor="let form of forms.controls; let formIdx=index" >
-        <div class="form-title">
-          {{form.get('formTitle')?.value}}
+        <div class="form-title" [formGroupName]="formIdx">
+          {{ form.get('formTitle')?.value}}
           <div class="delete-btn" (click)="deleteForm(formIdx)"><i class="far fa-times-circle"></i></div>
         </div>
 
-        <div class="form-content">
+        <div class="form-content" [formGroupName]="formIdx">
           <div class="form-case">
 
-            <div class="input-case test">
+            <div class="input-case test" *ngIf="form.get('formType')?.value === 'input'">
               <label for="test-input">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
               <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" [value]="form.get('formInfoByType')?.get('defaultValueTxt')?.value">
             </div>
 
-            <div class="checkbox-case test">
+            <div class="checkbox-case test" *ngIf="form.get('formType')?.value === 'checkbox'">
               <input type="checkbox" id="test-checkbox">
               <label class="cbx" for="test-checkbox">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
             </div>
 
-            <div class="radio-case test">
+            <div class="radio-case test" *ngIf="form.get('formType')?.value === 'radio'">
               <input type="radio" id="test-radio">
               <label class="cbx" for="test-radio">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
             </div>
@@ -246,7 +247,6 @@
             </ng-container>
           </div>
         </div>
-        
       </li>
     </ul>
   </div>
