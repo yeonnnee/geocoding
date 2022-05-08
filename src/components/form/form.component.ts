@@ -72,8 +72,22 @@ export class FormComponent {
     target.checked = !target.checked;
   }
 
+  passValidation() {
+    if (!this.createFormInfo.get('formTitle')?.value) {
+      this.createFormInfo.get('formTitle')?.setErrors({ 'required': true });
+      return false;
+    }
+    if (!this.formInfoByType.get('labelName')?.value) {
+      this.formInfoByType.get('labelName')?.setErrors({ 'required': true });
+      return false;
+    }
+
+    return true;
+  }
+
   // TODO: 입력한 양식대로 form 생성
   createForm() {
+    if (!this.passValidation()) return;
     const form = this.createFormInfo;
     const forms = this.generatedForms.get('forms') as FormArray;
     forms.push(form);
