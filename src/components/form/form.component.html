@@ -10,6 +10,7 @@
           <span>Form Title</span>
         </div>
         <div class="section-contents">
+          <span>*</span>
           <label for="form-title">Title</label>
           <input type="text" id="form-title" formControlName="formTitle"/>
         </div>
@@ -68,11 +69,11 @@
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required-input" [checked]="validationFormGroup.get('isRequired')?.value">
+              <input type="checkbox" id="required-input" formControlName="isRequired">
               <label class="cbx" for="required-input" (click)="checkRequired()">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only-input" [checked]="validationFormGroup.get('isReadOnly')?.value">
+              <input type="checkbox" id="read-only-input" formControlName="isReadOnly">
               <label class="cbx" for="read-only-input" (click)="checkReadOnly()">Read Only</label>
             </li>
             <li class="option length">
@@ -117,16 +118,16 @@
           </ul>
 
         </div>
-        <div class="validation-options">
+        <div class="validation-options" formGroupName="validation">
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required">
-              <label class="cbx" for="required">Required</label>
+              <input type="checkbox" id="required" formControlName="isRequired">
+              <label class="cbx" for="required" (click)="checkRequired()">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only">
-              <label class="cbx" for="read-only">Read Only</label>
+              <input type="checkbox" id="read-only" formControlName="isReadOnly">
+              <label class="cbx" for="read-only" (click)="checkReadOnly()">Read Only</label>
             </li>
           </ul>
         </div>
@@ -160,16 +161,16 @@
           </ul>
 
         </div>
-        <div class="validation-options">
+        <div class="validation-options" formGroupName="validation">
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required">
-              <label class="cbx" for="required">Required</label>
+              <input type="checkbox" id="required" formControlName="isRequired">
+              <label class="cbx" for="required" (click)="checkRequired()">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only">
-              <label class="cbx" for="read-only">Read Only</label>
+              <input type="checkbox" id="read-only" formControlName="isReadOnly">
+              <label class="cbx" for="read-only" (click)="checkReadOnly()">Read Only</label>
             </li>
           </ul>
         </div>
@@ -198,18 +199,18 @@
         </div>
 
         <div class="form-content" [formGroupName]="formIdx">
-          <div class="form-case">
-
+          <div class="form-case" formGroupName="formInfoByType">
+            <!-- Input -->
             <div class="input-case test" *ngIf="form.get('formType')?.value === 'input'">
               <label for="test-input">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
-              <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" [value]="form.get('formInfoByType')?.get('defaultValueTxt')?.value">
+              <input type="text" id="test-input" placeholder="{{form.get('formInfoByType')?.get('placeHolder')?.value}}" formControlName="valueTxt">
             </div>
-
+            <!-- checkBox -->
             <div class="checkbox-case test" *ngIf="form.get('formType')?.value === 'checkbox'">
               <input type="checkbox" id="test-checkbox">
               <label class="cbx" for="test-checkbox">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
             </div>
-
+            <!-- Radio -->
             <div class="radio-case test" *ngIf="form.get('formType')?.value === 'radio'">
               <input type="radio" id="test-radio">
               <label class="cbx" for="test-radio">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
@@ -236,15 +237,24 @@
   
           <div class="validation-info">
             <p class="title">VALIDATION</p>
-            <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('minLength')?.value"> 
-              <p> Min Length : {{form.get('formInfoByType')?.get('validation')?.get('minLength')?.value}} </p>
-            </ng-container>
-            <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value"> 
-              <p> Max Length : {{form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value}}</p>
-            </ng-container>
-            <ng-container *ngIf="form.get('formInfoByType')?.get('validation')?.get('isRequired')?.value"> 
-              <p>Required</p>
-            </ng-container>
+            <ul>
+              <li *ngIf="form.get('formInfoByType')?.get('validation')?.get('isRequired')?.value">
+                <input type="checkbox" id="validation-required" disabled>
+                <label class="cbx" for="validation-required">Required</label>
+              </li>
+              <li *ngIf="form.get('formInfoByType')?.get('validation')?.get('isReadOnly')?.value"> 
+                <input type="checkbox" id="validation-readOnly" disabled>
+                <label class="cbx" for="validation-readOnly">Read Only</label>
+              </li>
+              <li *ngIf="form.get('formInfoByType')?.get('validation')?.get('minLength')?.value">
+                <input type="checkbox" id="validation-minLength" disabled>
+                <label class="cbx" for="validation-minLength"> Min Length : {{form.get('formInfoByType')?.get('validation')?.get('minLength')?.value}}</label>
+              </li>
+              <li *ngIf="form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value"> 
+                <input type="checkbox" id="validation-maxLength" disabled>
+                <label class="cbx" for="validation-maxLength"> Min Length : {{form.get('formInfoByType')?.get('validation')?.get('maxLength')?.value}}</label>
+              </li>
+            </ul>
           </div>
         </div>
       </li>

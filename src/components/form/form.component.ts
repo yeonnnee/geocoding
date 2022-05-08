@@ -62,25 +62,14 @@ export class FormComponent {
 
   checkRequired() {
     const target = document.getElementById('required-input') as HTMLInputElement;
-    console.log(target.checked)
-
-      this.validationFormGroup.get('isRequired')?.setValue(!target.checked);
-
-    console.log(this.validationFormGroup.get('isRequired')?.value);
+    this.validationFormGroup.get('isRequired')?.setValue(!target.checked);
+    target.checked = !target.checked;
   }
 
   checkReadOnly() {
     const target = document.getElementById('read-only-input') as HTMLInputElement;
-    console.log(target.checked)
-    if (target.checked) {
-      this.validationFormGroup.get('isReadOnly')?.setValue(true);
-      target.checked = true;
-
-    } else {
-      this.validationFormGroup.get('isReadOnly')?.setValue(false);
-      target.checked = false;
-
-    }
+    this.validationFormGroup.get('isReadOnly')?.setValue(!target.checked);
+    target.checked = !target.checked;
   }
 
   // TODO: 입력한 양식대로 form 생성
