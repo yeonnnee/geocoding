@@ -203,17 +203,33 @@
       .form-title {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 5px 9px;
         background: #ececec;
-        font-size: 15px;
-        font-weight: bold;
-
-        .delete-btn {
-          color: #b84545;
-          cursor: pointer;
+        p {
+          margin: 0;
+          font-size: 15px;
+          font-weight: bold;
+        }
+        .buttons {
+          .btn {
+            border-radius: 5px;
+            font-size: 12px;
+            color: #eee;      
+            cursor: pointer;
+          
+            &.delete-btn {
+              padding: 6px 9px;
+              background-color: #b84545;
+            }
+            &.edit-btn {
+              margin: 0 10px 0 0;
+              padding: 6px 17px;
+              background-color: #dab550;
+            }
+          }
         }
       }
-
 
       .form-content {
         display: flex;

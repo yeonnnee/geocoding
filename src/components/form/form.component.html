@@ -194,8 +194,12 @@
     <ul class="test-form" formArrayName="forms">
       <li class="form-info" *ngFor="let form of forms.controls; let formIdx=index" >
         <div class="form-title" [formGroupName]="formIdx">
-          {{ form.get('formTitle')?.value}}
-          <div class="delete-btn" (click)="deleteForm(formIdx)"><i class="far fa-times-circle"></i></div>
+          <p>{{ form.get('formTitle')?.value}}</p>
+
+          <div class="buttons">
+            <button class="edit-btn btn" (click)="deleteForm(formIdx)">Edit</button>
+            <button class="delete-btn btn" (click)="deleteForm(formIdx)">Delete</button>
+          </div>
         </div>
 
         <div class="form-content" [formGroupName]="formIdx">

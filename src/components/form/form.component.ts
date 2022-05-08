@@ -111,6 +111,6 @@ export class FormComponent {
 
   // Form 삭제
   deleteForm(formIdx: number) {
-
+    this.forms.removeAt(formIdx);
   }
 }
