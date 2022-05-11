@@ -279,49 +279,79 @@
               display: flex;
         
               li {
-                margin: 0 10px 0 0;
-                width: 90px;
-                padding: 3px 0;
-                text-align: center;
-                border: 1px solid #000;
-                border-radius: 5px;
-                cursor: default;
-                opacity: 0.2;
-      
-                &.valid {
-                  box-shadow: inset -1px -1px 3px #92b2cf;
-                  opacity: 1;
-      
+                .tooltip {
+                  position: absolute;
+                  top: 152px;
+                  background: rgba(0, 0, 0, 0.8);
+                  border-radius: 3px;
+                  padding: 3px 25px;
+                  color: white;
+                  visibility: hidden;
+
+                  &::after {
+                    content: '';
+                    position: absolute;
+                    top: -6px;
+                    left: 11%;
+                    width: 0; 
+                    height: 0;
+                    border-bottom: 6px solid rgba(0, 0, 0, 0.8);
+                    border-right: 6px solid transparent;
+                    border-left: 6px solid transparent;
+                  }
                 }
-                &.invalid{
-                  border: 1px solid #b84545;
-                  box-shadow: inset -1px -1px 3px #95767b;
-                  opacity: 1;
-      
+
+                &.hover .tooltip {
+                  visibility: visible;
                 }
-                &.touched{
-                  border: 1px solid #dab550;
-                  box-shadow: inset -1px -1px 3px #cad962;
-                  opacity: 1;
-      
+
+                .status-text {
+                  margin: 0 10px 0 0;
+                  width: 90px;
+                  padding: 3px 0;
+                  text-align: center;
+                  border: 1px solid #000;
+                  border-radius: 5px;
+                  cursor: default;
+                  opacity: 0.2;
+        
+
+                  &.valid {
+                    box-shadow: inset -1px -1px 3px #92b2cf;
+                    opacity: 1;
+        
+                  }
+                  &.invalid{
+                    border: 1px solid #b84545;
+                    box-shadow: inset -1px -1px 3px #95767b;
+                    opacity: 1;
+        
+                  }
+                  &.touched{
+                    border: 1px solid #dab550;
+                    box-shadow: inset -1px -1px 3px #cad962;
+                    opacity: 1;
+        
+                  }
+                  &.dirty{
+                    border: 1px solid #93629c;
+                    box-shadow: inset -1px -1px 3px #aa89b1;
+                    opacity: 1;
+        
+                  }
+                  &.pristine{
+                    border: 1px solid #db6b8d;
+                    box-shadow: inset -1px -1px 3px #cc98b5;
+                    opacity: 1;
+        
+                  }
+                  &.pending {
+                    border: 1px solid #2a7c6a;
+                    box-shadow: inset -1px -1px 3px #566671;
+                    opacity: 1;
+                  }
                 }
-                &.dirty{
-                  border: 1px solid #93629c;
-                  box-shadow: inset -1px -1px 3px #aa89b1;
-                  opacity: 1;
-      
-                }
-                &.pristine{
-                  border: 1px solid #db6b8d;
-                  box-shadow: inset -1px -1px 3px #cc98b5;
-                  opacity: 1;
-      
-                }
-                &.pending {
-                  border: 1px solid #2a7c6a;
-                  box-shadow: inset -1px -1px 3px #566671;
-                  opacity: 1;
-                }
+                
               }
             }
           }

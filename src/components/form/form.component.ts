@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormArrayName, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,7 +7,14 @@ import { AbstractControl, FormArray, FormArrayName, FormBuilder, FormControl, Fo
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
-  statusItems: string[] = ['valid', 'invalid', 'touched', 'dirty', 'pristine', 'pending'];
+  statusItems: {status: string, desc: string}[] = [
+    {status: 'valid', desc: '유효함'}, 
+    {status: 'invalid', desc:'유효하지 않음'}, 
+    {status: 'touched', desc:'유저에 의해 건드려짐'}, // 
+    {status: 'dirty', desc:'유저에 의해 Input이 수정됨'},  // input field is modified by the user  
+    {status: 'pristine', desc:'Input이 수정되었으나, 유저는 건드리지 않음'}, // input field is modified, the field is untouched by the user
+    {status: 'pending', desc:'Async Validation'}, 
+  ];
 
   createFormInfo: FormGroup = new FormGroup({});
   generatedForms: FormGroup = new FormGroup({forms: new FormArray([])});
@@ -15,6 +22,13 @@ export class FormComponent {
   constructor(private fb: FormBuilder) {
     this.buildForm();
   }
+
+  // @ViewChild('button') button!: ElementRef;
+  // clicks$:Observable<Event> = fromEvent(this.button?.nativeElement, 'click')
+  
+  // ngOnInit() {
+  //   this.clicks$?.subscribe(x =>  console.log('!clicnekd'));
+  // }
 
   buildForm() {
     this.createFormInfo = new FormGroup({
@@ -114,3 +128,5 @@ export class FormComponent {
     this.forms.removeAt(formIdx);
   }
 }
+
+

@@ -224,15 +224,19 @@
             <div class="status">
               <p class="title">STAUTS</p>
               <ul>
-                <li *ngFor="let status of statusItems" 
-                [ngClass]="{
-                  'valid':form.get('formInfoByType')?.get('valueTxt')?.valid && status ==='valid', 
-                  'invalid':form.get('formInfoByType')?.get('valueTxt')?.invalid && status ==='invalid',
-                  'touched':form.get('formInfoByType')?.get('valueTxt')?.touched && status ==='touched',
-                  'dirty':form.get('formInfoByType')?.get('valueTxt')?.dirty && status ==='dirty',
-                  'pristine':form.get('formInfoByType')?.get('valueTxt')?.pristine && status ==='pristine',
-                  'pending':form.get('formInfoByType')?.get('valueTxt')?.pending && status ==='pending'
-                }">{{status}}</li>
+                <li *ngFor="let status of statusItems">
+                  <div class="status-text" [ngClass]="{
+                    'valid':form.get('formInfoByType')?.get('valueTxt')?.valid && status.status ==='valid', 
+                    'invalid':form.get('formInfoByType')?.get('valueTxt')?.invalid && status.status ==='invalid',
+                    'touched':form.get('formInfoByType')?.get('valueTxt')?.touched && status.status ==='touched',
+                    'dirty':form.get('formInfoByType')?.get('valueTxt')?.dirty && status.status ==='dirty',
+                    'pristine':form.get('formInfoByType')?.get('valueTxt')?.pristine && status.status ==='pristine',
+                    'pending':form.get('formInfoByType')?.get('valueTxt')?.pending && status.status ==='pending'
+                  }">
+                    {{status.status}}
+                  </div>
+                  <div class="tooltip">{{status.desc}}</div>
+                </li>
               </ul>
             </div> 
           </div>
