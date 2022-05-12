@@ -107,12 +107,12 @@
             <li class="default">
               <p>Default Value</p>
               <div class="default-option">
-                <input type="radio" id="checked-radio" [checked]="formInfoByType.get('isChecked')?.value">
-                <label class="cbx" for="checked-radio">checked</label>
+                <input type="radio" id="checked-radio"  [checked]="formInfoByType.get('isChecked')?.value">
+                <label class="cbx" for="checked-radio" (click)="checkDefaultAsChecked()">checked</label>
               </div>
               <div class="default-option">
                 <input type="radio" id="unChecked-radio" [checked]="!formInfoByType.get('isChecked')?.value">
-                <label class="cbx" for="unChecked-radio">unChecked</label>
+                <label class="cbx" for="unChecked-radio" (click)="checkDefaultAsUnChecked()">unChecked</label>
               </div>
             </li>
           </ul>
@@ -122,12 +122,12 @@
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required" formControlName="isRequired">
-              <label class="cbx" for="required" (click)="checkRequired()">Required</label>
+              <input type="checkbox" id="required-input" formControlName="isRequired">
+              <label class="cbx" for="required-input" (click)="checkRequired()">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only" formControlName="isReadOnly">
-              <label class="cbx" for="read-only" (click)="checkReadOnly()">Read Only</label>
+              <input type="checkbox" id="read-only-input" formControlName="isReadOnly">
+              <label class="cbx" for="read-only-input" (click)="checkReadOnly()">Read Only</label>
             </li>
           </ul>
         </div>
@@ -151,11 +151,11 @@
               <p>Default Value</p>
               <div class="default-option">
                 <input type="radio" id="checked-radio" [checked]="formInfoByType.get('isChecked')?.value">
-                <label class="cbx" for="checked-radio">checked</label>
+                <label class="cbx" for="checked-radio" (click)="checkDefaultAsChecked()">checked</label>
               </div>
               <div class="default-option">
                 <input type="radio" id="unChecked-radio" [checked]="!formInfoByType.get('isChecked')?.value">
-                <label class="cbx" for="unChecked-radio">unChecked</label>
+                <label class="cbx" for="unChecked-radio" (click)="checkDefaultAsChecked()">unChecked</label>
               </div>
             </li>
           </ul>
@@ -165,12 +165,12 @@
           <p>Validation Settings</p>
           <ul>
             <li class="option">
-              <input type="checkbox" id="required" formControlName="isRequired">
-              <label class="cbx" for="required" (click)="checkRequired()">Required</label>
+              <input type="checkbox" id="required-input" formControlName="isRequired">
+              <label class="cbx" for="required-input" (click)="checkRequired()">Required</label>
             </li>
             <li class="option">
-              <input type="checkbox" id="read-only" formControlName="isReadOnly">
-              <label class="cbx" for="read-only" (click)="checkReadOnly()">Read Only</label>
+              <input type="checkbox" id="read-only-input" formControlName="isReadOnly">
+              <label class="cbx" for="read-only-input" (click)="checkReadOnly()">Read Only</label>
             </li>
           </ul>
         </div>
@@ -211,12 +211,12 @@
             </div>
             <!-- checkBox -->
             <div class="checkbox-case test" *ngIf="form.get('formType')?.value === 'checkbox'">
-              <input type="checkbox" id="test-checkbox">
+              <input type="checkbox" id="test-checkbox" [checked]="form.get('formInfoByType')?.get('isChecked')?.value ">
               <label class="cbx" for="test-checkbox">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
             </div>
             <!-- Radio -->
             <div class="radio-case test" *ngIf="form.get('formType')?.value === 'radio'">
-              <input type="radio" id="test-radio">
+              <input type="radio" id="test-radio" [checked]="form.get('formInfoByType')?.get('isChecked')?.value ">
               <label class="cbx" for="test-radio">{{form.get('formInfoByType')?.get('labelName')?.value}}</label>
             </div>
   

@@ -82,8 +82,24 @@ export class FormComponent {
 
   checkReadOnly() {
     const target = document.getElementById('read-only-input') as HTMLInputElement;
-    this.validationFormGroup.get('isReadOnly')?.setValue(!target.checked);
+    this.formInfoByType.get('isReadOnly')?.setValue(!target.checked);
     target.checked = !target.checked;
+  }
+
+  checkDefaultAsChecked() {
+    const target = document.getElementById('checked-radio') as HTMLInputElement;
+    const unchecked = document.getElementById('unChecked-radio') as HTMLInputElement;
+    this.formInfoByType.get('isChecked')?.setValue(!target.checked);
+    target.checked = !target.checked;
+    unchecked.checked = !target.checked;
+  }
+
+  checkDefaultAsUnChecked() {
+    const target = document.getElementById('unChecked-radio') as HTMLInputElement;
+    const checked = document.getElementById('checked-radio') as HTMLInputElement;
+    this.validationFormGroup.get('isChecked')?.setValue(!target.checked);
+    target.checked = !target.checked;
+    checked.checked = !target.checked;
   }
 
   passValidation() {
@@ -99,7 +115,6 @@ export class FormComponent {
     return true;
   }
 
-  // TODO: 입력한 양식대로 form 생성
   createForm() {
     if (!this.passValidation()) return;
     const form = this.createFormInfo;
