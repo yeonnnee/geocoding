@@ -115,11 +115,34 @@ export class FormComponent {
     return true;
   }
 
+  getCreatedForm() {
+    const form = this.createFormInfo;
+    const formInfo = form.get('formInfoByType');
+    const formValidation = formInfo?.get('validation');
+    const validations = [];
+
+    if(formValidation?.get('isRequired')?.value) {
+      validations.push(Validators.required);
+    }
+
+    if(formValidation?.get('minLength')?.value) {
+      validations.push(Validators.minLength(formValidation.get('minLength')?.value));
+    }
+
+    if(formValidation?.get('maxLength')?.value) {
+      validations.push(Validators.maxLength(formValidation.get('maxLength')?.value));
+    }
+
+    formInfo?.get('valueTxt')?.setValidators(validations);
+    return form;
+  }
+
   createForm() {
     if (!this.passValidation()) return;
-    const form = this.createFormInfo;
+    const createdForm = this.getCreatedForm();
+
     const forms = this.generatedForms.get('forms') as FormArray;
-    forms.push(form);
+    forms.push(createdForm);
     this.buildForm();
   }
 
