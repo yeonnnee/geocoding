@@ -8,18 +8,18 @@
     .generator {
       // box-shadow: 1px 6px 7px 0px #b1bac0;
       .generator-header{
-        padding: 10px;
+        padding: 10px 23px;
         font-weight: bold;
         // border-radius: 10px 10px 0 0;
         // background-color: #788a96;
       }
   
       .generator-content {
-        border-bottom: 1px solid #ececec;
+        min-width: 286px;
         padding: 10px;
         margin: 0 0 10px;
+        border-bottom: 1px solid #ececec;
         box-shadow: 3px 4px 10px #ececec, -3px -4px 10px #ececec;
-
 
         .section-header {
           padding: 10px 0;
@@ -110,7 +110,11 @@
               }
             }
           }
-
+          .option {
+            input[type="text"] {
+              margin: 0 0 0 33px;
+            }
+          }
         }
 
         .options {
@@ -145,213 +149,197 @@
         }
       }
     }
-
-  
-    .button-container {
-      margin: 30px 0;
-      padding: 20px;
-      box-shadow: 0px 2px 11px #bebdbd;
-
-      p {
-        font-size: 13px;
-        font-weight: bold;
-      }
-      button {
-        margin: 0 10px 0 0;
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #ececec;
-        // color:#ececec;
-
-        border-radius: 5px;
-        background-color: transparent;
-        box-shadow: 1px 1px 0px #353434, 1px 2px 0 #000;
-  
-        &:hover {
-          box-shadow: 1px 1px 0px #353434, 1px 2px 8px #000;
-        }
-  
-        &.mark-btn {
-          background-color: rgb(111, 165, 209);
-        }
-        &.disable-btn {
-          background-color: rgb(137, 139, 141);
-        }
-        &.enable-btn {
-          background-color: rgb(103, 138, 165);
-        }
-      }
-    }
   
   }
 
-  
-  .test-form {
-    width: calc(100% - 164px);
-    margin: 57px 0 0 375px;
+  .form-list {
+    // position: absolute;
+    // left: 34%;
+    .btn-layer {
+      margin: 28px 0 0 308px;
 
-    .cbx {
-      margin: 0 10px 0 0;
-    }
-
-    .form-info {
-      position: relative;
-      // padding: 20px;
-      margin: 0 0 20px;
-      border: 1px solid #c2c1c1;
-
-      .form-title {
+      .select-all-btn {
+        font-weight: bold;
+      }
+      .options-for-all {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px 9px;
-        background: #ececec;
-        p {
-          margin: 0;
-          font-size: 15px;
-          font-weight: bold;
-        }
-        .buttons {
-          .btn {
-            border-radius: 5px;
-            font-size: 12px;
-            color: #eee;      
-            cursor: pointer;
-          
-            &.delete-btn {
-              padding: 6px 9px;
-              background-color: #b84545;
-            }
-            &.edit-btn {
-              margin: 0 10px 0 0;
-              padding: 6px 17px;
-              background-color: #dab550;
-            }
-          }
+        background-color: #d5e4f3;
+        border-radius: 5px;
+        padding: 10px 5px;
+
+        .option {
+          margin: 0 20px 0;
         }
       }
+    }
 
-      .form-content {
-        display: flex;
-
-        .validation-info {
-          border-left: 1px solid #ececec;
-          padding: 10px;
-
-          .title {
+    .test-form {
+      width: calc(100% - 164px);
+      margin: 8px 0 0 308px;
+  
+      .cbx {
+        margin: 0 10px 0 0;
+      }
+  
+      .form-info {
+        position: relative;
+        // padding: 20px;
+        margin: 0 0 20px;
+        border: 1px solid #c2c1c1;
+  
+        .form-title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 5px 9px;
+          background: #ececec;
+          p {
+            margin: 0;
+            font-size: 15px;
             font-weight: bold;
-            font-size: 12px;
+          }
+          .buttons {
+            .btn {
+              border-radius: 5px;
+              font-size: 12px;
+              color: #eee;      
+              cursor: pointer;
+            
+              &.delete-btn {
+                padding: 6px 9px;
+                background-color: #b84545;
+              }
+              &.edit-btn {
+                margin: 0 10px 0 0;
+                padding: 6px 17px;
+                background-color: #dab550;
+              }
+            }
           }
         }
-
-        .form-case {
-          .test {
-            border-bottom: 1px solid #ececec;
-          }
-          .input-case {
-            padding: 10px 19px;
-    
-            label {
-              margin: 0 10px 0 0;
-            }
-            input[type="text"] {
-              width: 94%;
-              padding: 5px;
-            }
-          }
-
-          .checkbox-case, .radio-case {
-            padding: 10px 0 0;
-            text-align: center;
-          }
-
-          .status {
-            margin: 10px 0;
-            padding: 0 20px;
-      
+  
+        .form-content {
+          display: flex;
+  
+          .validation-info {
+            border-left: 1px solid #ececec;
+            padding: 10px;
+  
             .title {
-              margin: 10px 0 0;
               font-weight: bold;
               font-size: 12px;
             }
-
-            ul {
-              display: flex;
+          }
+  
+          .form-case {
+            .test {
+              border-bottom: 1px solid #ececec;
+            }
+            .input-case {
+              padding: 10px 19px;
+      
+              label {
+                margin: 0 10px 0 0;
+              }
+              input[type="text"] {
+                width: 94%;
+                padding: 5px;
+              }
+            }
+  
+            .checkbox-case, .radio-case {
+              padding: 10px 0 0;
+              text-align: center;
+            }
+  
+            .status {
+              margin: 10px 0;
+              padding: 0 20px;
         
-              li {
-                .tooltip {
-                  position: absolute;
-                  top: 152px;
-                  background: rgba(0, 0, 0, 0.8);
-                  border-radius: 3px;
-                  padding: 3px 25px;
-                  color: white;
-                  visibility: hidden;
-
-                  &::after {
-                    content: '';
+              .title {
+                margin: 10px 0 0;
+                font-weight: bold;
+                font-size: 12px;
+              }
+  
+              ul {
+                display: flex;
+          
+                li {
+                  .tooltip {
                     position: absolute;
-                    top: -6px;
-                    left: 11%;
-                    width: 0; 
-                    height: 0;
-                    border-bottom: 6px solid rgba(0, 0, 0, 0.8);
-                    border-right: 6px solid transparent;
-                    border-left: 6px solid transparent;
+                    top: 152px;
+                    background: rgba(0, 0, 0, 0.8);
+                    border-radius: 3px;
+                    padding: 3px 25px;
+                    color: white;
+                    visibility: hidden;
+  
+                    &::after {
+                      content: '';
+                      position: absolute;
+                      top: -6px;
+                      left: 11%;
+                      width: 0; 
+                      height: 0;
+                      border-bottom: 6px solid rgba(0, 0, 0, 0.8);
+                      border-right: 6px solid transparent;
+                      border-left: 6px solid transparent;
+                    }
                   }
+  
+                  &.hover .tooltip {
+                    visibility: visible;
+                  }
+  
+                  .status-text {
+                    margin: 0 10px 0 0;
+                    width: 90px;
+                    padding: 3px 0;
+                    text-align: center;
+                    border: 1px solid #000;
+                    border-radius: 5px;
+                    cursor: default;
+                    opacity: 0.2;
+          
+  
+                    &.valid {
+                      box-shadow: inset -1px -1px 3px #92b2cf;
+                      opacity: 1;
+          
+                    }
+                    &.invalid{
+                      border: 1px solid #b84545;
+                      box-shadow: inset -1px -1px 3px #95767b;
+                      opacity: 1;
+          
+                    }
+                    &.touched{
+                      border: 1px solid #dab550;
+                      box-shadow: inset -1px -1px 3px #cad962;
+                      opacity: 1;
+          
+                    }
+                    &.dirty{
+                      border: 1px solid #93629c;
+                      box-shadow: inset -1px -1px 3px #aa89b1;
+                      opacity: 1;
+          
+                    }
+                    &.pristine{
+                      border: 1px solid #db6b8d;
+                      box-shadow: inset -1px -1px 3px #cc98b5;
+                      opacity: 1;
+          
+                    }
+                    &.pending {
+                      border: 1px solid #2a7c6a;
+                      box-shadow: inset -1px -1px 3px #566671;
+                      opacity: 1;
+                    }
+                  }
+                  
                 }
-
-                &.hover .tooltip {
-                  visibility: visible;
-                }
-
-                .status-text {
-                  margin: 0 10px 0 0;
-                  width: 90px;
-                  padding: 3px 0;
-                  text-align: center;
-                  border: 1px solid #000;
-                  border-radius: 5px;
-                  cursor: default;
-                  opacity: 0.2;
-        
-
-                  &.valid {
-                    box-shadow: inset -1px -1px 3px #92b2cf;
-                    opacity: 1;
-        
-                  }
-                  &.invalid{
-                    border: 1px solid #b84545;
-                    box-shadow: inset -1px -1px 3px #95767b;
-                    opacity: 1;
-        
-                  }
-                  &.touched{
-                    border: 1px solid #dab550;
-                    box-shadow: inset -1px -1px 3px #cad962;
-                    opacity: 1;
-        
-                  }
-                  &.dirty{
-                    border: 1px solid #93629c;
-                    box-shadow: inset -1px -1px 3px #aa89b1;
-                    opacity: 1;
-        
-                  }
-                  &.pristine{
-                    border: 1px solid #db6b8d;
-                    box-shadow: inset -1px -1px 3px #cc98b5;
-                    opacity: 1;
-        
-                  }
-                  &.pending {
-                    border: 1px solid #2a7c6a;
-                    box-shadow: inset -1px -1px 3px #566671;
-                    opacity: 1;
-                  }
-                }
-                
               }
             }
           }
@@ -359,6 +347,7 @@
       }
     }
   }
+  
 
   .error {
     border: 1px solid #b84545;

@@ -181,20 +181,32 @@
       </div>
     </div>
   
-    <div class="button-container">
-      <p>Apply All</p>
-      <button class="mark-btn" (click)="markAllAsTouched()">markAllAsTouched</button>
-      <button class="disable-btn" (click)="disableForm()">disable</button>
-      <button class="enable-btn" (click)="enableForm()">enable</button>
-    </div>
   </div>
 
   <!-- 리스트 항목 -->
   <div class="form-list" [formGroup]="generatedForms">
+    <div class="btn-layer">
+      <input type="checkbox" id="select-all">
+      <label class="cbx select-all-btn" for="select-all" (click)="selectAll($event)">Select All</label>
+      <ul class="options-for-all" *ngIf="checkAllFormsChecked()">
+        <li class="option">
+          <button (click)="markAllAsTouched()">markAllAsTouched</button>
+        </li>
+        <li class="option">
+          <button (click)="disableForm()">disable</button>
+        </li>
+        <li class="option">
+          <button (click)="enableForm()">enable</button>
+        </li>
+      </ul>
+    </div>
     <ul class="test-form" formArrayName="forms">
       <li class="form-info" *ngFor="let form of forms.controls; let formIdx=index" >
         <div class="form-title" [formGroupName]="formIdx">
-          <p>{{ form.get('formTitle')?.value}}</p>
+          <div class="title">
+            <input type="checkbox" id="form-title-{{formIdx}}" formControlName="isSelected">
+            <label class="cbx" for="form-title-{{formIdx}}">{{ form.get('formTitle')?.value}}</label>
+          </div>
 
           <div class="buttons">
             <button class="edit-btn btn" (click)="deleteForm(formIdx)">Edit</button>

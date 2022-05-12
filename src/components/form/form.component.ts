@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -32,6 +32,7 @@ export class FormComponent {
 
   buildForm() {
     this.createFormInfo = new FormGroup({
+      isSelected: new FormControl(false),
       formTitle: new FormControl(null),
       formType: new FormControl('input'),
       formInfoByType: new FormGroup({
@@ -50,6 +51,8 @@ export class FormComponent {
     });
   }
 
+
+
   get forms() {
     return this.generatedForms.get('forms') as FormArray;
   }
@@ -60,6 +63,10 @@ export class FormComponent {
 
   get validationFormGroup() {
     return this.formInfoByType.get('validation') as FormGroup;
+  }
+
+  get selectedForm() {
+    return this.forms.controls.filter(form => form.get('isSelected')?.value);
   }
 
   selectFormTypeAsInput() {
@@ -146,18 +153,30 @@ export class FormComponent {
     this.buildForm();
   }
 
+  selectAll(e:Event) {
+    const target = e.target as HTMLInputElement;
+    this.forms.controls.forEach(control => control.get('isSelected')?.setValue(!target.checked));
+    target.checked = !target.checked;
+  }
+
+  checkAllFormsChecked() {
+    return this.selectedForm.length === this.forms.length && this.selectedForm.length > 0
+  }
+
   // TODO: 생성한 모든 폼 touched 상태로
   markAllAsTouched() {
-
+    this.forms.markAllAsTouched();
   }
 
   // TODO: 생성한 모든 폼 disable 상태로
   disableForm() {
+    this.forms.disable();
   
   }
   // TODO: 생성한 모든 폼 enable 상태로
 
   enableForm() {
+    this.forms.enable();
 
   }
 
